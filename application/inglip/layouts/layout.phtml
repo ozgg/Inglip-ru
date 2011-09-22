@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><?php echo $this->_view->title; ?></title>
+    <meta name="keywords" content="inglip, Инглип, каптча, капча, послание, слова, буквы, captcha" />
+	<link href="/css/inglip.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">/*<![CDATA[*/
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-6037428-11']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+/*]]>*/</script>
+    <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?22"></script>
+    <script type="text/javascript">
+        VK.init({apiId: 2161904, onlyWidgets: true});
+    </script>
+</head>
+<body>
+    <div class="message cnt"><a href="/" title="Глагне"><img src="/images/summoned.png" alt="Inglip summoned" width="257" height="53" /></a></div>
+    <?php $this->_view->render(); ?>
+    <div class="ver">ver 0.1.0, beta</div>
+</body>
+</html>

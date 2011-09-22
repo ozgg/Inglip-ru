@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>http://inglip.ru/</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>http://inglip.ru/about/</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>http://inglip.ru/api/claim</loc>
+      <changefreq>always</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>http://inglip.ru/api/tagline</loc>
+      <changefreq>always</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>http://inglip.ru/images/claim.png</loc>
+      <changefreq>always</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>http://inglip.ru/images/captcha.png</loc>
+      <changefreq>always</changefreq>
+      <priority>0.5</priority>
+   </url>
+</urlset> 

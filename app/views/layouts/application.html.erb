@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= locale %>">
 <head>
-  <title>Inglip</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title><%= yield :title %> / inglip.ru</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <meta charset="utf-8" />
+  <meta name="description" content="<%= yield :description %>" />
 </head>
 <body>
+<header>
+  <%= link_to image_tag('summoned.png', alt: 'Inglip summoned', width: 257, height: 53), root_path %>
+</header>
 
-<%= yield %>
+<section role="main"><%= yield %></section>
 
+<footer>
+<%= yield :footer %>
+  <div class="copyright">&copy; Copyright 2011, 2014 inglip.ru</div>
+</footer>
 </body>
 </html>

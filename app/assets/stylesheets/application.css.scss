@@ -1,15 +1,77 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
  *= require_tree .
  *= require_self
  */
+
+html {
+  font-family: "Georgia", serif;
+  background: #ffffff image_url('raisins.png') no-repeat fixed bottom right;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 1100px;
+  outline: solid red 1px;
+
+  > header {
+    text-align: center;
+  }
+
+  > footer {
+    border-top: dotted 1px;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+
+    .copyright {
+      color: #777777;
+    }
+  }
+}
+
+img {
+  border: none;
+}
+
+article {
+  padding: 1em;
+  max-width: 640px;
+
+  h1 {
+    font-size: 1.7em;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin: 0.5em 0 0 0;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    margin: 0.5em 0 0 0;
+  }
+
+  p {
+    margin: 0.5em 0;
+    text-indent: 2em;
+  }
+}
+
+aside {
+  color: #777777;
+  font-size: 0.9em;
+}
+
+figure {
+  a {
+    img {
+      cursor: zoom-in;
+    }
+  }
+
+  figcaption {
+    font-size: 0.9em;
+    font-style: italic;
+  }
+}

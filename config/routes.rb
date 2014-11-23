@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'index#about'
 
-  get 'captcha.png' => 'captcha#index'
+  get 'images/captcha.png' => 'captcha#index', as: :captcha
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,3 +1,5 @@
+require 'RMagick'
+
 class CaptchaController < ApplicationController
   include Magick
 

@@ -13,6 +13,10 @@
   <%= link_to image_tag('summoned.png', alt: 'Inglip summoned', width: 257, height: 53), root_path %>
 </header>
 
+<% if flash[:notice] %>
+    <div id="notice" aria-label="<%= t('.notice') %>"><%= flash[:notice] %></div>
+<% end %>
+
 <section role="main"><%= yield %></section>
 
 <footer>

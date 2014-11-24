@@ -6,3 +6,20 @@ ru:
     about:
       title: "О проекте"
       description: "Когда и с чего начался культ инглипа, кто такие гропаги, что такое пласпер, пландень и видаула."
+  sessions:
+    not_logged_in: "Вход не выполнен"
+    logged_out: "Выход выполнен"
+    logged_in_successfully: "Вход успешно выполнен"
+    invalid_credentials: "Неверный логин или пароль"
+    already_logged_in: "Вы уже вошли"
+    new:
+      title: "Вход"
+      description: "Страница с формой входа на сайт"
+      header: "Вход"
+      enter_credentials: "Введите логин и пароль"
+      login: "Логин"
+      password: "Пароль"
+      enter: "Вход"
+  layouts:
+    application:
+      notice: "Замечание"

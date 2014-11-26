@@ -1,0 +1,9 @@
+<% content_for :title, t('.title', word: @noun.nominative) %>
+<% content_for :description, t('.description', word: @noun.nominative) %>
+
+<article>
+  <header>
+    <h1><%= t('.header') %></h1>
+    <h2><%= @noun.nominative %></h2>
+  </header>
+</article>

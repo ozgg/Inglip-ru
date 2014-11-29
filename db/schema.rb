@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125202735) do
+ActiveRecord::Schema.define(version: 20141129220519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 20141125202735) do
   add_index "nouns", ["approved"], name: "index_nouns_on_approved", using: :btree
   add_index "nouns", ["nominative"], name: "index_nouns_on_nominative", unique: true, using: :btree
   add_index "nouns", ["user_id"], name: "index_nouns_on_user_id", using: :btree
+
+  create_table "prepositions", force: true do |t|
+    t.string   "name",                          null: false
+    t.boolean  "genitive",      default: false
+    t.boolean  "dative",        default: false
+    t.boolean  "accusative",    default: false
+    t.boolean  "instrumental",  default: false
+    t.boolean  "prepositional", default: false
+    t.boolean  "locative",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prepositions", ["name"], name: "index_prepositions_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "login"

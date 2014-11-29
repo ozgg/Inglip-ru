@@ -1,9 +1,56 @@
 <% content_for :title, t('.title', word: @noun.nominative) %>
 <% content_for :description, t('.description', word: @noun.nominative) %>
 
-<article>
+<article class="word">
   <header>
     <h1><%= t('.header') %></h1>
     <h2><%= @noun.nominative %></h2>
+    <nav>
+      <ul>
+        <li><%= link_to t('to_list'), nouns_path %></li>
+      </ul>
+    </nav>
   </header>
+
+  <p>
+    <%= (t('activerecord.attributes.noun.animated') + ', ') if @noun.animated? %>
+    <%= t("activerecord.attributes.noun.grammatical_genders.#{@noun.grammatical_gender}") %>
+    <%= t('activerecord.attributes.noun.grammatical_gender') %>,
+    <%= t("activerecord.attributes.noun.grammatical_numbers.#{@noun.grammatical_number}") %>
+    <%= t('activerecord.attributes.noun.grammatical_number') %>.
+  </p>
+  <table>
+    <caption><%= t('nouns.form.declension') %></caption>
+    <thead>
+        <tr><th><%= t('nouns.form.case') %></th><th><%= t('nouns.form.declension') %></th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.nominative') %></th>
+          <td><%= t(@noun.nominative) %><%= " (#{@noun.plural_nominative})" unless @noun.plural_nominative.blank? %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.genitive') %></th>
+          <td><%= t(@noun.genitive) %><%= " (#{@noun.plural_genitive})" unless @noun.plural_genitive.blank? %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.dative') %></th>
+          <td><%= t(@noun.dative) %><%= " (#{@noun.plural_dative})" unless @noun.plural_dative.blank? %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.instrumental') %></th>
+          <td><%= t(@noun.instrumental) %><%= " (#{@noun.plural_instrumental})" unless @noun.plural_instrumental.blank? %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.prepositional') %></th>
+          <td><%= t(@noun.prepositional) %><%= " (#{@noun.plural_prepositional})" unless @noun.plural_prepositional.blank? %></td>
+        </tr>
+    <% if @noun.has_partitive? %>
+        <tr><td colspan="2"><%= t('activerecord.attributes.noun.has_partitive') %></td></tr>
+    <% end %>
+    <% if @noun.has_locative? %>
+        <tr><td colspan="2"><%= t('activerecord.attributes.noun.has_locative') %></td></tr>
+    <% end %>
+    </tbody>
+  </table>
 </article>

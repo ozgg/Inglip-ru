@@ -5,6 +5,13 @@
   <header>
     <h1><%= t('.header') %></h1>
     <h2><%= t('page', page: params[:page] || 1) %></h2>
+    <% if current_user %>
+    <nav>
+      <ul>
+        <li><%= link_to t('create'), new_noun_path %></li>
+      </ul>
+    </nav>
+    <% end %>
   </header>
 
   <% if @nouns.any? %>

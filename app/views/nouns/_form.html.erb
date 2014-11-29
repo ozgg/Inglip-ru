@@ -1,0 +1,78 @@
+<%= form_for @noun do |f| %>
+    <fieldset>
+      <legend><%= t('.gender_and_number') %></legend>
+      <div>
+        <%= f.label :grammatical_gender %>
+        <%= f.select :grammatical_gender, Noun.grammatical_genders.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_genders.#{e}"), e] } %>
+      </div>
+      <div>
+        <%= f.check_box :common_gender %>
+        <%= f.label :common_gender %>
+      </div>
+      <div>
+        <%= f.check_box :mutual_gender %>
+        <%= f.label :mutual_gender %>
+      </div>
+
+      <div>
+        <%= f.label :grammatical_number %>
+        <%= f.select :grammatical_number, Noun.grammatical_numbers.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_numbers.#{e}"), e] } %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t('.declension') %></legend>
+
+      <div>
+        <%= f.check_box :animated %>
+        <%= f.label :animated %>
+      </div>
+      <div>
+        <%= f.check_box :has_locative %>
+        <%= f.label :has_locative %>
+      </div>
+      <div>
+        <%= f.check_box :has_partitive %>
+        <%= f.label :has_partitive %>
+      </div>
+
+      <table>
+        <caption><%= t('.cases') %></caption>
+        <thead>
+            <tr><th><%= t('.case') %></th><th><%= t('.singular_form') %></th><th><%= t('.plural_form') %></th></tr>
+        </thead>
+        <tbody>
+            <tr>
+              <th><%= f.label :nominative %></th>
+              <td><%= f.text_field :nominative %></td>
+              <td><%= f.text_field :plural_nominative %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :genitive %></th>
+              <td><%= f.text_field :genitive %></td>
+              <td><%= f.text_field :plural_genitive %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :dative %></th>
+              <td><%= f.text_field :dative %></td>
+              <td><%= f.text_field :plural_dative %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :instrumental %></th>
+              <td><%= f.text_field :instrumental %></td>
+              <td><%= f.text_field :plural_instrumental %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :prepositional %></th>
+              <td><%= f.text_field :prepositional %></td>
+              <td><%= f.text_field :plural_prepositional %></td>
+            </tr>
+        </tbody>
+      </table>
+
+    </fieldset>
+
+    <div>
+      <%= f.button t('submit'), type: :submit %>
+    </div>
+<% end %>

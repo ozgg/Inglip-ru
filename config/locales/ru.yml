@@ -1,4 +1,52 @@
 ru:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Запись недействительна"
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              blank: "не может быть пустым"
+              confirmation: "не совпадает с паролем"
+            password:
+              blank: "не может быть пустым"
+            login:
+              invalid: "должен содержать от 1 до 30 английских букв, цифр или знаков подчёркивания"
+        noun:
+          attributes:
+            moninative:
+              blank: "не может быть пустым"
+    models:
+      noun: "имя существительное"
+      user: "пользователь"
+    attributes:
+      noun:
+        grammatical_gender: "Род"
+        common_gender: "Общий род"
+        mutual_gender: "Обоюдный род"
+        grammatical_number: "Число"
+        animated: "Одушевлённое"
+        has_locative: "Имеет локатив"
+        has_partitive: "Имеет партитив"
+        nominative: "Именительный"
+        genitive: "Родительный"
+        dative: "Дательный"
+        instrumental: "Творительный"
+        prepositional: "Предложный"
+        plural_nominative: "Именительный (мн. ч.)"
+        plural_genitive: "Родительный (мн. ч.)"
+        plural_dative: "Дательный (мн. ч.)"
+        plural_instrumental: "Творительный (мн. ч.)"
+        plural_prepositional: "Предложный (мн. ч.)"
+        grammatical_genders:
+          masculine: "мужской"
+          feminine: "женский"
+          neuter: "средний"
+        grammatical_numbers:
+          both: "любое"
+          singular_only: "всегда единственное"
+          plural_only: "всегда множественное"
   index:
     index:
       title: "Инглип вызван"
@@ -33,9 +81,35 @@ ru:
       title: "Имя существительное «%{word}»"
       description: "Склонение имени существительного «%{word}» в словаре Инглипа."
       header: "Имена существительные"
+    form:
+      gender_and_number: "Род и число"
+      declension: "Склонение"
+      cases: "Падежи"
+      case: "Падеж"
+      singular_form: "Единственное число"
+      plural_form: "Множественное число"
+    new:
+      title: "Добавление существительного"
+      description: "Административная страница с формой для добавления имени существительного."
+      header: "Добавление имени существительного"
   page: "Страница %{page}"
   nothing_found: "Ничего не найдено"
   word:
     destroyed: "Слово удалено"
     updated: "Слово изменено"
     created: "Слово добавлено"
+  to_list: "К списку"
+  submit: "Отправить"
+  error:
+    zero: "нет ошибок"
+    one: "%{count} ошибка"
+    few: "%{count} ошибки"
+    many: "%{count} ошибок"
+    other: "%{count} ошибок"
+  views:
+    pagination:
+      first: "⇤"
+      last: "⇥"
+      previous: "←"
+      next: "→"
+      truncate: "..."

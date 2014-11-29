@@ -8,6 +8,9 @@
     <nav>
       <ul>
         <li><%= link_to t('to_list'), nouns_path %></li>
+        <% if current_user %>
+        <li><%= link_to t('edit'), edit_noun_path(@noun) %></li>
+        <% end %>
       </ul>
     </nav>
   </header>

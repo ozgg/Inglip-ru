@@ -17,9 +17,14 @@ ru:
           attributes:
             moninative:
               blank: "не может быть пустым"
+        verb:
+          attributes:
+            infinitive:
+              blank: "не может быть пустым"
     models:
       noun: "имя существительное"
       user: "пользователь"
+      verb: "глагол"
     attributes:
       noun:
         grammatical_gender: "род"
@@ -47,6 +52,25 @@ ru:
           both: "любое"
           singular_only: "всегда единственное"
           plural_only: "всегда множественное"
+      verb:
+        approved:   "проверен"
+        has_reflexive: "имеет возвратный залог"
+        has_reciprocal: "имеет взаимный залог"
+        has_neuter: "имеет средний залог"
+        valency:    "валентность"
+        infinitive: "инфинитив"
+        imperative: "императив"
+        gerund:     "деепричастие"
+        present_first:         "первое лицо (единственное чило)"
+        present_first_plural:  "первое лицо (множественное число)"
+        present_second:        "второе лицо (единственное чило)"
+        present_second_plural: "второе лицо (множественное число)"
+        present_third:         "третье лицо (единственное чило)"
+        present_third_plural:  "третье лицо (множественное число)"
+        past_masculine: "мужской род"
+        past_feminine:  "женский род"
+        past_neuter:    "средний род"
+        past_plural:    "множественное число"
   index:
     index:
       title: "Инглип вызван"
@@ -135,3 +159,6 @@ ru:
       description: "Страница с формой редактирования глагола «%{word}»."
     form:
       main_forms: "Основные формы"
+      voices: "Залоги"
+      present_forms: "Формы для настоящего времени"
+      past_forms: "Формы в прошедшем времени"

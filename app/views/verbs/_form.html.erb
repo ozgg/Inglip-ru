@@ -9,36 +9,85 @@
         <%= f.text_field :infinitive, required: true %>
       </div>
       <div>
-        <%= f.label :infinitive_perfect %>
-        <%= f.text_field :infinitive_perfect %>
+        <%= f.label :imperative %>
+        <%= f.text_field :imperative %>
+      </div>
+      <div>
+        <%= f.label :gerund %>
+        <%= f.text_field :gerund %>
+      </div>
+      <div>
+        <%= f.label :valency %>
+        <%= f.number_field :valency, min: 0, max: 3 %>
       </div>
     </fieldset>
 
+    <fieldset>
+      <legend><%= t('.voices') %></legend>
 
-    t.boolean :has_reflexive, null: false, default: true
-    t.boolean :has_reciprocal, null: false, default: false
-    t.boolean :has_neuter, null: false, default: false
-    t.integer :valency, null: false, default: 3
-    t.string
-    t.string :present_first
-    t.string :present_plural_first
-    t.string :present_second
-    t.string :present_plural_second
-    t.string :present_third
-    t.string :present_plural_third
-    t.string :past
-    t.string :past_plural
-    t.string :past_perfect
-    t.string :past_perfect_plural
-    t.string :future_perfect_first
-    t.string :future_perfect_first_plural
-    t.string :future_perfect_second
-    t.string :future_perfect_second_plural
-    t.string :future_perfect_third
-    t.string :future_perfect_third_plural
-    t.string :passive
-    t.string :imperative
-    t.string :imperative_perfect
+      <div>
+        <%= f.check_box :has_reflexive %>
+        <%= f.label :has_reflexive %>
+      </div>
+      <div>
+        <%= f.check_box :has_reciprocal %>
+        <%= f.label :has_reciprocal %>
+      </div>
+      <div>
+        <%= f.check_box :has_neuter %>
+        <%= f.label :has_neuter %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t('.present_forms') %></legend>
+
+      <div>
+        <%= f.label :present_first %>
+        <%= f.text_field :present_first %>
+      </div>
+      <div>
+        <%= f.label :present_second %>
+        <%= f.text_field :present_second %>
+      </div>
+      <div>
+        <%= f.label :present_third %>
+        <%= f.text_field :present_third %>
+      </div>
+      <div>
+        <%= f.label :present_first_plural %>
+        <%= f.text_field :present_first_plural %>
+      </div>
+      <div>
+        <%= f.label :present_second_plural %>
+        <%= f.text_field :present_second_plural %>
+      </div>
+      <div>
+        <%= f.label :present_third_plural %>
+        <%= f.text_field :present_third_plural %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t('.past_forms') %></legend>
+
+      <div>
+        <%= f.label :past_masculine %>
+        <%= f.text_field :past_masculine %>
+      </div>
+      <div>
+        <%= f.label :past_feminine %>
+        <%= f.text_field :past_feminine %>
+      </div>
+      <div>
+        <%= f.label :past_neuter %>
+        <%= f.text_field :past_neuter %>
+      </div>
+      <div>
+        <%= f.label :past_plural %>
+        <%= f.text_field :past_plural %>
+      </div>
+    </fieldset>
 
     <div>
       <%= f.button t('submit'), type: :submit %>

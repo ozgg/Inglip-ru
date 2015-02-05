@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130211658) do
+ActiveRecord::Schema.define(version: 20141129220519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,40 +64,5 @@ ActiveRecord::Schema.define(version: 20141130211658) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "verbs", force: true do |t|
-    t.integer  "user_id"
-    t.boolean  "approved",                     default: false, null: false
-    t.boolean  "has_reflexive",                default: true,  null: false
-    t.boolean  "has_reciprocal",               default: false, null: false
-    t.boolean  "has_neuter",                   default: false, null: false
-    t.integer  "valency",                      default: 3,     null: false
-    t.string   "infinitive",                                   null: false
-    t.string   "infinitive_imperative"
-    t.string   "present_first"
-    t.string   "present_plural_first"
-    t.string   "present_second"
-    t.string   "present_plural_second"
-    t.string   "present_third"
-    t.string   "present_plural_third"
-    t.string   "past"
-    t.string   "past_plural"
-    t.string   "past_perfect"
-    t.string   "past_perfect_plural"
-    t.string   "future_perfect_first"
-    t.string   "future_perfect_first_plural"
-    t.string   "future_perfect_second"
-    t.string   "future_perfect_second_plural"
-    t.string   "future_perfect_third"
-    t.string   "future_perfect_third_plural"
-    t.string   "passive"
-    t.string   "imperative"
-    t.string   "imperative_perfect"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "verbs", ["infinitive"], name: "index_verbs_on_infinitive", unique: true, using: :btree
-  add_index "verbs", ["user_id"], name: "index_verbs_on_user_id", using: :btree
 
 end

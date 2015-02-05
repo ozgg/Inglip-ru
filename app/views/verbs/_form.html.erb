@@ -1,0 +1,46 @@
+<%= form_for @verb do |f| %>
+    <%= render partial: 'common/errors_list', locals: { entity: @verb } %>
+
+    <fieldset>
+      <legend><%= t('.main_forms') %></legend>
+
+      <div>
+        <%= f.label :infinitive %>
+        <%= f.text_field :infinitive, required: true %>
+      </div>
+      <div>
+        <%= f.label :infinitive_perfect %>
+        <%= f.text_field :infinitive_perfect %>
+      </div>
+    </fieldset>
+
+
+    t.boolean :has_reflexive, null: false, default: true
+    t.boolean :has_reciprocal, null: false, default: false
+    t.boolean :has_neuter, null: false, default: false
+    t.integer :valency, null: false, default: 3
+    t.string
+    t.string :present_first
+    t.string :present_plural_first
+    t.string :present_second
+    t.string :present_plural_second
+    t.string :present_third
+    t.string :present_plural_third
+    t.string :past
+    t.string :past_plural
+    t.string :past_perfect
+    t.string :past_perfect_plural
+    t.string :future_perfect_first
+    t.string :future_perfect_first_plural
+    t.string :future_perfect_second
+    t.string :future_perfect_second_plural
+    t.string :future_perfect_third
+    t.string :future_perfect_third_plural
+    t.string :passive
+    t.string :imperative
+    t.string :imperative_perfect
+
+    <div>
+      <%= f.button t('submit'), type: :submit %>
+    </div>
+<% end %>

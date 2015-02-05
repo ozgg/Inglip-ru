@@ -58,11 +58,10 @@ class VerbsController < ApplicationController
 
   def verb_parameters
     allowed = [
-         :has_reflexive, :has_reciprocal, :has_neuter, :valency, :infinitive, :infinitive_imperative,
-         :present_first, :present_plural_first, :present_second, :present_plural_second, :present_third, 
-         :present_plural_third, :past, :past_plural, :past_perfect, :past_perfect_plural, :future_perfect_first,
-         :future_perfect_first_plural, :future_perfect_second, :future_perfect_second_plural, :future_perfect_third,
-         :future_perfect_third_plural, :passive, :imperative, :imperative_perfect
+         :has_reflexive, :has_reciprocal, :has_neuter, :valency, :infinitive, :imperative,
+         :present_first, :present_second, :present_third,
+         :present_first_plural, :present_second_plural, :present_third_plural,
+         :past_masculine, :past_feminine, :past_neuter, :past_plural,
     ]
 
     params.require(:verb).permit(allowed)

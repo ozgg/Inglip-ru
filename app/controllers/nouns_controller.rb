@@ -2,14 +2,17 @@ class NounsController < ApplicationController
   before_action :allow_authorized_only, except: [:index, :show]
   before_action :set_noun, only: [:show, :edit, :update, :destroy]
 
+  # get /nouns
   def index
     @nouns = Noun.page(params[:page] || 1).per(20)
   end
 
+  # get /nouns/new
   def new
     @noun = Noun.new
   end
 
+  # post /nouns
   def create
     @noun = Noun.new(noun_parameters.merge(user: current_user, approved: true))
     if @noun.save
@@ -20,12 +23,15 @@ class NounsController < ApplicationController
     end
   end
 
+  # get /nouns/:id
   def show
   end
 
+  # get /nouns/:id/edit
   def edit
   end
 
+  # patch /nouns/:id
   def update
     if @noun.update(noun_parameters)
       flash[:notice] = t('word.updated')
@@ -35,6 +41,7 @@ class NounsController < ApplicationController
     end
   end
 
+  # delete /nouns/:id
   def destroy
     if @noun.destroy
       flash[:notice] = t('word.destroyed')

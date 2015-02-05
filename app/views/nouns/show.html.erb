@@ -4,12 +4,13 @@
 <article class="word">
   <header>
     <h1><%= t('.header') %></h1>
+
     <h2><%= @noun.nominative %></h2>
     <nav>
       <ul>
         <li><%= link_to t('to_list'), nouns_path %></li>
         <% if current_user %>
-        <li><%= link_to t('edit'), edit_noun_path(@noun) %></li>
+            <li><%= link_to t('edit'), edit_noun_path(@noun) %></li>
         <% end %>
       </ul>
     </nav>
@@ -22,12 +23,16 @@
     <%= t("activerecord.attributes.noun.grammatical_numbers.#{@noun.grammatical_number}") %>
     <%= t('activerecord.attributes.noun.grammatical_number') %>.
   </p>
-  <table>
-    <caption><%= t('nouns.form.declension') %></caption>
-    <thead>
-        <tr><th><%= t('nouns.form.case') %></th><th><%= t('nouns.form.declension') %></th></tr>
-    </thead>
-    <tbody>
+  <% if current_user %>
+      <table>
+        <caption><%= t('nouns.form.declension') %></caption>
+        <thead>
+        <tr>
+          <th><%= t('nouns.form.case') %></th>
+          <th><%= t('nouns.form.declension') %></th>
+        </tr>
+        </thead>
+        <tbody>
         <tr>
           <th><%= t('activerecord.attributes.noun.nominative') %></th>
           <td><%= t(@noun.nominative) %><%= " (#{@noun.plural_nominative})" unless @noun.plural_nominative.blank? %></td>
@@ -48,12 +53,17 @@
           <th><%= t('activerecord.attributes.noun.prepositional') %></th>
           <td><%= t(@noun.prepositional) %><%= " (#{@noun.plural_prepositional})" unless @noun.plural_prepositional.blank? %></td>
         </tr>
-    <% if @noun.has_partitive? %>
-        <tr><td colspan="2"><%= t('activerecord.attributes.noun.has_partitive') %></td></tr>
-    <% end %>
-    <% if @noun.has_locative? %>
-        <tr><td colspan="2"><%= t('activerecord.attributes.noun.has_locative') %></td></tr>
-    <% end %>
-    </tbody>
-  </table>
+        <% if @noun.has_partitive? %>
+            <tr>
+              <td colspan="2"><%= t('activerecord.attributes.noun.has_partitive') %></td>
+            </tr>
+        <% end %>
+        <% if @noun.has_locative? %>
+            <tr>
+              <td colspan="2"><%= t('activerecord.attributes.noun.has_locative') %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+  <% end %>
 </article>

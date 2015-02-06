@@ -15,7 +15,17 @@ ru:
               invalid: "должен содержать от 1 до 30 английских букв, цифр или знаков подчёркивания"
         noun:
           attributes:
-            moninative:
+            nominative:
+              blank: "не может быть пустым"
+            genitive:
+              blank: "не может быть пустым"
+            dative:
+              blank: "не может быть пустым"
+            accusative:
+              blank: "не может быть пустым"
+            instrumental:
+              blank: "не может быть пустым"
+            prepositional:
               blank: "не может быть пустым"
         verb:
           attributes:
@@ -37,11 +47,13 @@ ru:
         nominative: "именительный"
         genitive: "родительный"
         dative: "дательный"
+        accusative: "винительный"
         instrumental: "творительный"
         prepositional: "предложный"
         plural_nominative: "именительный (мн. ч.)"
         plural_genitive: "родительный (мн. ч.)"
         plural_dative: "дательный (мн. ч.)"
+        plural_accusative: "винительный (мн. ч.)"
         plural_instrumental: "творительный (мн. ч.)"
         plural_prepositional: "предложный (мн. ч.)"
         grammatical_genders:

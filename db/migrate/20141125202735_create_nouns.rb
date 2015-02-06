@@ -13,11 +13,13 @@ class CreateNouns < ActiveRecord::Migration
       t.string :nominative, null: false
       t.string :genitive, null: false
       t.string :dative, null: false
+      t.string :accusative, null: false
       t.string :instrumental, null: false
       t.string :prepositional, null: false
       t.string :plural_nominative
       t.string :plural_genitive
       t.string :plural_dative
+      t.string :plural_accusative
       t.string :plural_instrumental
       t.string :plural_prepositional
 
@@ -27,13 +29,23 @@ class CreateNouns < ActiveRecord::Migration
     add_index :nouns, :nominative, unique: true
     add_index :nouns, :approved
 
-    Noun.create!(
-        {
-            approved: true, grammatical_gender: :masculine, grammatical_number: :both, animated: true,
-            nominative: 'Инглип', genitive: 'Инглипа', dative: 'Инглипу', instrumental: 'Инглипом', prepositional: 'Инглипе',
-            plural_nominative: 'Инглипы', plural_genitive: 'Инглипов', plural_dative: 'Инглипам',
-            plural_instrumental: 'Инглипами', plural_prepositional: 'Инглипах',
-        }
-    )
+    Noun.create!({
+                     approved:             true,
+                     grammatical_gender:   :masculine,
+                     grammatical_number:   :both,
+                     animated:             true,
+                     nominative:           'Инглип',
+                     genitive:             'Инглипа',
+                     dative:               'Инглипу',
+                     accusative:           'Инглипа',
+                     instrumental:         'Инглипом',
+                     prepositional:        'Инглипе',
+                     plural_nominative:    'Инглипы',
+                     plural_genitive:      'Инглипов',
+                     plural_dative:        'Инглипам',
+                     plural_accusative:    'Инглипов',
+                     plural_instrumental:  'Инглипами',
+                     plural_prepositional: 'Инглипах',
+                 })
   end
 end

@@ -25,6 +25,7 @@ class CreateVerbs < ActiveRecord::Migration
     end
 
     add_index :verbs, :infinitive, unique: true
+    add_index :verbs, :approved
 
     Verb.create!({
                      approved:              true,

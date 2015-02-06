@@ -29,11 +29,13 @@ ActiveRecord::Schema.define(version: 20141130211658) do
     t.string   "nominative",                           null: false
     t.string   "genitive",                             null: false
     t.string   "dative",                               null: false
+    t.string   "accusative",                           null: false
     t.string   "instrumental",                         null: false
     t.string   "prepositional",                        null: false
     t.string   "plural_nominative"
     t.string   "plural_genitive"
     t.string   "plural_dative"
+    t.string   "plural_accusative"
     t.string   "plural_instrumental"
     t.string   "plural_prepositional"
     t.datetime "created_at"
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 20141130211658) do
     t.datetime "updated_at"
   end
 
+  add_index "verbs", ["approved"], name: "index_verbs_on_approved", using: :btree
   add_index "verbs", ["infinitive"], name: "index_verbs_on_infinitive", unique: true, using: :btree
   add_index "verbs", ["user_id"], name: "index_verbs_on_user_id", using: :btree
 

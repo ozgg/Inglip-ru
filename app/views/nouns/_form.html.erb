@@ -46,15 +46,8 @@
         <tbody>
             <tr>
               <th><%= f.label :nominative %></th>
-              <td>
-                <%= f.text_field :nominative %>
-                <button type="button" id="noun-magic-singular">&darr;</button>
-                <button type="button" id="noun-magic-pluralize">&rarr;</button>
-              </td>
-              <td>
-                <%= f.text_field :plural_nominative %>
-                <button type="button" id="noun-magic-plural">&darr;</button>
-              </td>
+              <td><%= f.text_field :nominative %><button type="button" id="noun-magic">&darr;</button></td>
+              <td><%= f.text_field :plural_nominative %></td>
             </tr>
             <tr>
               <th><%= f.label :genitive %></th>

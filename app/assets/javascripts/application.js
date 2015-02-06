@@ -3,13 +3,19 @@
 //= require_tree .
 
 function in_array(needle, haystack) {
+    var found = false;
+
     for (var i in haystack) {
         if (haystack.hasOwnProperty(i)) {
             if (haystack[i] === needle) {
-                return true;
+                found = true;
+                break;
             }
+        }
+        if (found) {
+            break;
         }
     }
 
-    return false;
+    return found;
 }

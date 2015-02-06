@@ -12,7 +12,8 @@ $(document).ready(function() {
         var animated = $('#noun_animated').is(':checked');
         var ending   = donor.slice(-1);
         var penultimate = donor.slice(-2).substring(0, 1);
-        var soften = in_array(penultimate, ['г', 'к']);
+        var is_sibilant = in_array(penultimate, ['ж', 'ш', 'щ', 'ч', 'ц']);
+        var soften = in_array(penultimate, ['г', 'к', 'ш', 'ж']);
 
         var genitive      = $('#noun_genitive');
         var dative        = $('#noun_dative');
@@ -25,19 +26,28 @@ $(document).ready(function() {
         if (gender === 'masculine') {
             switch (ending) {
                 case 'а':
-                    root   = donor.slice(0, -1);
-                    endings = [soften ? 'и' : 'ы', 'е', animated ? 'у' : ending, 'ой', 'е'];
+                    root    = donor.slice(0, -1);
+                    endings = [soften || is_sibilant ? 'и' : 'ы', 'е', animated ? 'у' : ending, 'ой', 'е'];
                     break;
                 case 'я':
-                    root   = donor.slice(0, -1);
+                    root    = donor.slice(0, -1);
                     endings = ['и', 'е', animated ? 'ю' : ending, 'ей', 'е'];
                     break;
                 case 'ь':
-                    root   = donor.slice(0, -1);
+                    root    = donor.slice(0, -1);
                     endings = ['я', 'ю', animated ? 'я' : ending, 'ем', 'е'];
                     break;
+                case 'о':
+                    root    = donor.slice(0, -1);
+                    endings = ['и', 'е', animated ? 'ю' : ending, 'ой', 'е'];
+                    break;
+                case 'е':
+                    root    = donor.slice(0, -1);
+                    soften  = !in_array(root.slice(-1), ['ч', 'щ']);
+                    endings = [soften ? 'я' : 'а', soften ? 'ю' : 'у', animated ? 'а' : ending, 'ем', 'е'];
+                    break;
                 default:
-                    root   = donor;
+                    root    = donor;
                     endings = ['а', 'у', animated ? 'а' : '', 'ом', 'е'];
                     break;
             }
@@ -45,7 +55,7 @@ $(document).ready(function() {
             switch (ending) {
                 case 'а':
                     root    = donor.slice(0, -1);
-                    endings = [soften ? 'и' : 'ы', 'е', 'у', 'ой', 'е'];
+                    endings = [soften ? 'и' : 'ы', 'е', 'у', is_sibilant ? 'ей' : 'ой', 'е'];
                     break;
                 case 'я':
                     root    = donor.slice(0, -1);
@@ -61,8 +71,25 @@ $(document).ready(function() {
                     break;
             }
         } else if (gender === 'neuter') {
-            root = donor.slice(0, -1);
-            endings = ['а', 'у', ending, 'ом', 'е']
+            switch (ending) {
+                case 'о':
+                    root = donor.slice(0, -1);
+                    endings = ['а', 'у', ending, 'ом', 'е'];
+                    break;
+                case 'е':
+                    root    = donor.slice(0, -1);
+                    soften  = !in_array(root.slice(-1), ['ч', 'щ']);
+                    endings = [soften ? 'я' : 'а', soften ? 'ю' : 'у', ending, 'ем', 'е'];
+                    break;
+                case 'я':
+                    root    = donor.slice(0, -1);
+                    endings = ['ени', 'еню', 'я', 'енем', 'ени'];
+                    break;
+                default:
+                    root = donor;
+                    endings = ['', '', '', '', ''];
+                    break;
+            }
         } else {
             root = donor;
             endings = ['', '', '', '', ''];
@@ -84,21 +111,49 @@ $(document).ready(function() {
         var penultimate = donor.slice(-2).substring(0, 1);
         var soften;
 
-        switch (gender) {
-            case 'masculine':
-                soften = in_array(ending, ['г', 'к', 'ь']);
-                plural = donor + (soften ? 'и' : 'ы');
-                break;
-            case 'feminine':
-                soften = in_array(penultimate, ['г', 'к']) || (ending === 'ь');
-                plural = donor.slice(0, -1) + (soften ? 'и' : 'ы');
-                break;
-            case 'neuter':
-                plural = donor.slice(0, -1) + 'а';
-                break;
-            default:
-                plural = donor;
-                break;
+        if (gender === 'masculine') {
+            soften = in_array(ending, ['г', 'к', 'ь', 'ж', 'ш', 'ч', 'щ']);
+
+            switch (ending) {
+                case 'а':
+                    soften = in_array(penultimate, ['к', 'г', 'ш', 'ж']);
+                    plural = donor.slice(0, -1) + (soften ? 'и' : 'ы');
+                    break;
+                case 'я':
+                case 'ь':
+                case 'е':
+                case 'о':
+                    plural = donor.slice(0, -1) + 'и';
+                    break;
+                case 'к':
+                    if (in_array(penultimate, ['е', 'ё'])) {
+                        plural = donor.slice(0, -2) + 'ьки';
+                    } else {
+                        plural = donor + 'и';
+                    }
+                    break;
+                default:
+                    plural = donor + (soften ? 'и' : 'ы');
+                    break;
+            }
+        } else if (gender === 'feminine') {
+            soften = in_array(penultimate, ['г', 'к', 'л', 'ш', 'ж', 'щ']) || (ending === 'ь');
+            switch (ending) {
+                default:
+                    plural = donor.slice(0, -1) + (soften ? 'и' : 'ы');
+                    break;
+            }
+        } else if (gender === 'neuter') {
+            switch (ending) {
+                case 'я':
+                    plural = donor.slice(0, -1) + 'ена';
+                    break;
+                default:
+                    plural = donor.slice(0, -1) + (ending === 'о' ? 'а' : 'я');
+                    break;
+            }
+        } else {
+            plural = donor;
         }
 
         acceptor.val(plural);

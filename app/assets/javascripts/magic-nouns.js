@@ -15,19 +15,6 @@ $(document).ready(function() {
         var is_sibilant = in_array(penultimate, ['ж', 'ш', 'щ', 'ч', 'ц']);
         var soften = in_array(penultimate, ['г', 'к', 'ш', 'ж']);
 
-        var genitive      = $('#noun_genitive');
-        var dative        = $('#noun_dative');
-        var accusative    = $('#noun_accusative');
-        var instrumental  = $('#noun_instrumental');
-        var prepositional = $('#noun_prepositional');
-
-        var nominative_plural    = $('#noun_plural_nominative');
-        var genitive_plural      = $('#noun_plural_genitive');
-        var dative_plural        = $('#noun_plural_dative');
-        var accusative_plural    = $('#noun_plural_accusative');
-        var instrumental_plural  = $('#noun_plural_instrumental');
-        var prepositional_plural = $('#noun_plural_prepositional');
-
         var root, endings, plurals;
 
         if (gender === 'masculine') {
@@ -64,12 +51,29 @@ $(document).ready(function() {
                     endings = ['а', 'у', animated ? 'а' : '', 'ом', 'е'];
                     plurals = ['и', 'ей', 'ам', animated ? 'ей' : 'и', 'ами', 'ах'];
                     break;
+                case 'й':
+                    root    = donor.slice(0, -1);
+                    endings = ['я', 'ю', animated ? 'я' : ending, 'ем', 'е'];
+                    plurals = ['и', 'ев', 'ям', animated ? 'ев' : 'и', 'ями', 'ях'];
                     break;
                 default:
-                    soften  = in_array(ending, ['г', 'к']);
-                    root    = donor;
-                    endings = ['а', 'у', animated ? 'а' : '', 'ом', 'е'];
-                    plurals = [soften ? 'и' : 'ы', 'ов', 'ам', animated ? 'ов' : (soften ? 'и' : 'ы'), 'ами', 'ах'];
+                    if ((ending === 'к') && in_array(penultimate, ['о', 'ё'])) {
+                        root = donor.slice(0, -2);
+                        if (penultimate === 'ё') {
+                            root += 'ь';
+                        }
+                        endings = ['ка', 'ку', animated ? 'ка' : (ending + 'к'), 'ком', 'ке'];
+                        plurals = ['ки', 'ков', 'кам', animated ? 'ков' : 'ки', 'ками', 'ках'];
+                    } else if (ending === 'н' && penultimate === 'и' && animated) {
+                        root = donor.slice(0, -2);
+                        endings = ['на', 'ну', 'на', 'ном', 'не'];
+                        plurals = ['е', '', 'ам', '', 'ами', 'ах'];
+                    } else {
+                        soften  = in_array(ending, ['г', 'к']);
+                        root    = donor;
+                        endings = ['а', 'у', animated ? 'а' : '', 'ом', 'е'];
+                        plurals = [soften ? 'и' : 'ы', 'ов', 'ам', animated ? 'ов' : (soften ? 'и' : 'ы'), 'ами', 'ах'];
+                    }
                     break;
             }
         } else if (gender === 'feminine') {
@@ -117,18 +121,18 @@ $(document).ready(function() {
             plurals = ['', '', '', '', ''];
         }
 
-        genitive.val(root + endings[0]);
-        dative.val(root + endings[1]);
-        accusative.val(root + endings[2]);
-        instrumental.val(root + endings[3]);
-        prepositional.val(root + endings[4]);
+        $('#noun_genitive').val(root + endings[0]);
+        $('#noun_dative').val(root + endings[1]);
+        $('#noun_accusative').val(root + endings[2]);
+        $('#noun_instrumental').val(root + endings[3]);
+        $('#noun_prepositional').val(root + endings[4]);
 
-        nominative_plural.val(root + plurals[0]);
-        genitive_plural.val(root + plurals[1]);
-        dative_plural.val(root + plurals[2]);
-        accusative_plural.val(root + plurals[3]);
-        instrumental_plural.val(root + plurals[4]);
-        prepositional_plural.val(root + plurals[5]);
+        $('#noun_plural_nominative').val(root + plurals[0]);
+        $('#noun_plural_genitive').val(root + plurals[1]);
+        $('#noun_plural_dative').val(root + plurals[2]);
+        $('#noun_plural_accusative').val(root + plurals[3]);
+        $('#noun_plural_instrumental').val(root + plurals[4]);
+        $('#noun_plural_prepositional').val(root + plurals[5]);
     });
 
     $('#noun-magic-pluralize').on('click', function() {

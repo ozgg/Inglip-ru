@@ -28,7 +28,7 @@
       <p><%= t('activerecord.attributes.verb.imperative') %>: <%= @verb.imperative %></p>
       <% end %>
       <% unless @verb.gerund.blank? %>
-      <p><%= t('activerecord.attributes.verb.gerund') %>: <%= @verb.gerund %></p>
+      <p><%= t('activerecord.attributes.verb.gerund') %>: <%= @verb.gerund %> (<%= @verb.gerund_past %>)</p>
       <% end %>
 
       <table>

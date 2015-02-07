@@ -73,6 +73,7 @@ ru:
         infinitive: "инфинитив"
         imperative: "императив"
         gerund:     "деепричастие"
+        gerund_past: "деепричастие в прошедшем времени"
         present_first:         "первое лицо (единственное чило)"
         present_first_plural:  "первое лицо (множественное число)"
         present_second:        "второе лицо (единственное чило)"

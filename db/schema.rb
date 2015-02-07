@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20141130211658) do
     t.string   "infinitive",                            null: false
     t.string   "imperative"
     t.string   "gerund"
+    t.string   "gerund_past"
     t.string   "present_first"
     t.string   "present_second"
     t.string   "present_third"

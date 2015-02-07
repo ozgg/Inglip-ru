@@ -10,6 +10,7 @@ class CreateVerbs < ActiveRecord::Migration
       t.string :infinitive, null: false
       t.string :imperative
       t.string :gerund
+      t.string :gerund_past
       t.string :present_first
       t.string :present_second
       t.string :present_third
@@ -34,6 +35,7 @@ class CreateVerbs < ActiveRecord::Migration
                      infinitive:            'вызывать',
                      imperative:            'вызывай',
                      gerund:                'вызывая',
+                     gerund_past:           'вызывав',
                      present_first:         'вызываю',
                      present_first_plural:  'вызываем',
                      present_second:        'вызываешь',

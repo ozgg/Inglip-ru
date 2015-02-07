@@ -11,6 +11,7 @@
         <li><%= link_to t('to_list'), verbs_path %></li>
         <% if current_user %>
             <li><%= link_to t('edit'), edit_verb_path(@verb) %></li>
+            <li><%= link_to t('create'), new_verb_path %></li>
         <% end %>
       </ul>
     </nav>

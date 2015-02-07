@@ -9,6 +9,7 @@
     <nav>
       <ul>
         <li><%= link_to t('create'), new_noun_path %></li>
+        <li><%= link_to t('verbs.index.header'), verbs_path %></li>
       </ul>
     </nav>
     <% end %>
@@ -16,11 +17,11 @@
 
   <% if @nouns.any? %>
       <%= paginate @nouns %>
-      <ul>
+      <ol start="<%= ((params[:page] || 1) - 1) * 20 + 1 %>">
         <% @nouns.each do |noun| %>
         <li><%= link_to noun.nominative, noun %></li>
         <% end %>
-      </ul>
+      </ol>
       <%= paginate @nouns %>
   <% else %>
 

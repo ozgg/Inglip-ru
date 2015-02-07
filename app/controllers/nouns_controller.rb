@@ -4,7 +4,7 @@ class NounsController < ApplicationController
 
   # get /nouns
   def index
-    @nouns = Noun.page(params[:page] || 1).per(20)
+    @nouns = Noun.order('nominative asc').page(params[:page] || 1).per(20)
   end
 
   # get /nouns/new

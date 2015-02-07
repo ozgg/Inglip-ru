@@ -58,8 +58,8 @@ class NounsController < ApplicationController
 
   def noun_parameters
     allowed = [:grammatical_gender, :grammatical_number, :animated, :common_gender, :mutual_gender]
-    allowed << [:nominative, :genitive, :dative, :instrumental, :prepositional, :has_locative, :has_partitive]
-    allowed << [:plural_nominative, :plural_genitive, :plural_dative, :plural_instrumental, :plural_prepositional]
+    allowed << [:nominative, :genitive, :dative, :accusative, :instrumental, :prepositional, :has_locative, :has_partitive]
+    allowed << [:plural_nominative, :plural_genitive, :plural_dative, :plural_accusative, :plural_instrumental, :plural_prepositional]
 
     params.require(:noun).permit(allowed)
   end

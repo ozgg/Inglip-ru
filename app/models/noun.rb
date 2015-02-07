@@ -2,7 +2,7 @@ class Noun < ActiveRecord::Base
   belongs_to :user
 
   validates_uniqueness_of :nominative
-  validates_presence_of :nominative, :genitive, :dative, :instrumental, :prepositional
+  validates_presence_of :nominative, :genitive, :dative, :accusative, :instrumental, :prepositional
 
   enum grammatical_gender: [:masculine, :feminine, :neuter]
   enum grammatical_number: [:both, :singular_only, :plural_only]
@@ -23,14 +23,6 @@ class Noun < ActiveRecord::Base
         locative
       else
         nominative
-    end
-  end
-
-  def accusative
-    if animated?
-      dative
-    else
-      nominative
     end
   end
 

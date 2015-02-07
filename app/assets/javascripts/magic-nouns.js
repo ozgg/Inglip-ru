@@ -109,9 +109,14 @@ $(document).ready(function() {
                     break;
                 case 'е':
                     root    = donor.slice(0, -1);
-                    soften  = !in_array(root.slice(-1), ['ч', 'щ', 'ж', 'ш']);
+                    soften  = !in_array(penultimate, ['ч', 'щ', 'ж', 'ш']);
                     endings = [soften ? 'я' : 'а', soften ? 'ю' : 'у', ending, 'ем', 'е'];
-                    plurals = [soften ? 'я' : 'а', 'ей', soften ? 'ям' : 'ам', animated ? 'ей' : (soften ? 'я' : 'а'), soften ? 'ями' : 'ами', soften ? 'ях' : 'ах'];
+                    if (penultimate === 'и') {
+                        endings[5] = 'и';
+                        plurals    = ['я', 'й', 'ям', animated ? 'й' : 'я', 'ями', 'ях'];
+                    } else {
+                        plurals = [soften ? 'я' : 'а', 'ей', soften ? 'ям' : 'ам', animated ? 'ей' : (soften ? 'я' : 'а'), soften ? 'ями' : 'ами', soften ? 'ях' : 'ах'];
+                    }
                     break;
                 case 'я':
                     root    = donor.slice(0, -1);

@@ -11,6 +11,7 @@
         <li><%= link_to t('to_list'), nouns_path %></li>
         <% if current_user %>
             <li><%= link_to t('edit'), edit_noun_path(@noun) %></li>
+            <li><%= link_to t('create'), new_noun_path %></li>
         <% end %>
       </ul>
     </nav>
@@ -44,6 +45,10 @@
         <tr>
           <th><%= t('activerecord.attributes.noun.dative') %></th>
           <td><%= t(@noun.dative) %><%= " (#{@noun.plural_dative})" unless @noun.plural_dative.blank? %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.accusative') %></th>
+          <td><%= t(@noun.accusative) %><%= " (#{@noun.plural_accusative})" unless @noun.plural_accusative.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.instrumental') %></th>

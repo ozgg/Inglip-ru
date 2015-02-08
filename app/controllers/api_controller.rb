@@ -15,7 +15,7 @@ class ApiController < ApplicationController
 
   def set_speech
     if params[:seed] && params[:seed].match(/\A\d+\Z/)
-      seed = params[:seed]
+      seed = params[:seed].to_i
     else
       seed = nil
     end

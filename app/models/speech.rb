@@ -1,29 +1,34 @@
 class Speech
+
+  def initialize(seed = nil)
+    @generator = Random.new(seed || Random.new_seed)
+  end
+
+  def seed
+    @generator.seed
+  end
+
   def claim
-    noun = random_noun
-    verb = random_verb
+    sentence = Sentence.new @generator
+    noun = sentence.random_noun
+    verb = sentence.random_verb
 
-    noun.nominative + ' ' + verb.present_third + 'ся'
+    if @generator.rand(10) > 5
+      verb.imperative + ' ' + noun.instrumental
+    else
+      noun.nominative + ' ' + verb.present_third
+    end
   end
 
-  def random_preposition
-    offset = Time.now.getutc.to_i % (Preposition.count)
-    Preposition.offset(offset).first
-  end
-
-  def random_noun
-    offset = Time.now.getutc.to_i % (Noun.count)
-    Noun.offset(offset).first
-  end
-
-  def random_verb
-    offset = Time.now.getutc.to_i % (Verb.count)
-    Verb.offset(offset).first
-  end
-
-  protected
-
-  def random_case
-    [:nominative, :genitive, :dative, :accusative, :instrumental].shuffle.first
+  def tagline
+    sentence = Sentence.new(@generator)
+    subject = sentence.subject
+    subject.seed
+    predicate = sentence.predicate
+    predicate.seed
+    predicate.agree_with subject
+    sentence.add_member subject
+    sentence.add_member predicate
+    sentence.to_s
   end
 end

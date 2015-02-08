@@ -4,7 +4,7 @@ class VerbsController < ApplicationController
 
   # get /verbs
   def index
-    @verbs = Verb.page(params[:page] || 1).per(20)
+    @verbs = Verb.order('infinitive asc').page(params[:page] || 1).per(20)
   end
 
   # get /verbs/new

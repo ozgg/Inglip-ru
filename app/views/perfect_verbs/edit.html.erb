@@ -1,0 +1,16 @@
+<% content_for :title, t('.title', word: @verb.infinitive) %>
+<% content_for :title, t('.description', word: @verb.infinitive) %>
+
+<article class="word">
+  <header>
+    <h1><%= t('.header') %></h1>
+    <nav>
+      <ul>
+        <li><%= link_to t('to_list'), perfect_verbs_path %></li>
+        <li><%= link_to t('to_view'), @verb %></li>
+      </ul>
+    </nav>
+  </header>
+
+  <%= render 'form' %>
+</article>

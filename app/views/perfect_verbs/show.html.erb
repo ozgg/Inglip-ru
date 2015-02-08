@@ -1,0 +1,98 @@
+<% content_for :title, t('.title', word: @verb.infinitive) %>
+<% content_for :description, t('.description', word: @verb.infinitive) %>
+
+<article class="word">
+  <header>
+    <h1><%= t('.header') %></h1>
+
+    <h2><%= @verb.infinitive %></h2>
+    <nav>
+      <ul>
+        <li><%= link_to t('to_list'), perfect_verbs_path %></li>
+        <% if current_user %>
+            <li><%= link_to t('edit'), edit_perfect_verb_path(@verb) %></li>
+            <li><%= link_to t('create'), new_perfect_verb_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <p>
+    <%= (t('activerecord.attributes.perfect_verb.has_reflexive') + ', ') if @verb.has_reflexive? %>
+    <%= (t('activerecord.attributes.perfect_verb.has_reciprocal') + ', ') if @verb.has_reciprocal? %>
+    <%= (t('activerecord.attributes.perfect_verb.has_neuter') + ', ') if @verb.has_neuter? %>
+    <%= t('activerecord.attributes.perfect_verb.valency') %> <%= @verb.valency %>
+  </p>
+  <% if current_user %>
+      <% unless @verb.imperative.blank? %>
+          <p><%= t('activerecord.attributes.perfect_verb.imperative') %>: <%= @verb.imperative %></p>
+      <% end %>
+      <% unless @verb.gerund.blank? %>
+          <p><%= t('activerecord.attributes.perfect_verb.gerund') %>: <%= @verb.gerund %></p>
+      <% end %>
+
+      <table>
+        <caption><%= t('.forms') %></caption>
+        <colgroup>
+          <col /><col /><col />
+        </colgroup>
+        <thead>
+        <tr>
+          <th><%= t('.form') %></th><th><%= t('.singular') %></th><th><%= t('.plural') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th colspan="3"><%= t('.passive') %></th>
+        </tr>
+        <tr>
+          <th><%= t('.masculine') %></th>
+          <td><%= @verb.passive_masculine %></td>
+          <td rowspan="3"><%= @verb.passive_plural %></td>
+        </tr>
+        <tr>
+          <th><%= t('.feminine') %></th>
+          <td><%= @verb.passive_feminine %></td>
+        </tr>
+        <tr>
+          <th><%= t('.neuter') %></th>
+          <td><%= @verb.passive_neuter %></td>
+        </tr>
+        <tr>
+          <th colspan="3"><%= t('.past') %></th>
+        </tr>
+        <tr>
+          <th><%= t('.masculine') %></th>
+          <td><%= @verb.past_masculine %></td>
+          <td rowspan="3"><%= @verb.past_plural %></td>
+        </tr>
+        <tr>
+          <th><%= t('.feminine') %></th>
+          <td><%= @verb.past_feminine %></td>
+        </tr>
+        <tr>
+          <th><%= t('.neuter') %></th>
+          <td><%= @verb.past_neuter %></td>
+        </tr>
+        <tr>
+          <th colspan="3"><%= t('.future') %></th>
+        </tr>
+        <tr>
+          <th><%= t('.first') %></th>
+          <td><%= @verb.future_first %></td>
+          <td><%= @verb.future_first_plural %></td>
+        </tr>
+        <tr>
+          <th><%= t('.second') %></th>
+          <td><%= @verb.future_second %></td>
+          <td><%= @verb.future_second_plural %></td>
+        </tr>
+        <tr>
+          <th><%= t('.third') %></th>
+          <td><%= @verb.future_third %></td>
+          <td><%= @verb.future_third_plural %></td>
+        </tr>
+        </tbody>
+      </table>
+  <% end %>
+</article>

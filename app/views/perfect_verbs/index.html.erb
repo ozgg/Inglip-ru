@@ -8,9 +8,9 @@
     <% if current_user %>
         <nav>
           <ul>
-            <li><%= link_to t('create'), new_verb_path %></li>
+            <li><%= link_to t('create'), new_perfect_verb_path %></li>
             <li><%= link_to t('nouns.index.header'), nouns_path %></li>
-            <li><%= link_to t('perfect_verbs.index.header'), perfect_verbs_path %></li>
+            <li><%= link_to t('verbs.index.header'), verbs_path %></li>
           </ul>
         </nav>
     <% end %>

@@ -1,0 +1,15 @@
+<% content_for :title, t('.title') %>
+<% content_for :description, t('.description') %>
+
+<article>
+  <header>
+    <h1><%= t('.header') %></h1>
+    <nav>
+      <ul>
+        <li><%= link_to t('to_list'), perfect_verbs_path %></li>
+      </ul>
+    </nav>
+  </header>
+
+  <%= render 'form' %>
+</article>

@@ -47,14 +47,14 @@ ActiveRecord::Schema.define(version: 20150208221547) do
   add_index "nouns", ["user_id"], name: "index_nouns_on_user_id", using: :btree
 
   create_table "perfect_verbs", force: true do |t|
-    t.boolean  "approved",              default: false, null: false
+    t.boolean  "approved",             default: false, null: false
     t.integer  "user_id"
-    t.boolean  "has_reflexive",         default: true,  null: false
-    t.boolean  "has_reciprocal",        default: false, null: false
-    t.boolean  "has_neuter",            default: false, null: false
-    t.integer  "valency",               default: 3,     null: false
-    t.string   "infinitive",                            null: false
-    t.string   "infinitive_imperative"
+    t.boolean  "has_reflexive",        default: true,  null: false
+    t.boolean  "has_reciprocal",       default: false, null: false
+    t.boolean  "has_neuter",           default: false, null: false
+    t.integer  "valency",              default: 3,     null: false
+    t.string   "infinitive",                           null: false
+    t.string   "imperative"
     t.string   "gerund"
     t.string   "passive_masculine"
     t.string   "passive_feminine"
@@ -64,10 +64,12 @@ ActiveRecord::Schema.define(version: 20150208221547) do
     t.string   "past_feminine"
     t.string   "past_neuter"
     t.string   "past_plural"
-    t.string   "future_masculine"
-    t.string   "future_feminine"
-    t.string   "future_neuter"
-    t.string   "future_plural"
+    t.string   "future_first"
+    t.string   "future_second"
+    t.string   "future_third"
+    t.string   "future_first_plural"
+    t.string   "future_second_plural"
+    t.string   "future_third_plural"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

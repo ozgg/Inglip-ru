@@ -17,7 +17,7 @@
 
   <% if @verbs.any? %>
       <%= paginate @verbs %>
-      <ol start="<%= ((params[:page] || 1) - 1) * 20 + 1 %>">
+      <ol start="<%= ((params[:page] || 1).to_i - 1) * 20 + 1 %>">
         <% @verbs.each do |verb| %>
             <li><%= link_to verb.infinitive, verb %></li>
         <% end %>

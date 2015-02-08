@@ -17,7 +17,7 @@
 
   <% if @nouns.any? %>
       <%= paginate @nouns %>
-      <ol start="<%= ((params[:page] || 1) - 1) * 20 + 1 %>">
+      <ol start="<%= ((params[:page] || 1).to_i - 1) * 20 + 1 %>">
         <% @nouns.each do |noun| %>
         <li><%= link_to noun.nominative, noun %></li>
         <% end %>

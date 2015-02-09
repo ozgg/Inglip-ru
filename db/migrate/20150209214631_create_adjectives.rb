@@ -9,26 +9,33 @@ class CreateAdjectives < ActiveRecord::Migration
       t.string :nominative_masculine, null: false
       t.string :genitive_masculine, null: false
       t.string :dative_masculine, null: false
+      t.string :accusative_masculine, null: false
       t.string :instrumental_masculine, null: false
       t.string :prepositional_masculine, null: false
+      t.string :superlative_masculine
       t.string :nominative_feminine, null: false
       t.string :genitive_feminine, null: false
       t.string :dative_feminine, null: false
+      t.string :accusative_feminine, null: false
       t.string :instrumental_feminine, null: false
       t.string :prepositional_feminine, null: false
+      t.string :superlative_feminine
       t.string :nominative_neuter, null: false
       t.string :genitive_neuter, null: false
       t.string :dative_neuter, null: false
+      t.string :accusative_neuter, null: false
       t.string :instrumental_neuter, null: false
       t.string :prepositional_neuter, null: false
+      t.string :superlative_neuter
       t.string :nominative_plural, null: false
       t.string :genitive_plural, null: false
       t.string :dative_plural, null: false
+      t.string :accusative_plural, null: false
       t.string :instrumental_plural, null: false
       t.string :prepositional_plural, null: false
+      t.string :superlative_plural
       t.string :partial
       t.string :comparative
-      t.string :superlative
 
       t.timestamps
     end

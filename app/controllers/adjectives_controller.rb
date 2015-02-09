@@ -58,11 +58,13 @@ class AdjectivesController < ApplicationController
 
   def word_parameters
     allowed = [
-        :qualitative, :possessive, :participle, :comparative, :superlative, :partial,
+        :qualitative, :possessive, :participle, :comparative, :partial,
         :nominative_masculine, :genitive_masculine, :dative_masculine, :instrumental_masculine, :prepositional_masculine,
         :nominative_feminine, :genitive_feminine, :dative_feminine, :instrumental_feminine, :prepositional_feminine,
         :nominative_neuter, :genitive_neuter, :dative_neuter, :instrumental_neuter, :prepositional_neuter,
         :nominative_plural, :genitive_plural, :dative_plural, :instrumental_plural, :prepositional_plural,
+        :superlative_masculine, :superlative_feminine, :superlative_neuter, :superlative_plural,
+        :accusative_masculine, :accusative_feminine, :accusative_neuter, :accusative_plural
     ]
 
     params.require(:adjective).permit(allowed)

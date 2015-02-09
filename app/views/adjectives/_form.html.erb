@@ -16,6 +16,14 @@
         <%= f.check_box :participle %>
         <%= f.label :participle %>
       </div>
+      <div>
+        <%= f.label :comparative %>
+        <%= f.text_field :comparative %>
+      </div>
+      <div>
+        <%= f.label :partial %>
+        <%= f.text_field :partial %>
+      </div>
     </fieldset>
 
     <fieldset>
@@ -34,12 +42,20 @@
         <%= f.text_field :dative_masculine %>
       </div>
       <div>
+        <%= f.label :accusative_masculine %>
+        <%= f.text_field :accusative_masculine %>
+      </div>
+      <div>
         <%= f.label :instrumental_masculine %>
         <%= f.text_field :instrumental_masculine %>
       </div>
       <div>
         <%= f.label :prepositional_masculine %>
         <%= f.text_field :prepositional_masculine %>
+      </div>
+      <div>
+        <%= f.label :superlative_masculine %>
+        <%= f.text_field :superlative_masculine %>
       </div>
     </fieldset>
 
@@ -59,12 +75,20 @@
         <%= f.text_field :dative_feminine %>
       </div>
       <div>
+        <%= f.label :accusative_feminine %>
+        <%= f.text_field :accusative_feminine %>
+      </div>
+      <div>
         <%= f.label :instrumental_feminine %>
         <%= f.text_field :instrumental_feminine %>
       </div>
       <div>
         <%= f.label :prepositional_feminine %>
         <%= f.text_field :prepositional_feminine %>
+      </div>
+      <div>
+        <%= f.label :superlative_feminine %>
+        <%= f.text_field :superlative_feminine %>
       </div>
     </fieldset>
 
@@ -84,12 +108,20 @@
         <%= f.text_field :dative_neuter %>
       </div>
       <div>
+        <%= f.label :accusative_neuter %>
+        <%= f.text_field :accusative_neuter %>
+      </div>
+      <div>
         <%= f.label :instrumental_neuter %>
         <%= f.text_field :instrumental_neuter %>
       </div>
       <div>
         <%= f.label :prepositional_neuter %>
         <%= f.text_field :prepositional_neuter %>
+      </div>
+      <div>
+        <%= f.label :superlative_neuter %>
+        <%= f.text_field :superlative_neuter %>
       </div>
     </fieldset>
 
@@ -109,6 +141,10 @@
         <%= f.text_field :dative_plural %>
       </div>
       <div>
+        <%= f.label :accusative_plural %>
+        <%= f.text_field :accusative_plural %>
+      </div>
+      <div>
         <%= f.label :instrumental_plural %>
         <%= f.text_field :instrumental_plural %>
       </div>
@@ -116,22 +152,9 @@
         <%= f.label :prepositional_plural %>
         <%= f.text_field :prepositional_plural %>
       </div>
-    </fieldset>
-
-    <fieldset>
-      <legend><%= t('.degrees') %></legend>
-
       <div>
-        <%= f.label :comparative %>
-        <%= f.text_field :comparative %>
-      </div>
-      <div>
-        <%= f.label :superlative %>
-        <%= f.text_field :superlative %>
-      </div>
-      <div>
-        <%= f.label :partial %>
-        <%= f.text_field :partial %>
+        <%= f.label :superlative_plural %>
+        <%= f.text_field :superlative_plural %>
       </div>
     </fieldset>
 

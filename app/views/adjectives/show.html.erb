@@ -27,7 +27,7 @@
         <caption><%= t('.declension') %></caption>
         <thead>
         <tr>
-          <th><%= t('.case') %></th>
+          <th><%= t('.case_or_degree') %></th>
           <th><%= t('adjectives.form.masculine') %></th>
           <th><%= t('adjectives.form.feminine') %></th>
           <th><%= t('adjectives.form.neuter') %></th>
@@ -57,6 +57,13 @@
           <td><%= t(@word.dative_plural) %></td>
         </tr>
         <tr>
+          <th><%= t('activerecord.attributes.adjective.accusative_masculine') %></th>
+          <td><%= t(@word.accusative_masculine) %></td>
+          <td><%= t(@word.accusative_feminine) %></td>
+          <td><%= t(@word.accusative_neuter) %></td>
+          <td><%= t(@word.accusative_plural) %></td>
+        </tr>
+        <tr>
           <th><%= t('activerecord.attributes.adjective.instrumental_masculine') %></th>
           <td><%= t(@word.instrumental_masculine) %></td>
           <td><%= t(@word.instrumental_feminine) %></td>
@@ -70,11 +77,18 @@
           <td><%= t(@word.prepositional_neuter) %></td>
           <td><%= t(@word.prepositional_plural) %></td>
         </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.adjective.superlative_masculine') %></th>
+          <td><%= t(@word.superlative_masculine) %></td>
+          <td><%= t(@word.superlative_feminine) %></td>
+          <td><%= t(@word.superlative_neuter) %></td>
+          <td><%= t(@word.superlative_plural) %></td>
+        </tr>
         </tbody>
       </table>
 
       <% if @word.qualitative? %>
-      <p><%= @word.comparative %>/<%= @word.superlative %>/<%= @word.partial %>-&hellip;</p>
+      <p><%= @word.comparative %>/<%= @word.partial %>-&hellip;</p>
       <% end %>
   <% end %>
 </article>

@@ -11,10 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208221547) do
+ActiveRecord::Schema.define(version: 20150209214631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adjectives", force: true do |t|
+    t.boolean  "approved",                default: false, null: false
+    t.integer  "user_id"
+    t.boolean  "qualitative",             default: false, null: false
+    t.boolean  "possessive",              default: false, null: false
+    t.boolean  "participle",              default: false, null: false
+    t.string   "nominative_masculine",                    null: false
+    t.string   "genitive_masculine",                      null: false
+    t.string   "dative_masculine",                        null: false
+    t.string   "instrumental_masculine",                  null: false
+    t.string   "prepositional_masculine",                 null: false
+    t.string   "nominative_feminine",                     null: false
+    t.string   "genitive_feminine",                       null: false
+    t.string   "dative_feminine",                         null: false
+    t.string   "instrumental_feminine",                   null: false
+    t.string   "prepositional_feminine",                  null: false
+    t.string   "nominative_neuter",                       null: false
+    t.string   "genitive_neuter",                         null: false
+    t.string   "dative_neuter",                           null: false
+    t.string   "instrumental_neuter",                     null: false
+    t.string   "prepositional_neuter",                    null: false
+    t.string   "nominative_plural",                       null: false
+    t.string   "genitive_plural",                         null: false
+    t.string   "dative_plural",                           null: false
+    t.string   "instrumental_plural",                     null: false
+    t.string   "prepositional_plural",                    null: false
+    t.string   "partial"
+    t.string   "comparative"
+    t.string   "superlative"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "adjectives", ["approved"], name: "index_adjectives_on_approved", using: :btree
+  add_index "adjectives", ["nominative_masculine"], name: "index_adjectives_on_nominative_masculine", unique: true, using: :btree
+  add_index "adjectives", ["user_id"], name: "index_adjectives_on_user_id", using: :btree
 
   create_table "nouns", force: true do |t|
     t.integer  "user_id"

@@ -7,4 +7,7 @@ class Adjective < ActiveRecord::Base
   validates_presence_of :instrumental_masculine, :instrumental_feminine, :instrumental_neuter, :instrumental_plural
   validates_presence_of :prepositional_masculine, :prepositional_feminine, :prepositional_neuter, :prepositional_plural
 
+  def canonical_form
+    nominative_masculine
+  end
 end

@@ -1,0 +1,11 @@
+<% if @words.any? %>
+    <%= paginate @words %>
+    <ol start="<%= ((params[:page] || 1).to_i - 1) * 20 + 1 %>">
+      <% @words.each do |word| %>
+          <li><%= link_to word.canonical_form, word %></li>
+      <% end %>
+    </ol>
+    <%= paginate @words %>
+<% else %>
+    <%= render 'common/nothing_found' %>
+<% end %>

@@ -1,0 +1,16 @@
+<% content_for :title, t('.title', word: @word.canonical_form) %>
+<% content_for :title, t('.description', word: @word.canonical_form) %>
+
+<article class="word">
+  <header>
+    <h1><%= t('.header') %></h1>
+    <nav>
+      <ul>
+        <li><%= link_to t('to_list'), adjectives_path %></li>
+        <li><%= link_to t('to_view'), @word %></li>
+      </ul>
+    </nav>
+  </header>
+
+  <%= render 'form' %>
+</article>

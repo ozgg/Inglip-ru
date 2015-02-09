@@ -1,24 +1,20 @@
 class Sentence::Subject < Sentence
   attr_accessor :use_dependence, :main_case, :number
 
-  def initialize(generator)
-    super
-    @main_member = random_noun
-  end
-
   def to_s
     prepare
     build
   end
 
   def seed
+    @main_member = random_noun
     @use_dependence = (@generator.rand(100) > 40)
-    @main_case = random_case
+    @main_case = :nominative
     @number = @main_member.number || random_number
   end
 
   def prepare
-    add_member @main_member.decline(@use_dependence ? :nominative : @main_case, @number)
+    add_member @main_member.decline(@main_case, @number)
 
     if @use_dependence
       dependent = Subject.new(@generator)

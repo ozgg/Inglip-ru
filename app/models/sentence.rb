@@ -1,10 +1,18 @@
 class Sentence
+  attr_accessor :use_complement, :use_preposition
+
   def initialize(generator)
     @generator = generator
+    seed
   end
 
   def to_s
     build
+  end
+
+  def seed
+    @use_complement = @generator.rand(100) > 50
+    @use_preposition = @generator.rand(100) > 50
   end
 
   def add_member(member)
@@ -14,6 +22,19 @@ class Sentence
 
   def build
     (@members || []).join ' '
+  end
+
+  def generate
+    used_subject = subject
+    used_predicate = predicate
+    used_predicate.agree_with used_subject
+    add_member used_subject
+    add_member used_predicate
+    if @use_complement
+      complement = subject
+      complement.main_case = [:accusative, :dative, :instrumental][rand(3)]
+      add_member complement
+    end
   end
 
   def subject
@@ -39,18 +60,23 @@ class Sentence
     Verb.offset(offset).first
   end
 
+  def random_perfect_verb
+    offset = @generator.rand(PerfectVerb.count)
+    PerfectVerb.offset(offset).first
+  end
+
   protected
 
   def random_case
-    [:nominative, :genitive, :dative, :accusative, :instrumental].shuffle.first
+    [:nominative, :genitive, :dative, :accusative, :instrumental][@generator.rand(5)]
   end
 
   def random_tense
-    [:past, :present, :future].shuffle.first
+    [:past, :present, :future][@generator.rand(3)]
   end
 
   def random_gender
-    [:masculine, :feminine, :neuter].shuffle.first
+    [:masculine, :feminine, :neuter][@generator.rand(3)]
   end
 
   def random_number
@@ -58,6 +84,6 @@ class Sentence
   end
 
   def random_person
-    [:first, :second, :third].shuffle.first
+    [:first, :second, :third][@generator.rand(3)]
   end
 end

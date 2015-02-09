@@ -22,13 +22,7 @@ class Speech
 
   def tagline
     sentence = Sentence.new(@generator)
-    subject = sentence.subject
-    subject.seed
-    predicate = sentence.predicate
-    predicate.seed
-    predicate.agree_with subject
-    sentence.add_member subject
-    sentence.add_member predicate
+    sentence.generate
     sentence.to_s
   end
 end

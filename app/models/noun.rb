@@ -10,25 +10,25 @@ class Noun < ActiveRecord::Base
   def decline(grammatical_case, number = :single)
     case grammatical_case
       when :genitive
-        number === :single ? genitive : plural_genitive
+        in_genitive number
       when :dative
-        number === :single ? dative : plural_dative
+        in_dative number
       when :accusative
-        number === :single ? accusative : plural_accusative
+        in_accusative number
       when :instrumental
-        number === :single ? instrumental : plural_instrumental
+        in_instrumental number
       when :prepositional
-        number === :single ? prepositional : plural_prepositional
+        in_prepositional number
       when :locative
         locative number
       else
-        number === :single ? nominative : plural_nominative
+        in_nominative number
     end
   end
 
   def locative(number)
     if has_locative?
-      number === :single ? dative : plural_dative
+      in_dative number
     else
       number === :single ? prepositional : plural_prepositional
     end
@@ -39,6 +39,46 @@ class Noun < ActiveRecord::Base
       nominative
     else
       (self.plural_only? || self.singular_only?) ? nominative : plural_nominative
+    end
+  end
+
+  def in_genitive(number)
+    if number === :single
+      genitive
+    else
+      (self.plural_only? || self.singular_only?) ? genitive : plural_genitive
+    end
+  end
+
+  def in_dative(number)
+    if number === :single
+      dative
+    else
+      (self.plural_only? || self.singular_only?) ? dative : plural_dative
+    end
+  end
+
+  def in_accusative(number)
+    if number === :single
+      accusative
+    else
+      (self.plural_only? || self.singular_only?) ? accusative : plural_accusative
+    end
+  end
+
+  def in_instrumental(number)
+    if number === :single
+      instrumental
+    else
+      (self.plural_only? || self.singular_only?) ? instrumental : plural_instrumental
+    end
+  end
+
+  def in_prepositional(number)
+    if number === :single
+      prepositional
+    else
+      (self.plural_only? || self.singular_only?) ? prepositional : plural_prepositional
     end
   end
 

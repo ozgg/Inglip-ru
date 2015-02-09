@@ -27,7 +27,53 @@ ru:
               blank: "не может быть пустым"
             prepositional:
               blank: "не может быть пустым"
+        adjective:
+          attributes:
+            nominative_masculine:
+              blank: "не может быть пустым"
+            genitive_masculine:
+              blank: "не может быть пустым"
+            dative_masculine:
+              blank: "не может быть пустым"
+            instrumental_masculine:
+              blank: "не может быть пустым"
+            prepositional_masculine:
+              blank: "не может быть пустым"
+            nominative_feminine:
+              blank: "не может быть пустым"
+            genitive_feminine:
+              blank: "не может быть пустым"
+            dative_feminine:
+              blank: "не может быть пустым"
+            instrumental_feminine:
+              blank: "не может быть пустым"
+            prepositional_feminine:
+              blank: "не может быть пустым"
+            nominative_neuter:
+              blank: "не может быть пустым"
+            genitive_neuter:
+              blank: "не может быть пустым"
+            dative_neuter:
+              blank: "не может быть пустым"
+            instrumental_neuter:
+              blank: "не может быть пустым"
+            prepositional_neuter:
+              blank: "не может быть пустым"
+            nominative_plural:
+              blank: "не может быть пустым"
+            genitive_plural:
+              blank: "не может быть пустым"
+            dative_plural:
+              blank: "не может быть пустым"
+            instrumental_plural:
+              blank: "не может быть пустым"
+            prepositional_plural:
+              blank: "не может быть пустым"
         verb:
+          attributes:
+            infinitive:
+              blank: "не может быть пустым"
+        perfect_verb:
           attributes:
             infinitive:
               blank: "не может быть пустым"
@@ -35,6 +81,8 @@ ru:
       noun: "имя существительное"
       user: "пользователь"
       verb: "глагол"
+      perfect_verb: "глагол совершенного вида"
+      adjective: "прилагательное"
     attributes:
       noun:
         grammatical_gender: "род"
@@ -64,6 +112,34 @@ ru:
           both: "любое"
           singular_only: "всегда единственное"
           plural_only: "всегда множественное"
+      adjective:
+        approved:   "проверено"
+        qualitative: "качественное"
+        possessive: "притяжательное"
+        participle: "причастие"
+        nominative_masculine: "именительный"
+        genitive_masculine: "родительный"
+        dative_masculine: "дательный"
+        instrumental_masculine: "творительный"
+        prepositional_masculine: "предложный"
+        nominative_feminine: "именительный"
+        genitive_feminine: "родительный"
+        dative_feminine: "дательный"
+        instrumental_feminine: "творительный"
+        prepositional_feminine: "предложный"
+        nominative_neuter: "именительный"
+        genitive_neuter: "родительный"
+        dative_neuter: "дательный"
+        instrumental_neuter: "творительный"
+        prepositional_neuter: "предложный"
+        nominative_plural: "именительный"
+        genitive_plural: "родительный"
+        dative_plural: "дательный"
+        instrumental_plural: "творительный"
+        prepositional_plural: "предложный"
+        comparative: "сравнительная степень"
+        superlative: "преводсходная степень"
+        partial: "кусок для комбинации"
       verb:
         approved:   "проверен"
         has_reflexive: "имеет возвратный залог"
@@ -263,3 +339,16 @@ ru:
       title: "Редактирование прилагательного «%{word}»"
       description: "Страница с формой редактирования имени прилагательного «%{word}»"
       header: "Редактирование имени прилагательного"
+    show:
+      title: "Имя прилагательное «%{word}»"
+      description: "Страница с описанием имени прилагательного «%{word}»"
+      header: "Имена прилагательные"
+      declension: "Склонение"
+      case: "Падеж"
+    form:
+      indicators: "Признаки"
+      masculine: "Мужской род"
+      feminine: "Женский род"
+      neuter: "Средний род"
+      plural: "Множественное число"
+      degrees: "Формы сравнения"

@@ -1,2 +1,80 @@
-<h1>Adjectives#show</h1>
-<p>Find me in app/views/adjectives/show.html.erb</p>
+<% content_for :title, t('.title', word: @word.canonical_form) %>
+<% content_for :description, t('.description', word: @word.canonical_form) %>
+
+<article class="word">
+  <header>
+    <h1><%= t('.header') %></h1>
+
+    <h2><%= @word.canonical_form %></h2>
+    <nav>
+      <ul>
+        <li><%= link_to t('to_list'), adjectives_path %></li>
+        <% if current_user %>
+            <li><%= link_to t('edit'), edit_adjective_path(@word) %></li>
+            <li><%= link_to t('create'), new_adjective_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <p>
+    <%= t('activerecord.attributes.adjective.qualitative') if @word.qualitative? %>
+    <%= t('activerecord.attributes.adjective.possessive') if @word.qualitative? %>
+    <%= t('activerecord.attributes.adjective.participle') if @word.qualitative? %>
+  </p>
+  <% if current_user %>
+      <table>
+        <caption><%= t('.declension') %></caption>
+        <thead>
+        <tr>
+          <th><%= t('.case') %></th>
+          <th><%= t('adjectives.form.masculine') %></th>
+          <th><%= t('adjectives.form.feminine') %></th>
+          <th><%= t('adjectives.form.neuter') %></th>
+          <th><%= t('adjectives.form.plural') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th><%= t('activerecord.attributes.adjective.nominative_masculine') %></th>
+          <td><%= t(@word.nominative_masculine) %></td>
+          <td><%= t(@word.nominative_feminine) %></td>
+          <td><%= t(@word.nominative_neuter) %></td>
+          <td><%= t(@word.nominative_plural) %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.adjective.nominative_masculine') %></th>
+          <td><%= t(@word.genitive_masculine) %></td>
+          <td><%= t(@word.genitive_feminine) %></td>
+          <td><%= t(@word.genitive_neuter) %></td>
+          <td><%= t(@word.genitive_plural) %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.adjective.nominative_masculine') %></th>
+          <td><%= t(@word.dative_masculine) %></td>
+          <td><%= t(@word.dative_feminine) %></td>
+          <td><%= t(@word.dative_neuter) %></td>
+          <td><%= t(@word.dative_plural) %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.adjective.nominative_masculine') %></th>
+          <td><%= t(@word.instrumental_masculine) %></td>
+          <td><%= t(@word.instrumental_feminine) %></td>
+          <td><%= t(@word.instrumental_neuter) %></td>
+          <td><%= t(@word.instrumental_plural) %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.adjective.nominative_masculine') %></th>
+          <td><%= t(@word.prepositional_masculine) %></td>
+          <td><%= t(@word.prepositional_feminine) %></td>
+          <td><%= t(@word.prepositional_neuter) %></td>
+          <td><%= t(@word.prepositional_plural) %></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <% if @word.qualitative? %>
+      <p><%= @word.comparative %>/<%= @word.superlative %>/<%= @word.partial %>-&hellip;</p>
+      <% end %>
+  <% end %>
+</article>

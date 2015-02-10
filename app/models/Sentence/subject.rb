@@ -36,7 +36,7 @@ class Sentence::Subject < Sentence
     if @main_case.to_sym === :locative
       :prepositional
     elsif @main_case.to_sym === :accusative
-      @main_member.animated? ? :accusative : :nominative
+      (@main_member.animated? || @main_member.feminine?) ? :accusative : :nominative
     else
       @main_case.to_sym
     end
@@ -44,5 +44,10 @@ class Sentence::Subject < Sentence
 
   def gender
     @main_member.grammatical_gender.to_sym
+  end
+
+  def agree_with_preposition(preposition)
+    available_cases = preposition.cases
+    @main_case = available_cases.any? ? available_cases[@generator.rand(available_cases.size)] : :nominative
   end
 end

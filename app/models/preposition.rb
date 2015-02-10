@@ -8,6 +8,7 @@ class Preposition < ActiveRecord::Base
     result << :dative if dative?
     result << :instrumental if instrumental?
     result << :prepositional if prepositional?
+    result << :accusative if accusative?
     result << :locative if locative?
 
     result

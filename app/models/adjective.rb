@@ -18,15 +18,13 @@ class Adjective < ActiveRecord::Base
         in_nominative gender, number
       when :genitive
         in_genitive gender, number
-      when :dative
-      when :partitive
+      when :dative, :partitive
         in_dative gender, number
       when :accusative
         in_accusative gender, number
       when :instrumental
         in_instrumental gender, number
-      when :prepositional
-      when :locative
+      when :prepositional, :locative
         in_prepositional gender, number
       else
         "?unknown adjective case: #{grammatical_case}"

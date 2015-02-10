@@ -32,7 +32,13 @@ class Sentence
     add_member used_predicate
     if @use_complement
       complement = subject
-      complement.main_case = [:accusative, :dative, :instrumental][rand(3)]
+      if @use_preposition
+        preposition = random_preposition
+        add_member preposition.name
+        complement.agree_with_preposition preposition
+      else
+        complement.main_case = [:accusative, :dative, :instrumental][rand(3)]
+      end
       add_member complement
     end
   end

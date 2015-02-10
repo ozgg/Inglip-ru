@@ -65,6 +65,11 @@ class Sentence
     PerfectVerb.offset(offset).first
   end
 
+  def random_adjective
+    offset = @generator.rand(Adjective.count)
+    Adjective.offset(offset).first
+  end
+
   protected
 
   def random_case

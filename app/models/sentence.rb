@@ -1,5 +1,5 @@
 class Sentence
-  attr_accessor :use_complement, :use_preposition
+  attr_accessor :use_complement, :use_preposition, :intonation
 
   def initialize(generator)
     @generator = generator
@@ -7,12 +7,18 @@ class Sentence
   end
 
   def to_s
-    build
+    string = build
+    string[0] = string[0].mb_chars.capitalize.to_s
+    string + final_mark
   end
 
   def seed
     @use_complement = @generator.rand(100) > 50
     @use_preposition = @generator.rand(100) > 50
+    @intonation = :assertion
+    if @generator.rand(100) > 75
+      @intonation = [:exclamation, :question, :deep][rand(3)]
+    end
   end
 
   def add_member(member)
@@ -96,5 +102,18 @@ class Sentence
 
   def random_person
     [:first, :second, :third][@generator.rand(3)]
+  end
+
+  def final_mark
+    case @intonation
+      when :exclamation
+        '!'
+      when :question
+        '?'
+      when :deep
+        '...'
+      else
+        '.'
+    end
   end
 end

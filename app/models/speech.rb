@@ -21,6 +21,10 @@ class Speech
   end
 
   def tagline
+    sentence
+  end
+
+  def sentence
     sentence = Sentence.new(@generator)
     sentence.generate
     sentence.to_s

@@ -30,7 +30,7 @@ class Noun < ActiveRecord::Base
     if has_locative?
       in_dative number
     else
-      number === :single ? prepositional : plural_prepositional
+      in_prepositional number
     end
   end
 

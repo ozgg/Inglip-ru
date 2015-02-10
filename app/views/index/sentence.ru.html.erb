@@ -1,0 +1,18 @@
+<%= content_for :title, @sentence %>
+<%= content_for :description, t('.description') %>
+<% content_for :footer do %>
+    <div class="metrics"><%= render 'common/metrics' if Rails.env.production? %></div>
+    <div class="sharing"><%= render 'common/sharing' if Rails.env.production? %></div>
+<% end %>
+
+<article>
+  <h1><%= t('.header') %></h1>
+  <blockquote><%= @sentence %></blockquote>
+  <p>Для получения нового предложения просто <%= link_to 'обновите страницу', sentence_path %>.</p>
+  <p>
+    Предложение можно <%= link_to 'воспроизвести', sentence_path(seed: @seed) %>, используя параметр seed.
+    Так как словарь постоянно пополняется, результат может отличаться, так что этот параметр пока имеет смысл
+    в рамках нескольких часов.
+  </p>
+  <p>Seed: <%= @seed %>.</p>
+</article>

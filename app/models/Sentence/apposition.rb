@@ -16,7 +16,7 @@ class Sentence::Apposition < Sentence
   def agree_with(subject)
     @number = subject.number.to_sym
     @gender = subject.gender.to_sym
-    @grammatical_case = subject.main_case
+    @grammatical_case = subject.agreement_case
   end
 
   def prepare

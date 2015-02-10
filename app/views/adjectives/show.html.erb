@@ -21,6 +21,7 @@
     <%= t('activerecord.attributes.adjective.qualitative') if @word.qualitative? %>
     <%= t('activerecord.attributes.adjective.possessive') if @word.possessive? %>
     <%= t('activerecord.attributes.adjective.participle') if @word.participle? %>
+    <%= t('activerecord.attributes.adjective.superlative') if @word.superlative? %>
   </p>
   <% if current_user %>
       <table>
@@ -76,13 +77,6 @@
           <td><%= t(@word.prepositional_feminine) %></td>
           <td><%= t(@word.prepositional_neuter) %></td>
           <td><%= t(@word.prepositional_plural) %></td>
-        </tr>
-        <tr>
-          <th><%= t('activerecord.attributes.adjective.superlative_masculine') %></th>
-          <td><%= t(@word.superlative_masculine) %></td>
-          <td><%= t(@word.superlative_feminine) %></td>
-          <td><%= t(@word.superlative_neuter) %></td>
-          <td><%= t(@word.superlative_plural) %></td>
         </tr>
         </tbody>
       </table>

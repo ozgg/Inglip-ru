@@ -17,6 +17,7 @@ ru:
           attributes:
             nominative:
               blank: "не может быть пустым"
+              taken: "уже есть"
             genitive:
               blank: "не может быть пустым"
             dative:
@@ -30,6 +31,7 @@ ru:
         adjective:
           attributes:
             nominative_masculine:
+              taken: "уже есть"
               blank: "не может быть пустым"
             genitive_masculine:
               blank: "не может быть пустым"
@@ -72,10 +74,12 @@ ru:
         verb:
           attributes:
             infinitive:
+              taken: "уже есть"
               blank: "не может быть пустым"
         perfect_verb:
           attributes:
             infinitive:
+              taken: "уже есть"
               blank: "не может быть пустым"
     models:
       noun: "имя существительное"
@@ -117,34 +121,31 @@ ru:
         qualitative: "качественное"
         possessive: "притяжательное"
         participle: "причастие"
+        superlative: "в преводсходной степени"
         nominative_masculine: "именительный"
         genitive_masculine: "родительный"
         dative_masculine: "дательный"
         accusative_masculine: "винительный"
         instrumental_masculine: "творительный"
         prepositional_masculine: "предложный"
-        superlative_masculine: "преводсходная степень"
         nominative_feminine: "именительный"
         genitive_feminine: "родительный"
         dative_feminine: "дательный"
         accusative_feminine: "винительный"
         instrumental_feminine: "творительный"
         prepositional_feminine: "предложный"
-        superlative_feminine: "преводсходная степень"
         nominative_neuter: "именительный"
         genitive_neuter: "родительный"
         dative_neuter: "дательный"
         accusative_neuter: "винительный"
         instrumental_neuter: "творительный"
         prepositional_neuter: "предложный"
-        superlative_neuter: "преводсходная степень"
         nominative_plural: "именительный"
         genitive_plural: "родительный"
         dative_plural: "дательный"
         accusative_plural: "винительный"
         instrumental_plural: "творительный"
         prepositional_plural: "предложный"
-        superlative_plural: "преводсходная степень"
         comparative: "сравнительная степень"
         partial: "кусок для комбинации"
       verb:
@@ -351,7 +352,7 @@ ru:
       description: "Страница с описанием имени прилагательного «%{word}»"
       header: "Имена прилагательные"
       declension: "Склонение"
-      case_or_degree: "Падеж/степень"
+      case_or_degree: "Падеж"
     form:
       indicators: "Признаки"
       masculine: "Мужской род"

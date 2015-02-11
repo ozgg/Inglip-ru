@@ -1,5 +1,5 @@
 class Sentence::Predicate < Sentence
-  attr_accessor :number, :gender, :person, :tense, :use_negation, :use_perfect
+  attr_accessor :number, :gender, :person, :tense, :use_negation, :use_perfect, :use_passive
 
   def to_s
     prepare
@@ -12,11 +12,17 @@ class Sentence::Predicate < Sentence
     @tense = random_tense
     @person = random_person
     @use_negation = @generator.rand(100) > 50
+    @use_passive = @generator.rand(100) > 80
   end
 
   def prepare
     add_member 'не' if @use_negation
-    add_member @main_member.decline(@tense, @person, @gender, @number)
+    main_member = @main_member.decline(@tense, @person, @gender, @number)
+    if @use_passive && @main_member.is_a?(Verb) && @main_member.passive_addable?
+      main_member += 'ся'
+    end
+
+    add_member main_member
   end
 
   def agree_with(subject)

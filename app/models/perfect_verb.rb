@@ -62,4 +62,8 @@ class PerfectVerb < ActiveRecord::Base
         infinitive + ' ?future'
     end
   end
+
+  def passive_addable?
+    has_reflexive? || has_reciprocal? || has_neuter?
+  end
 end

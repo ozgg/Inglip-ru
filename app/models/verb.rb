@@ -60,4 +60,8 @@ class Verb < ActiveRecord::Base
 
     "#{prefix} #{infinitive}"
   end
+
+  def passive_addable?
+    has_reflexive? || has_reciprocal? || has_neuter?
+  end
 end

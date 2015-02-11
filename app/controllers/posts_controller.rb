@@ -41,6 +41,7 @@ class PostsController < ApplicationController
   def update
     if @post.update post_parameters
       flash[:notice] = t('post.updated')
+      redirect_to @post
     else
       render action: :edit
     end

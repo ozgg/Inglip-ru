@@ -37,16 +37,16 @@ class PerfectVerb < ActiveRecord::Base
     if number === :single
       case gender
         when :feminine
-          passive_feminine
+          passive_feminine.blank? ? past_feminine : passive_feminine
         when :masculine
-          passive_masculine
+          passive_masculine.blank? ? past_masculine : passive_masculine
         when :neuter
-          passive_neuter
+          passive_neuter.blank? ? past_neuter : passive_neuter
         else
           infinitive + " ?passive for #{gender}"
       end
     else
-      passive_plural
+      passive_plural.blank? ? past_plural : passive_plural
     end
   end
 

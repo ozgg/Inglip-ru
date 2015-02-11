@@ -1,0 +1,31 @@
+<% content_for :title, t('.title', page: params[:page] || 1) %>
+<% content_for :description, t('.description', page: params[:page] || 1) %>
+<% content_for :footer do %>
+    <div class="metrics"><%= render 'common/metrics' if Rails.env.production? %></div>
+<% end %>
+
+<section>
+  <header>
+    <h1><%= t('.header') %></h1>
+
+    <h2><%= t('page', page: params[:page] || 1) %></h2>
+    <% if current_user %>
+        <nav>
+          <ul>
+            <li><%= link_to t('create'), new_post_path %></li>
+          </ul>
+        </nav>
+    <% end %>
+  </header>
+
+  <% if @posts.any? %>
+      <%= paginate @posts %>
+      <% @posts.each do |post| %>
+          <%= render post %>
+          <p><%= link_to t('link'), post %></p>
+      <% end %>
+      <%= paginate @posts %>
+  <% else %>
+      <%= render 'common/nothing_found' %>
+  <% end %>
+</section>

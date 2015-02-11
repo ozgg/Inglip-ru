@@ -32,6 +32,10 @@ img {
   border: none;
 }
 
+section[role=main] > section {
+  padding: 1em;
+}
+
 article {
   padding: 1em;
   max-width: 640px;

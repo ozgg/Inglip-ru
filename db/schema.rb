@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209214631) do
+ActiveRecord::Schema.define(version: 20150211210007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,13 @@ ActiveRecord::Schema.define(version: 20150209214631) do
   add_index "perfect_verbs", ["approved"], name: "index_perfect_verbs_on_approved", using: :btree
   add_index "perfect_verbs", ["infinitive"], name: "index_perfect_verbs_on_infinitive", unique: true, using: :btree
   add_index "perfect_verbs", ["user_id"], name: "index_perfect_verbs_on_user_id", using: :btree
+
+  create_table "posts", force: true do |t|
+    t.string   "title",      null: false
+    t.text     "body",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prepositions", force: true do |t|
     t.string   "name",                          null: false

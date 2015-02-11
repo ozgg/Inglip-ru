@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'sentence' => 'index#sentence'
   get 'images/captcha.png' => 'captcha#index', as: :captcha
 
-  resources :nouns, :verbs, :perfect_verbs, :adjectives
+  resources :posts, :nouns, :verbs, :perfect_verbs, :adjectives
 
   controller :sessions do
     get 'login' => :new

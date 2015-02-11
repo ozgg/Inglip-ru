@@ -29,4 +29,10 @@ class Speech
     sentence.generate
     sentence.to_s
   end
+
+  def passage
+    sentences = []
+    (@generator.rand(9) + 2).times { sentences << sentence }
+    sentences.join ' '
+  end
 end

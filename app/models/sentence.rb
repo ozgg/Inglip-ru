@@ -17,7 +17,7 @@ class Sentence
     @use_preposition = @generator.rand(100) > 50
     @intonation      = :assertion
     if @generator.rand(100) > 75
-      @intonation = [:exclamation, :question, :deep][rand(3)]
+      @intonation = [:exclamation, :question, :deep][@generator.rand(3)]
     end
   end
 
@@ -36,19 +36,22 @@ class Sentence
     used_predicate.agree_with used_subject
     add_member used_subject
     add_member used_predicate
-    if @use_complement
-      complement = subject
-      if @use_preposition
-        preposition = random_preposition
-        add_member preposition.name
-        complement.agree_with_preposition preposition
-      elsif used_predicate.passive?
-        complement.main_case = [:dative, :instrumental][rand(2)]
-      else
-        complement.main_case = [:accusative, :dative, :instrumental][rand(3)]
-      end
-      add_member complement
+    add_complement used_predicate if @use_complement
+  end
+
+  def add_complement(used_predicate)
+    complement    = subject
+    allowed_cases = used_predicate.passive? ? [:dative, :instrumental, :locative] : []
+    if @use_preposition
+      preposition = random_preposition allowed_cases
+      add_member preposition.name
+      complement.agree_with_preposition preposition
+    elsif used_predicate.passive?
+      complement.main_case = [:dative, :instrumental][@generator.rand(2)]
+    else
+      complement.main_case = [:accusative, :dative, :instrumental][@generator.rand(3)]
     end
+    add_member complement
   end
 
   def subject
@@ -59,9 +62,10 @@ class Sentence
     Sentence::Predicate.new @generator
   end
 
-  def random_preposition
-    offset = @generator.rand(Preposition.count)
-    Preposition.offset(offset).first
+  def random_preposition(allow_cases = [])
+    sample = Preposition.for_cases allow_cases
+    offset = @generator.rand(sample.count)
+    sample.offset(offset).first
   end
 
   def random_noun

@@ -36,7 +36,7 @@ class Sentence::Subject < Sentence
     if @main_case.to_sym === :locative
       :prepositional
     elsif @main_case.to_sym === :accusative
-      (@main_member.animated? || @main_member.feminine?) ? :accusative : :nominative
+      @main_member.animated? ? :accusative : :nominative
     else
       @main_case.to_sym
     end

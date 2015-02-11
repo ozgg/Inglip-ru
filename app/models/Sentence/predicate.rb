@@ -14,9 +14,9 @@ class Sentence::Predicate < Sentence
     @use_negation = @generator.rand(100) > 50
     @use_passive = @generator.rand(100) > 80
   end
-
+  
   def passive?
-    @use_passive
+    @use_passive || (@main_member.is_a?(PerfectVerb) && @tense === :present)
   end
 
   def prepare

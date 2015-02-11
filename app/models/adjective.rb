@@ -78,7 +78,7 @@ class Adjective < ActiveRecord::Base
           "?unknown adjective gender: #{gender}"
       end
     else
-      genitive_plural
+      dative_plural
     end
   end
 

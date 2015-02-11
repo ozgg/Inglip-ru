@@ -12,7 +12,11 @@ class Sentence::Predicate < Sentence
     @tense = random_tense
     @person = random_person
     @use_negation = @generator.rand(100) > 50
-    @use_passive = @generator.rand(100) > 10
+    @use_passive = @generator.rand(100) > 80
+  end
+
+  def passive?
+    @use_passive
   end
 
   def prepare

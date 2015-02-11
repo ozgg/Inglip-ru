@@ -7,15 +7,15 @@ class Sentence
   end
 
   def to_s
-    string = build
+    string    = build
     string[0] = string[0].mb_chars.capitalize.to_s
     string + final_mark
   end
 
   def seed
-    @use_complement = @generator.rand(100) > 50
+    @use_complement  = @generator.rand(100) > 50
     @use_preposition = @generator.rand(100) > 50
-    @intonation = :assertion
+    @intonation      = :assertion
     if @generator.rand(100) > 75
       @intonation = [:exclamation, :question, :deep][rand(3)]
     end
@@ -31,7 +31,7 @@ class Sentence
   end
 
   def generate
-    used_subject = subject
+    used_subject   = subject
     used_predicate = predicate
     used_predicate.agree_with used_subject
     add_member used_subject
@@ -42,6 +42,8 @@ class Sentence
         preposition = random_preposition
         add_member preposition.name
         complement.agree_with_preposition preposition
+      elsif used_predicate.passive?
+        complement.main_case = [:dative, :instrumental][rand(2)]
       else
         complement.main_case = [:accusative, :dative, :instrumental][rand(3)]
       end

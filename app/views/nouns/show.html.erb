@@ -36,27 +36,27 @@
         <tbody>
         <tr>
           <th><%= t('activerecord.attributes.noun.nominative') %></th>
-          <td><%= t(@noun.nominative) %><%= " (#{@noun.plural_nominative})" unless @noun.plural_nominative.blank? %></td>
+          <td><%= @noun.nominative %><%= " (#{@noun.plural_nominative})" unless @noun.plural_nominative.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.genitive') %></th>
-          <td><%= t(@noun.genitive) %><%= " (#{@noun.plural_genitive})" unless @noun.plural_genitive.blank? %></td>
+          <td><%= @noun.genitive %><%= " (#{@noun.plural_genitive})" unless @noun.plural_genitive.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.dative') %></th>
-          <td><%= t(@noun.dative) %><%= " (#{@noun.plural_dative})" unless @noun.plural_dative.blank? %></td>
+          <td><%= @noun.dative %><%= " (#{@noun.plural_dative})" unless @noun.plural_dative.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.accusative') %></th>
-          <td><%= t(@noun.accusative) %><%= " (#{@noun.plural_accusative})" unless @noun.plural_accusative.blank? %></td>
+          <td><%= @noun.accusative %><%= " (#{@noun.plural_accusative})" unless @noun.plural_accusative.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.instrumental') %></th>
-          <td><%= t(@noun.instrumental) %><%= " (#{@noun.plural_instrumental})" unless @noun.plural_instrumental.blank? %></td>
+          <td><%= @noun.instrumental %><%= " (#{@noun.plural_instrumental})" unless @noun.plural_instrumental.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.prepositional') %></th>
-          <td><%= t(@noun.prepositional) %><%= " (#{@noun.plural_prepositional})" unless @noun.plural_prepositional.blank? %></td>
+          <td><%= @noun.prepositional %><%= " (#{@noun.plural_prepositional})" unless @noun.plural_prepositional.blank? %></td>
         </tr>
         <% if @noun.has_partitive? %>
             <tr>

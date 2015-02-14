@@ -35,4 +35,10 @@ class Speech
     (@generator.rand(9) + 2).times { sentences << sentence }
     sentences.join ' '
   end
+
+  def post
+    parts = [sentence]
+    (@generator.rand(6) + 2).times { parts << passage}
+    parts.join "\n\n"
+  end
 end

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   scope :api do
     get 'tagline' => 'api#tagline'
     get 'claim'   => 'api#claim'
+    get 'passage' => 'api#passage'
+    get 'post'    => 'api#post'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

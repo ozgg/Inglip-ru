@@ -11,6 +11,15 @@ class ApiController < ApplicationController
     render plain: "#{@speech.tagline}\n#{@speech.seed}"
   end
 
+  # get /api/passage
+  def passage
+    render plain: "#{@speech.passage}\n#{@speech.seed}"
+  end
+
+  def post
+    render plain: "#{@speech.post}\n#{@speech.seed}"
+  end
+
   protected
 
   def set_speech

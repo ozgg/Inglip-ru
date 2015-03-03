@@ -392,3 +392,23 @@ ru:
       description: "Страница с формой редактирования публикации в блоге"
       header: "Редактирование публикации"
   link: "Ссылка"
+  horoscope:
+    index:
+      title: "Дзэн-гороскоп"
+      description: "Что такое дзэн-гороскоп? Актуальный дзэн-гороскоп для всех знаков зодиака на сегодня."
+      what_is_zen_horoscope: "Что такое дзэн-гороскоп?"
+      header: "Дзэн-гороскоп"
+      select_your_sign: "Выберите знак зодиака"
+  zodiac:
+    aries: "Телец"
+    taurus: "Овен"
+    gemini: "Близнецы"
+    cancer: "Рак"
+    leo: "Лев"
+    virgo: "Дева"
+    libra: "Весы"
+    scorpio: "Скорпион"
+    sagittarius: "Стрелец"
+    capricorn: "Козерог"
+    aquarius: "Водолей"
+    pisces: "Рыбы"

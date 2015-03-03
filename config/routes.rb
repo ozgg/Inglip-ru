@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     get 'post'    => 'api#post'
   end
 
+  get 'horoscope' => 'horoscope#index'
+  get 'horoscope/:sign' => 'horoscope#view', sign: /aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|sagittarius|capricorn|aquarius|pisces/, as: :horoscope_sign
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

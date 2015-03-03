@@ -1,0 +1,23 @@
+<% content_for :title, t('.title') %>
+<% content_for :description, t('.description') %>
+<% content_for :footer do %>
+    <div class="metrics"><%= render 'common/metrics' if Rails.env.production? %></div>
+    <div class="sharing"><%= render 'common/sharing' if Rails.env.production? %></div>
+<% end %>
+
+<article>
+  <h1><%= t('.header') %></h1>
+  <h2><%= t('.what_is_zen_horoscope') %></h2>
+  <p>Дзэн-гороскоп — это астрологический прогноз на текущий день от самого Инглипа.</p>
+  <p>Так как Инглип очень редко заявляет что-либо прямолинейно, над каждым прогнозом нужно размышлять
+  некоторое время, чтобы постичь истинный смысл заложенной в него мудрости.</p>
+  <p>Когда вы научитесь правильно интерпретировать сказанное, ввы поймёте, что дзэн-гороскоп от Инглипа
+  является единственным достоверным гороскопом, подходящим всем и каждому. Стремитесь к просветлению.</p>
+
+  <h2><%= t('.select_your_sign') %></h2>
+  <ul>
+    <% %w(aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces).each do |sign| %>
+    <li><%= link_to t("zodiac.#{sign}"), horoscope_sign_path(sign: sign) %></li>
+    <% end %>
+  </ul>
+</article>

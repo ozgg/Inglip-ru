@@ -1,2 +1,15 @@
-<h1>Horoscope#view</h1>
-<p>Find me in app/views/horoscope/view.html.erb</p>
+<% content_for :title, t(".title.#{params[:sign]}", default: 'Zen') %>
+<% content_for :description, t(".description.#{params[:sign]}", defaut: 'Дзэн-гороскоп для вашего знака на сегодня') %>
+<% content_for :footer do %>
+    <div class="metrics"><%= render 'common/metrics' if Rails.env.production? %></div>
+    <div class="sharing"><%= render 'common/sharing' if Rails.env.production? %></div>
+<% end %>
+
+<article>
+  <h1><%= t('.header') %></h1>
+  <h2><%= t("zodiac.#{params[:sign]}", default: 'Ваш знак') %></h2>
+  <blockquote>
+    <%= @forecast %>
+  </blockquote>
+  <p><%= link_to t('.other_sign'), horoscope_path %></p>
+</article>

@@ -15,7 +15,7 @@
   является единственным достоверным гороскопом, подходящим всем и каждому. Стремитесь к просветлению.</p>
 
   <h2><%= t('.select_your_sign') %></h2>
-  <ul>
+  <ul class="zodiac">
     <% %w(aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces).each do |sign| %>
     <li><%= link_to t("zodiac.#{sign}"), horoscope_sign_path(sign: sign) %></li>
     <% end %>

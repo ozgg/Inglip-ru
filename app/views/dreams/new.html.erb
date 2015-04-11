@@ -1,0 +1,30 @@
+<% content_for :title, t('.title') %>
+
+<nav class="options">
+  <ul>
+    <li><%= link_to t(:list), dreams_path %></li>
+  </ul>
+</nav>
+
+<article>
+  <h1><%= t('.title') %></h1>
+  <script type="text/javascript">/*<![CDATA[*/
+    function clean_dreams() {
+        var $holder = $('#dreams');
+        $holder.val($holder.val().replace(/( *сонник *)|( *\d+ *)|[-+]/g, ''));
+    }
+  /*]]>*/</script>
+
+  <%= form_tag dreams_path, method: :post do %>
+      <div>
+        <%= label_tag :dreams, t('.dreams') %>
+        <button onclick="clean_dreams()" type="button">!</button>
+        <br/>
+        <%= text_area_tag :dreams, '', cols: 50, rows: 20 %>
+      </div>
+
+      <div>
+        <%= button_tag t(:submit), name: nil %>
+      </div>
+  <% end %>
+</article>

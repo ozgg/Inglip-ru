@@ -1,0 +1,16 @@
+<% content_for :title, @dream.name %>
+
+<nav class="options">
+  <ul>
+    <li><%= link_to t(:create), new_dream_path %></li>
+    <li><%= link_to t(:list), dreams_path %></li>
+    <li><%= link_to t(:edit), edit_dream_path(@dream) %></li>
+  </ul>
+</nav>
+
+<article>
+  <h1><%= @dream.name %></h1>
+  <h2>Seed: <%= @dream.seed %></h2>
+
+  <div><%= simple_format Speech.new(@dream.seed).passage %></div>
+</article>

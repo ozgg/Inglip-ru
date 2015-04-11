@@ -1,0 +1,24 @@
+<% content_for :title, t('.title') %>
+
+<nav class="options">
+  <ul>
+    <li><%= link_to t(:view), @dream %></li>
+    <li><%= link_to t(:list), dreams_path %></li>
+    <li><%= link_to t(:delete), @dream, method: :delete, data: { confirm: t(:are_you_sure) } %></li>
+  </ul>
+</nav>
+
+<article>
+  <h1><%= t('.title') %></h1>
+
+  <%= form_for @dream do |f| %>
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name, reuired: true %>
+      </div>
+
+      <div>
+        <%= f.button t(:submit), type: :submit %>
+      </div>
+  <% end %>
+</article>

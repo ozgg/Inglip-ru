@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="<%= locale %>">
 <head>
+  <meta charset="utf-8"/>
   <title><%= yield :title %> / inglip.ru</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <meta charset="utf-8" />
-  <meta name="description" content="<%= yield :description %>" />
+  <% if content_for? :descrption %>
+      <meta name="description" content="<%= yield :description %>"/>
+  <% end %>
 </head>
 <body>
 <header>
@@ -20,7 +22,7 @@
 <section role="main"><%= yield %></section>
 
 <footer>
-<%= yield :footer %>
+  <%= yield :footer %>
   <div class="copyright">&copy; 2011, 2014–2015 inglip.ru</div>
 </footer>
 </body>

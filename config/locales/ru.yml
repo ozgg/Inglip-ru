@@ -201,6 +201,8 @@ ru:
       post:
         title: "Заголовок"
         body: "Текст"
+      dream:
+        name: "название"
   index:
     index:
       title: "Инглип вызван"
@@ -441,3 +443,16 @@ ru:
     capricorn: "♑ Козерог"
     aquarius: "♒ Водолей"
     pisces: "♓ Рыбы"
+  dreams:
+    index:
+      title: "Символы снов, страница %{page}"
+      header: "Символы сонника"
+    new:
+      title: "Добавление символов снов"
+      dreams: "О чём сны"
+    edit:
+      title: "Редактирование символа сна"
+  list: "К списку"
+  view: "В просмотр"
+  delete: "Удалить"
+  are_you_sure: "Вы уверены?"

@@ -1,0 +1,46 @@
+<% content_for :title do %>
+    <% if @dreams.blank? %>
+        <%= t('.title') %>
+    <% else %>
+        <%= t('.title_letter', letter: @letter, page: current_page) %>
+    <% end %>
+<% end %>
+
+<article>
+  <h1><%= t('.title') %></h1>
+  <% if @dreams.blank? %>
+      <h2>Что такое дзэн-сонник?</h2>
+      <p>Дзэн-сонник — это толкование снов от самого Инглипа.</p>
+      <p>Так как Инглип очень редко заявляет что-либо прямолинейно, над каждым толкованием сна нужно размышлять
+        некоторое время, чтобы постичь истинный смысл заложенной в него мудрости.</p>
+      <p>Когда вы научитесь правильно интерпретировать сказанное, вы поймёте, что дзэн-сонник от Инглипа
+        является единственным достоверным сонником, который никогда не врёт, подходящим всем и каждому.
+        Стремитесь к просветлению.</p>
+
+      <form action="<%= dreambook_path %>" method="get">
+        <div>
+          <%= label_tag :query, 'Что вам приснилось?' %>
+          <%= search_field_tag :query, '', required: true %>
+          <%= button_tag t(:submit), type: :submit, name: nil %>
+        </div>
+      </form>
+
+      <nav class="dreambook">
+        <ul>
+          <% Dream.letters.each do |letter| %>
+              <li><%= link_to letter, dreambook_path(letter: letter) %></li>
+          <% end %>
+        </ul>
+      </nav>
+  <% else %>
+      <h2><%= @letter %>: <%= t(:page, page: current_page) %></h2>
+      <p><%= link_to 'Весь сонник', dreambook_path %></p>
+      <%= paginate @dreams %>
+      <ul>
+        <% @dreams.each do |dream| %>
+            <li><%= link_to dream.name, dreambook_path(name: dream.name) %></li>
+        <% end %>
+      </ul>
+      <%= paginate @dreams %>
+  <% end %>
+</article>

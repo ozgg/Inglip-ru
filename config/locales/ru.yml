@@ -456,3 +456,7 @@ ru:
   view: "В просмотр"
   delete: "Удалить"
   are_you_sure: "Вы уверены?"
+  dreambook:
+    index:
+      title: "Дзэн-сонник"
+      title_letter: "Дзэн-сонник на %{letter}, страница %{page}"

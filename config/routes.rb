@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
+  controller :dreambook do
+    get 'dreambook' => :index
+    get 'dreambook/search' => :search
+    get 'dreambook/:name' => :show
+  end
+
   scope :api do
     get 'tagline' => 'api#tagline'
     get 'claim'   => 'api#claim'

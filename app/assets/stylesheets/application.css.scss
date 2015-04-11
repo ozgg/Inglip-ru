@@ -101,3 +101,19 @@ blockquote {
   border-radius: 0.5em;
   padding: 1em;
 }
+
+nav.dreambook {
+  ul {
+    margin: 15px 0;
+    padding: 0;
+    font-size: 0.8em;
+
+    li {
+      list-style: none;
+      display: inline-block;
+      border: dotted #aaa 1px;
+      background: #f7f7f7;
+      padding: 2px;
+    }
+  }
+}

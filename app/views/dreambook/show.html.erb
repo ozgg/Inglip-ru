@@ -1,4 +1,9 @@
 <% content_for :title, t('.title', dream: @dream.name) %>
+<% content_for :description, t('.description', dream: @dream.name) %>
+<% content_for :footer do %>
+    <div class="metrics"><%= render 'common/metrics' if Rails.env.production? %></div>
+    <div class="sharing"><%= render 'common/sharing' if Rails.env.production? %></div>
+<% end %>
 
 <article>
   <h1><%= link_to t('.header'), dreambook_path %></h1>

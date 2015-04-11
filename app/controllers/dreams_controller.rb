@@ -11,7 +11,7 @@ class DreamsController < ApplicationController
   def create
     counter = 0
     params.require(:dreams).to_s.split(/\r?\n/).each do |name|
-      counter += 1 if Dream.create name: name
+      counter += 1 if Dream.create name: name.strip
     end
     flash[:notice] = counter
     redirect_to dreams_path

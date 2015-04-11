@@ -5,6 +5,11 @@
         <%= t('.title_letter', letter: @letter, page: current_page) %>
     <% end %>
 <% end %>
+<% content_for :description, t('.description') %>
+<% content_for :footer do %>
+    <div class="metrics"><%= render 'common/metrics' if Rails.env.production? %></div>
+    <div class="sharing"><%= render 'common/sharing' if Rails.env.production? %></div>
+<% end %>
 
 <article>
   <h1><%= t('.title') %></h1>

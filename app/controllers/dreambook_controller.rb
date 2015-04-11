@@ -12,7 +12,7 @@ class DreambookController < ApplicationController
   def search
     @query = params[:query].to_s.encode('UTF-8', 'UTF-8', invalid: :replace, replace: '')
     dream = Dream.find_by name: @query
-    redirect_to dreambook_path(name: @query) unless dream.nil?
+    redirect_to dreambook_symbol_path(name: @query) unless dream.nil?
   end
 
   protected

@@ -460,3 +460,9 @@ ru:
     index:
       title: "Дзэн-сонник"
       title_letter: "Дзэн-сонник на %{letter}, страница %{page}"
+    show:
+      title: "К чему снится %{dream} — дзэн-сонник"
+      header: "Дзэн-сонник"
+    search:
+      title: "%{query} в дзэн-соннике"
+      header: "Поиск по соннику"

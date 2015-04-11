@@ -16,11 +16,12 @@
       <p>Когда вы научитесь правильно интерпретировать сказанное, вы поймёте, что дзэн-сонник от Инглипа
         является единственным достоверным сонником, который никогда не врёт, подходящим всем и каждому.
         Стремитесь к просветлению.</p>
+      <p>Есть и <%= link_to 'более понятный сонник', 'http://sovia.ru/dreambook?utm_source=inglip' %> на Совии.</p>
 
-      <form action="<%= dreambook_path %>" method="get">
+      <form action="<%= dreambook_search_path %>" method="get">
         <div>
           <%= label_tag :query, 'Что вам приснилось?' %>
-          <%= search_field_tag :query, '', required: true %>
+          <%= search_field_tag :query, '', placeholder: Speech.new.claim, required: true %>
           <%= button_tag t(:submit), type: :submit, name: nil %>
         </div>
       </form>
@@ -38,7 +39,7 @@
       <%= paginate @dreams %>
       <ul>
         <% @dreams.each do |dream| %>
-            <li><%= link_to dream.name, dreambook_path(name: dream.name) %></li>
+            <li><%= link_to dream.name, dreambook_symbol_path(name: dream.name) %></li>
         <% end %>
       </ul>
       <%= paginate @dreams %>

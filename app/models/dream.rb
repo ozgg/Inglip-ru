@@ -9,4 +9,8 @@ class Dream < ActiveRecord::Base
   def seed
     Digest::MD5.hexdigest(name).to_i(16)
   end
+
+  def interpretation
+    Speech.new(seed).passage
+  end
 end

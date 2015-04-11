@@ -1,0 +1,8 @@
+<% content_for :title, t('.title', query: @query) %>
+
+<article>
+  <h1><%= link_to t('.header'), dreambook_path %></h1>
+  <h2><%= @query %></h2>
+
+  <div><%= simple_format Speech.new(Digest::MD5.hexdigest(@query).to_i(16)).passage %></div>
+</article>

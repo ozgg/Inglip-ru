@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   controller :dreambook do
     get 'dreambook' => :index
     get 'dreambook/search' => :search
-    get 'dreambook/:name' => :show
+    get 'dreambook/:name' => :show, as: :dreambook_symbol
   end
 
   scope :api do

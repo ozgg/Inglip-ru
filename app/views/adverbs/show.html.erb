@@ -1,17 +1,17 @@
-<% content_for :title, t('.title', word: @adverb.body) %>
+<% content_for :title, t('.title', word: @word.canonical_form) %>
 
 <nav class="options">
   <ul>
     <li><%= link_to t(:list), adverbs_path %></li>
-    <li><%= link_to t(:edit), edit_adverb_path(@adverb) %></li>
+    <li><%= link_to t(:edit), edit_adverb_path(@word) %></li>
   </ul>
 </nav>
 
 <article>
-  <h1><%= @adverb.body %></h1>
+  <h1><%= @word.body %></h1>
 
-  <p><%= t("activerecord.attributes.adverb.families.#{@adverb.family}") %></p>
-  <% if @adverb.is_comparative? %>
-  <p><%= t('activerecord.attributes.adverb.is_comparative') %> (<%= @adverb.comparative_degree %>)</p>
+  <p><%= t("activerecord.attributes.adverb.families.#{@word.family}") %></p>
+  <% if @word.is_comparative? %>
+  <p><%= t('activerecord.attributes.adverb.is_comparative') %> (<%= @word.comparative_degree %>)</p>
   <% end %>
 </article>

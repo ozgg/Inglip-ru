@@ -13,15 +13,5 @@
 
   <h2><%= t(:page, page: current_page) %></h2>
 
-  <% if @adverbs.any? %>
-      <%= paginate @adverbs %>
-      <ul>
-        <% @adverbs.each do |adverb| %>
-        <li><%= link_to adverb.body, adverb %></li>
-        <% end %>
-      </ul>
-      <%= paginate @adverbs %>
-  <% else %>
-      <%= render 'common/nothing_found' %>
-  <% end %>
+  <%= render 'words/list' %>
 </article>

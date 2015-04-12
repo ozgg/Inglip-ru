@@ -3,32 +3,32 @@ class AdverbsController < ApplicationController
   before_action :set_adverb, only: [:show, :edit, :update, :destroy]
 
   def index
-    @adverbs = Adverb.order('body asc').page(current_page).per(20)
+    @words = Adverb.order('body asc').page(current_page).per(20)
   end
 
   def new
-    @adverb = Adverb.new
+    @word = Adverb.new
   end
 
   def create
-    @adverb = Adverb.new adverb_parameters
-    if @adverb.save
-      redirect_to @adverb
+    @word = Adverb.new adverb_parameters
+    if @word.save
+      redirect_to @word
     else
       render :new
     end
   end
 
   def update
-    if @adverb.update adverb_parameters
-      redirect_to @adverb
+    if @word.update adverb_parameters
+      redirect_to @word
     else
       render :edit
     end
   end
 
   def destroy
-    @adverb.destroy
+    @word.destroy
     redirect_to adverbs_path
   end
 
@@ -39,6 +39,6 @@ class AdverbsController < ApplicationController
   end
 
   def set_adverb
-    @adverb = Adverb.find params[:id]
+    @word = Adverb.find params[:id]
   end
 end

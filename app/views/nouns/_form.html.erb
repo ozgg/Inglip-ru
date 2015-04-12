@@ -6,7 +6,7 @@
 
       <div>
         <%= f.label :grammatical_gender %>
-        <%= f.select :grammatical_gender, Noun.grammatical_genders.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_genders.#{e}"), e] } %>
+        <%= f.select :grammatical_gender, Noun.grammatical_genders.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_genders.#{e}"), e] }, {}, size: 3 %>
       </div>
       <div>
         <%= f.check_box :common_gender %>
@@ -18,7 +18,7 @@
       </div>
       <div>
         <%= f.label :grammatical_number %>
-        <%= f.select :grammatical_number, Noun.grammatical_numbers.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_numbers.#{e}"), e] } %>
+        <%= f.select :grammatical_number, Noun.grammatical_numbers.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_numbers.#{e}"), e] }, {}, size: 3 %>
       </div>
     </fieldset>
 

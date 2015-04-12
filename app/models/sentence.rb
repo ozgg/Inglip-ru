@@ -1,8 +1,14 @@
 class Sentence
-  attr_accessor :use_complement, :use_preposition, :intonation
+  include WordSpawner
+
+  attr_accessor :intonation
+
+  FLAG_COMPLEMENT = 1
+  FLAG_PREPOSITION = 2
 
   def initialize(generator)
     @generator = generator
+    @flags = @generator.rand 0xFFFFFF
     seed
   end
 
@@ -13,12 +19,20 @@ class Sentence
   end
 
   def seed
-    @use_complement  = @generator.rand(100) > 50
-    @use_preposition = @generator.rand(100) > 50
+    set_flag FLAG_COMPLEMENT,  @generator.rand(100) > 50
+    set_flag FLAG_PREPOSITION, @generator.rand(100) > 50
     @intonation      = :assertion
     if @generator.rand(100) > 75
       @intonation = [:exclamation, :question, :deep][@generator.rand(3)]
     end
+  end
+
+  def use_complement?
+    has_flag? FLAG_COMPLEMENT
+  end
+
+  def use_preposition?
+    has_flag? FLAG_PREPOSITION
   end
 
   def add_member(member)
@@ -36,13 +50,13 @@ class Sentence
     used_predicate.agree_with used_subject
     add_member used_subject
     add_member used_predicate
-    add_complement used_predicate if @use_complement
+    add_complement used_predicate if use_complement?
   end
 
   def add_complement(used_predicate)
     complement    = subject
     allowed_cases = used_predicate.passive? ? [:dative, :instrumental, :locative] : []
-    if @use_preposition
+    if use_preposition?
       preposition = random_preposition allowed_cases
       add_member preposition.name
       complement.agree_with_preposition preposition
@@ -60,32 +74,6 @@ class Sentence
 
   def predicate
     Sentence::Predicate.new @generator
-  end
-
-  def random_preposition(allow_cases = [])
-    sample = Preposition.for_cases allow_cases
-    offset = @generator.rand(sample.count)
-    sample.offset(offset).first
-  end
-
-  def random_noun
-    offset = @generator.rand(Noun.count)
-    Noun.offset(offset).first
-  end
-
-  def random_verb
-    offset = @generator.rand(Verb.count)
-    Verb.offset(offset).first
-  end
-
-  def random_perfect_verb
-    offset = @generator.rand(PerfectVerb.count)
-    PerfectVerb.offset(offset).first
-  end
-
-  def random_adjective
-    offset = @generator.rand(Adjective.count)
-    Adjective.offset(offset).first
   end
 
   protected
@@ -120,6 +108,18 @@ class Sentence
         '...'
       else
         '.'
+    end
+  end
+
+  def has_flag?(flag)
+    @flags & flag === flag
+  end
+
+  def set_flag(flag, value)
+    if value
+      @flags = @flags | flag
+    else
+      @flags = @flags & ~flag
     end
   end
 end

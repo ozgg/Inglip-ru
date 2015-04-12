@@ -1,5 +1,7 @@
 class Sentence::Apposition < Sentence
-  attr_accessor :adjective, :gender, :number, :grammatical_case, :use_qualitative
+  attr_accessor :adjective, :gender, :number, :grammatical_case
+
+  QUALITATIVE = 1
 
   def to_s
     prepare
@@ -11,7 +13,11 @@ class Sentence::Apposition < Sentence
     @gender = random_gender
     @number = random_number
     @grammatical_case = random_case
-    @use_qualitative = @generator.rand(100) > 90
+    flag! :apposition, QUALITATIVE, probability?(10)
+  end
+
+  def use_qualitative?
+    flag? :apposition, QUALITATIVE
   end
 
   def agree_with(subject)
@@ -22,7 +28,7 @@ class Sentence::Apposition < Sentence
 
   def prepare
     word = @adjective.decline(@gender, @number, @grammatical_case)
-    if @use_qualitative && @adjective.qualitative?
+    if use_qualitative? && @adjective.qualitative?
       qualitative = random_qualitative
       word = (qualitative.partial + '-' + word) if qualitative
     end

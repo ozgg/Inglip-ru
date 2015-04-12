@@ -1,6 +1,22 @@
 module WordSpawner
   extend ActiveSupport::Concern
 
+  def apposition
+    Sentence::Apposition.new @generator
+  end
+
+  def gerund
+    Sentence::Gerund.new @generator
+  end
+
+  def subject
+    Sentence::Subject.new @generator
+  end
+
+  def predicate
+    Sentence::Predicate.new @generator
+  end
+
   def random_preposition(allow_cases = [])
     sample = Preposition.for_cases allow_cases
     offset = @generator.rand(sample.count)

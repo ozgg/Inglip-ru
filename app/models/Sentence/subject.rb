@@ -11,44 +11,23 @@ class Sentence::Subject < Sentence
 
   def seed
     @main_member = random_noun
-    noun_flag! DEPENDENCE, probability(60)
-    noun_flag! APPOSITION, probability(70)
-    @main_case = :nominative
-    @number = @main_member.number || random_number
+    @main_case   = :nominative
+    @number      = @main_member.number || random_number
+    seed_flags
   end
 
   def prepare
-    if use_apposition?
-      apposition = Apposition.new(@generator)
-      apposition.agree_with self
-      add_member apposition.to_s
-    end
-
+    add_apposition if use_apposition?
     add_member @main_member.decline(@main_case, @number)
-
-    if use_dependence?
-      dependent = Subject.new(@generator)
-      dependent.seed
-      dependent.noun_flag! DEPENDENCE, false
-      dependent.main_case = :genitive
-      add_member dependent.to_s
-    end
-  end
-
-  def noun_flag?(flag)
-    flag? :noun, flag
-  end
-
-  def noun_flag!(flag, value = true)
-    flag! :noun, flag, value
+    add_dependence if use_dependence?
   end
 
   def use_dependence?
-    noun_flag? DEPENDENCE
+    flag? :noun, DEPENDENCE
   end
 
   def use_apposition?
-    noun_flag? APPOSITION
+    flag? :noun, APPOSITION
   end
 
   def agreement_case
@@ -68,5 +47,25 @@ class Sentence::Subject < Sentence
   def agree_with_preposition(preposition)
     available_cases = preposition.cases
     @main_case = available_cases.any? ? available_cases[@generator.rand(available_cases.size)] : :nominative
+  end
+
+  protected
+
+  def seed_flags
+    flag! :noun, DEPENDENCE, probability?(60)
+    flag! :noun, APPOSITION, probability?(70)
+  end
+
+  def add_apposition
+    used_apposition = apposition
+    used_apposition.agree_with self
+    add_member used_apposition.to_s
+  end
+
+  def add_dependence
+    dependent = subject
+    dependent.flag! :noun, DEPENDENCE, false
+    dependent.main_case = :genitive
+    add_member dependent.to_s
   end
 end

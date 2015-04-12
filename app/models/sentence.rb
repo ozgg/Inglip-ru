@@ -7,8 +7,8 @@ class Sentence
   PREPOSITION = 0b0010
   IMPERATIVE =  0b0100
 
-  def initialize(generator)
-    @generator = generator
+  def initialize(generator = nil)
+    @generator = generator || Random.new(Random.new_seed)
     @flags = {}
     seed
   end
@@ -20,11 +20,11 @@ class Sentence
   end
 
   def seed
-    sentence_flag! COMPLEMENT,  probability(50)
-    sentence_flag! PREPOSITION, probability(50)
-    sentence_flag! IMPERATIVE,  probability(20)
+    sentence_flag! COMPLEMENT,  probability?(50)
+    sentence_flag! PREPOSITION, probability?(50)
+    sentence_flag! IMPERATIVE,  probability?(20)
     @intonation      = :assertion
-    if @generator.rand(100) > 75
+    if probability? 25
       @intonation = [:exclamation, :question, :deep][@generator.rand(3)]
     end
   end
@@ -81,14 +81,6 @@ class Sentence
     add_member complement
   end
 
-  def subject
-    Sentence::Subject.new @generator
-  end
-
-  def predicate
-    Sentence::Predicate.new @generator
-  end
-
   def flag?(group, flag)
     @flags.has_key?(group) && (@flags[group] & flag === flag)
   end
@@ -113,7 +105,7 @@ class Sentence
 
   protected
 
-  def probability(percent)
+  def probability?(percent)
     weight = 100 - (percent.to_i % 100)
     @generator.rand(100) > weight
   end

@@ -14,13 +14,13 @@ class Sentence::Predicate < Sentence
 
   def seed
     @flags[:predicate] = @generator.rand 0xffffffff
-    predicate_flag! PERFECT, probability(50)
+    predicate_flag! PERFECT, probability?(50)
     @main_member = use_perfect? ? random_perfect_verb : random_verb
     @tense = random_tense
     @person = random_person
-    predicate_flag! NEGATION, probability(50)
-    predicate_flag! PASSIVE, probability(20)
-    predicate_flag! ADVERB, probability(40)
+    predicate_flag! NEGATION, probability?(50)
+    predicate_flag! PASSIVE, probability?(20)
+    predicate_flag! ADVERB, probability?(40)
   end
 
   def predicate_flag?(flag)

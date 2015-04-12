@@ -35,7 +35,7 @@ class AdverbsController < ApplicationController
   protected
 
   def adverb_parameters
-    params.require(:adverb).permit(:family, :is_comparative, :body, :comparative_body)
+    params.require(:adverb).permit(:family, :is_comparative, :body, :comparative_degree)
   end
 
   def set_adverb

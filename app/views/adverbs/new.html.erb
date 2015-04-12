@@ -1,0 +1,13 @@
+<% content_for :title, t('.title') %>
+
+<nav class="options">
+  <ul>
+    <li><%= link_to t(:list), adverbs_path %></li>
+  </ul>
+</nav>
+
+<article>
+  <h1><%= t('.title') %></h1>
+
+  <%= render 'form' %>
+</article>

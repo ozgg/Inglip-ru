@@ -203,6 +203,18 @@ ru:
         body: "Текст"
       dream:
         name: "название"
+      adverb:
+        family: "класс"
+        is_comparative: "сравнительное"
+        body: "слово"
+        comparative_degree: "в сравнительной степени"
+        families:
+          conduct: "образ действия"
+          measure: "мера и степень"
+          time: "время"
+          place: "место"
+          reason: "причина"
+          totality: "совокупность"
   index:
     index:
       title: "Инглип вызван"
@@ -472,3 +484,9 @@ ru:
     index:
       title: "Наречия, страница %{page}"
       header: "Наречия"
+    new:
+      title: "Добавить наречие"
+    show:
+      title: "Наречие %{word}"
+    edit:
+      title: "Редактирование наречия"

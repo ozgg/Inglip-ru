@@ -1,5 +1,7 @@
 <% content_for :title, t('.title', page: current_page) %>
 
+<%= render 'words/sections' %>
+
 <nav class="options">
   <ul>
     <li><%= link_to t(:create), new_adverb_path %></li>

@@ -3,13 +3,13 @@ class Sentence
 
   attr_accessor :intonation
 
-  FLAG_COMPLEMENT  = 0b0001
-  FLAG_PREPOSITION = 0b0010
-  FLAG_IMPERATIVE =  0b0100
+  COMPLEMENT  = 0b0001
+  PREPOSITION = 0b0010
+  IMPERATIVE =  0b0100
 
   def initialize(generator)
     @generator = generator
-    @flags = @generator.rand 0xFFFFFF
+    @flags = {}
     seed
   end
 
@@ -20,9 +20,9 @@ class Sentence
   end
 
   def seed
-    set_flag! FLAG_COMPLEMENT,  @generator.rand(100) > 50
-    set_flag! FLAG_PREPOSITION, @generator.rand(100) > 50
-    set_flag! FLAG_IMPERATIVE, @generator.rand(100) > 80
+    sentence_flag! COMPLEMENT,  probability(50)
+    sentence_flag! PREPOSITION, probability(50)
+    sentence_flag! IMPERATIVE,  probability(20)
     @intonation      = :assertion
     if @generator.rand(100) > 75
       @intonation = [:exclamation, :question, :deep][@generator.rand(3)]
@@ -30,15 +30,15 @@ class Sentence
   end
 
   def use_complement?
-    has_flag? FLAG_COMPLEMENT
+    sentence_flag? COMPLEMENT
   end
 
   def use_preposition?
-    has_flag? FLAG_PREPOSITION
+    sentence_flag? PREPOSITION
   end
 
   def use_imperative?
-    has_flag? FLAG_IMPERATIVE
+    sentence_flag? IMPERATIVE
   end
 
   def add_member(member)
@@ -54,7 +54,7 @@ class Sentence
     used_subject   = subject
     used_predicate = predicate
     if use_imperative?
-      used_predicate.set_flag! FLAG_IMPERATIVE, true
+      used_predicate.sentence_flag! IMPERATIVE, true
       used_subject.main_case = [:genitive, :dative, :accusative][@generator.rand(3)]
       add_member used_predicate
       add_member used_subject
@@ -89,19 +89,34 @@ class Sentence
     Sentence::Predicate.new @generator
   end
 
-  def has_flag?(flag)
-    @flags & flag === flag
+  def flag?(group, flag)
+    @flags.has_key?(group) && (@flags[group] & flag === flag)
   end
 
-  def set_flag!(flag, value)
+  def flag!(group, flag, value = true)
+    @flags[group] ||= 0
+
     if value
-      @flags = @flags | flag
+      @flags[group] |= flag
     else
-      @flags = @flags & ~flag
+      @flags[group] &= ~flag
     end
   end
 
+  def sentence_flag?(flag)
+    flag? :sentence, flag
+  end
+
+  def sentence_flag!(flag, value = true)
+    flag! :sentence, flag, value
+  end
+
   protected
+
+  def probability(percent)
+    weight = 100 - (percent.to_i % 100)
+    @generator.rand(100) > weight
+  end
 
   def random_case
     [:nominative, :genitive, :dative, :accusative, :instrumental][@generator.rand(5)]

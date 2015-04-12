@@ -468,3 +468,7 @@ ru:
     search:
       title: "%{query} в дзэн-соннике"
       header: "Поиск по соннику"
+  adverbs:
+    index:
+      title: "Наречия, страница %{page}"
+      header: "Наречия"

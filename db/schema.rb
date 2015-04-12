@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411214707) do
+ActiveRecord::Schema.define(version: 20150412002956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20150411214707) do
   add_index "adjectives", ["approved"], name: "index_adjectives_on_approved", using: :btree
   add_index "adjectives", ["nominative_masculine"], name: "index_adjectives_on_nominative_masculine", unique: true, using: :btree
   add_index "adjectives", ["user_id"], name: "index_adjectives_on_user_id", using: :btree
+
+  create_table "adverbs", force: true do |t|
+    t.integer  "family",                             null: false
+    t.boolean  "is_comparative",     default: false, null: false
+    t.string   "body",                               null: false
+    t.string   "comparative_degree"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "adverbs", ["body"], name: "index_adverbs_on_body", using: :btree
 
   create_table "dreams", force: true do |t|
     t.string   "name",       null: false

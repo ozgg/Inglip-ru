@@ -1,5 +1,8 @@
 class Sentence::Subject < Sentence
-  attr_accessor :use_dependence, :main_case, :number, :use_apposition
+  attr_accessor :main_case, :number
+
+  DEPENDENCE = 1
+  APPOSITION = 2
 
   def to_s
     prepare
@@ -8,14 +11,14 @@ class Sentence::Subject < Sentence
 
   def seed
     @main_member = random_noun
-    @use_dependence = (@generator.rand(100) > 40)
-    @use_apposition = (@generator.rand(100) > 30)
+    noun_flag! DEPENDENCE, probability(60)
+    noun_flag! APPOSITION, probability(70)
     @main_case = :nominative
     @number = @main_member.number || random_number
   end
 
   def prepare
-    if @use_apposition
+    if use_apposition?
       apposition = Apposition.new(@generator)
       apposition.agree_with self
       add_member apposition.to_s
@@ -23,13 +26,29 @@ class Sentence::Subject < Sentence
 
     add_member @main_member.decline(@main_case, @number)
 
-    if @use_dependence
+    if use_dependence?
       dependent = Subject.new(@generator)
       dependent.seed
-      dependent.use_dependence = false
+      dependent.noun_flag! DEPENDENCE, false
       dependent.main_case = :genitive
       add_member dependent.to_s
     end
+  end
+
+  def noun_flag?(flag)
+    flag? :noun, flag
+  end
+
+  def noun_flag!(flag, value = true)
+    flag! :noun, flag, value
+  end
+
+  def use_dependence?
+    noun_flag? DEPENDENCE
+  end
+
+  def use_apposition?
+    noun_flag? APPOSITION
   end
 
   def agreement_case

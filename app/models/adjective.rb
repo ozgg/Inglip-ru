@@ -13,123 +13,44 @@ class Adjective < ActiveRecord::Base
   end
 
   def decline(gender, number, grammatical_case)
-    case grammatical_case
-      when :nominative
-        in_nominative gender, number
-      when :genitive
-        in_genitive gender, number
-      when :dative, :partitive
-        in_dative gender, number
-      when :accusative
-        in_accusative gender, number
-      when :instrumental
-        in_instrumental gender, number
-      when :prepositional, :locative
-        in_prepositional gender, number
-      else
-        "?unknown adjective case: #{grammatical_case}"
+    if number === :single
+      message = "#{grammatical_case}_#{gender}"
+    else
+      message = "#{grammatical_case}_plural"
     end
+
+    respond_to?(message) ? send(message) : "[#{canonical_form}/#{gender}/#{number}/#{grammatical_case}]"
   end
 
-  def in_nominative(gender, number)
-    if number === :single
-      case gender
-        when :masculine
-          nominative_masculine
-        when :feminine
-          nominative_feminine
-        when :neuter
-          nominative_neuter
-        else
-          "?unknown adjective gender: #{gender}"
-      end
-    else
-      nominative_plural
-    end
+  def partitive_masculine
+    genitive_masculine
   end
 
-  def in_genitive(gender, number)
-    if number === :single
-      case gender
-        when :masculine
-          genitive_masculine
-        when :feminine
-          genitive_feminine
-        when :neuter
-          genitive_neuter
-        else
-          "?unknown adjective gender: #{gender}"
-      end
-    else
-      genitive_plural
-    end
+  def partitive_feminine
+    genitive_feminine
   end
 
-  def in_dative(gender, number)
-    if number === :single
-      case gender
-        when :masculine
-          dative_masculine
-        when :feminine
-          dative_feminine
-        when :neuter
-          dative_neuter
-        else
-          "?unknown adjective gender: #{gender}"
-      end
-    else
-      dative_plural
-    end
+  def partitive_neuter
+    genitive_neuter
   end
 
-  def in_accusative(gender, number)
-    if number === :single
-      case gender
-        when :masculine
-          accusative_masculine
-        when :feminine
-          accusative_feminine
-        when :neuter
-          accusative_neuter
-        else
-          "?unknown adjective gender: #{gender}"
-      end
-    else
-      accusative_plural
-    end
+  def partitive_plural
+    genitive_plural
   end
 
-  def in_instrumental(gender, number)
-    if number === :single
-      case gender
-        when :masculine
-          instrumental_masculine
-        when :feminine
-          instrumental_feminine
-        when :neuter
-          instrumental_neuter
-        else
-          "?unknown adjective gender: #{gender}"
-      end
-    else
-      instrumental_plural
-    end
+  def locative_masculine
+    prepositional_masculine
   end
 
-  def in_prepositional(gender, number)
-    if number === :single
-      case gender
-        when :masculine
-          prepositional_masculine
-        when :feminine
-          prepositional_feminine
-        when :neuter
-          prepositional_neuter
-        else
-          "?unknown adjective gender: #{gender}"
-      end
-    else
-      prepositional_plural
-    end
+  def locative_feminine
+    prepositional_feminine
+  end
+
+  def locative_neuter
+    prepositional_neuter
+  end
+
+  def locative_plural
+    prepositional_plural
   end
 end

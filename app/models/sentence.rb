@@ -110,8 +110,8 @@ class Sentence
     @generator.rand(100) > weight
   end
 
-  def random_case
-    [:nominative, :genitive, :dative, :accusative, :instrumental][@generator.rand(5)]
+  def random_case(cases = [:nominative, :genitive, :dative, :accusative, :instrumental])
+    cases[@generator.rand(cases.size)]
   end
 
   def random_tense

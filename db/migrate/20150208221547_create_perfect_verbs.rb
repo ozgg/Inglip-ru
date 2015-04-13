@@ -1,4 +1,4 @@
-class CreatePerfectVerbs < ActiveRecord::Migration
+    class CreatePerfectVerbs < ActiveRecord::Migration
   def change
     create_table :perfect_verbs do |t|
       t.boolean :approved, null: false, default: false

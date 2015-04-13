@@ -52,4 +52,8 @@ module WordSpawner
     offset = @generator.rand(Adverb.count)
     Adverb.offset(offset).first
   end
+
+  def random_gerund(perfect = false)
+    perfect ? random_perfect_verb.gerund : random_verb.gerund
+  end
 end

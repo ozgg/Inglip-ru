@@ -3,6 +3,10 @@ class PerfectVerb < ActiveRecord::Base
   validates_presence_of :infinitive
   validates_uniqueness_of :infinitive
 
+  def gerund_past
+    gerund
+  end
+
   def decline(tense, person, gender, number)
     case tense
       when :past

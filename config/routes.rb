@@ -26,6 +26,12 @@ Rails.application.routes.draw do
     get 'post'    => 'api#post'
   end
 
+  scope :test, controller: :test do
+    get 'subject'
+    get 'apposition'
+    get 'gerund'
+  end
+
   get 'horoscope' => 'horoscope#index'
   get 'horoscope/:sign' => 'horoscope#view', sign: /aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|sagittarius|capricorn|aquarius|pisces/, as: :horoscope_sign
 

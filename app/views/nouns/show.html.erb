@@ -43,12 +43,12 @@
           <td><%= @word.genitive %><%= " (#{@word.plural_genitive})" unless @word.plural_genitive.blank? %></td>
         </tr>
         <tr>
-          <th><%= t('activerecord.attributes.noun.dative') %></th>
-          <td><%= @word.dative %><%= " (#{@word.plural_dative})" unless @word.plural_dative.blank? %></td>
-        </tr>
-        <tr>
           <th><%= t('activerecord.attributes.noun.partitive') %></th>
           <td><%= @word.partitive %><%= " (#{@word.plural_partitive})" unless @word.plural_partitive.blank? %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.dative') %></th>
+          <td><%= @word.dative %><%= " (#{@word.plural_dative})" unless @word.plural_dative.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.accusative') %></th>

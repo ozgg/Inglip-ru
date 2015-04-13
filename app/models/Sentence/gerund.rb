@@ -7,7 +7,8 @@ class Sentence::Gerund < Sentence
   SUBJECT    = 32
 
   def seed
-    @flags[:gerund] = @generator.rand 0xffffffff
+    @isolation = {}
+    @flags[:gerund] = @generator.rand 0xff
     @verb = use_perfect? ? random_perfect_verb : random_verb
   end
 
@@ -17,10 +18,12 @@ class Sentence::Gerund < Sentence
   end
 
   def prepare
+    add_member ',' if isolate_left?
     add_member random_adverb.body if flag? :gerund, ADVERB
     add_member 'не' if flag? :gerund, NEGATION
     add_member main_member
     add_subject if flag? :gerund, SUBJECT
+    add_member ',' if isolate_right?
   end
 
   def use_perfect?
@@ -45,5 +48,21 @@ class Sentence::Gerund < Sentence
     cases += [:accusative, :dative] unless use_passive?
     used_subject.main_case = random_case(cases)
     add_member used_subject
+  end
+
+  def isolate_left!(isolate = true)
+    @isolation[:left] = isolate
+  end
+
+  def isolate_right!(isolate = true)
+    @isolation[:right] = isolate
+  end
+
+  def isolate_left?
+    !@isolation[:left].blank?
+  end
+
+  def isolate_right?
+    !@isolation[:right].blank?
   end
 end

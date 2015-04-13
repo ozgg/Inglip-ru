@@ -5,7 +5,8 @@ class Sentence
 
   COMPLEMENT  = 0b0001
   PREPOSITION = 0b0010
-  IMPERATIVE =  0b0100
+  IMPERATIVE  = 0b0100
+  GERUND      = 0b1000
 
   def initialize(generator = nil)
     @generator = generator || Random.new(Random.new_seed)
@@ -20,13 +21,18 @@ class Sentence
   end
 
   def seed
-    sentence_flag! COMPLEMENT,  probability?(50)
-    sentence_flag! PREPOSITION, probability?(50)
-    sentence_flag! IMPERATIVE,  probability?(20)
+    seed_flags
     @intonation      = :assertion
     if probability? 25
       @intonation = [:exclamation, :question, :deep][@generator.rand(3)]
     end
+  end
+
+  def seed_flags
+    flag! :sentence, COMPLEMENT,  probability?(50)
+    flag! :sentence, PREPOSITION, probability?(50)
+    flag! :sentence, IMPERATIVE,  probability?(20)
+    flag! :sentence, GERUND,      probability?(50)
   end
 
   def use_complement?
@@ -47,10 +53,11 @@ class Sentence
   end
 
   def build
-    (@members || []).join ' '
+    (@members || []).join(' ').gsub(' ,', ',')
   end
 
   def generate
+    add_gerund(false, true) if flag? :sentence, GERUND
     used_subject   = subject
     used_predicate = predicate
     if use_imperative?
@@ -64,6 +71,7 @@ class Sentence
       add_member used_predicate
     end
     add_complement used_predicate if use_complement?
+    add_gerund(true, false) if probability?(20)
   end
 
   def add_complement(used_predicate)
@@ -79,6 +87,13 @@ class Sentence
       complement.main_case = [:accusative, :dative, :instrumental][@generator.rand(3)]
     end
     add_member complement
+  end
+
+  def add_gerund(isolate_left = false, isolate_right = false)
+    used_gerund = gerund
+    add_member ',' if isolate_left
+    add_member used_gerund
+    add_member ',' if isolate_right
   end
 
   def flag?(group, flag)

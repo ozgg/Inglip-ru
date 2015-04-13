@@ -1,6 +1,7 @@
 class Sentence::Gerund < Sentence
-  NEGATION = 1
+  NEGATION   = 1
   PAST_TENSE = 2
+  PASSIVE    = 4
 
   def seed
     @flags[:gerund] = @generator.rand 0xffffffff

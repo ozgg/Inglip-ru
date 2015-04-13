@@ -20,6 +20,7 @@ class Sentence::Apposition < Sentence
     flag? :apposition, QUALITATIVE
   end
 
+  # @param [Subject] subject
   def agree_with(subject)
     @number = subject.number.to_sym
     @gender = subject.gender.to_sym
@@ -33,10 +34,5 @@ class Sentence::Apposition < Sentence
       word = (qualitative.partial + '-' + word) if qualitative
     end
     add_member word
-  end
-
-  def random_qualitative
-    offset = @generator.rand(Adjective.where(qualitative: true).count)
-    Adjective.where(qualitative: true).offset(offset).first
   end
 end

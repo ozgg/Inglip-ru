@@ -43,6 +43,11 @@ module WordSpawner
     Adjective.offset(offset).first
   end
 
+  def random_qualitative
+    offset = @generator.rand(Adjective.where(qualitative: true).count)
+    Adjective.where(qualitative: true).offset(offset).first
+  end
+
   def random_adverb
     offset = @generator.rand(Adverb.count)
     Adverb.offset(offset).first

@@ -1,15 +1,13 @@
 <% content_for :title, t('.title') %>
-<% content_for :description, t('.description') %>
+
+<nav>
+  <ul>
+    <li><%= link_to t(:list), nouns_path %></li>
+  </ul>
+</nav>
 
 <article>
-  <header>
-    <h1><%= t('.header') %></h1>
-    <nav>
-      <ul>
-        <li><%= link_to t('to_list'), nouns_path %></li>
-      </ul>
-    </nav>
-  </header>
+  <h1><%= t('.title') %></h1>
 
   <%= render 'form' %>
 </article>

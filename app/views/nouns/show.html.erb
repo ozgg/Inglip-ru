@@ -1,16 +1,16 @@
-<% content_for :title, t('.title', word: @noun.nominative) %>
-<% content_for :description, t('.description', word: @noun.nominative) %>
+<% content_for :title, t('.title', word: @word.canonical_form) %>
+<% content_for :description, t('.description', word: @word.canonical_form) %>
 
 <article class="word">
   <header>
     <h1><%= t('.header') %></h1>
 
-    <h2><%= @noun.nominative %></h2>
+    <h2><%= @word.nominative %></h2>
     <nav>
       <ul>
         <li><%= link_to t('to_list'), nouns_path %></li>
         <% if current_user %>
-            <li><%= link_to t('edit'), edit_noun_path(@noun) %></li>
+            <li><%= link_to t('edit'), edit_noun_path(@word) %></li>
             <li><%= link_to t('create'), new_noun_path %></li>
         <% end %>
       </ul>
@@ -18,10 +18,10 @@
   </header>
 
   <p>
-    <%= (t('activerecord.attributes.noun.animated') + ', ') if @noun.animated? %>
-    <%= t("activerecord.attributes.noun.grammatical_genders.#{@noun.grammatical_gender}") %>
+    <%= (t('activerecord.attributes.noun.animated') + ', ') if @word.animated? %>
+    <%= t("activerecord.attributes.noun.grammatical_genders.#{@word.grammatical_gender}") %>
     <%= t('activerecord.attributes.noun.grammatical_gender') %>,
-    <%= t("activerecord.attributes.noun.grammatical_numbers.#{@noun.grammatical_number}") %>
+    <%= t("activerecord.attributes.noun.grammatical_numbers.#{@word.grammatical_number}") %>
     <%= t('activerecord.attributes.noun.grammatical_number') %>.
   </p>
   <% if current_user %>
@@ -36,38 +36,36 @@
         <tbody>
         <tr>
           <th><%= t('activerecord.attributes.noun.nominative') %></th>
-          <td><%= @noun.nominative %><%= " (#{@noun.plural_nominative})" unless @noun.plural_nominative.blank? %></td>
+          <td><%= @word.nominative %><%= " (#{@word.plural_nominative})" unless @word.plural_nominative.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.genitive') %></th>
-          <td><%= @noun.genitive %><%= " (#{@noun.plural_genitive})" unless @noun.plural_genitive.blank? %></td>
+          <td><%= @word.genitive %><%= " (#{@word.plural_genitive})" unless @word.plural_genitive.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.dative') %></th>
-          <td><%= @noun.dative %><%= " (#{@noun.plural_dative})" unless @noun.plural_dative.blank? %></td>
+          <td><%= @word.dative %><%= " (#{@word.plural_dative})" unless @word.plural_dative.blank? %></td>
+        </tr>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.partitive') %></th>
+          <td><%= @word.partitive %><%= " (#{@word.plural_partitive})" unless @word.plural_partitive.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.accusative') %></th>
-          <td><%= @noun.accusative %><%= " (#{@noun.plural_accusative})" unless @noun.plural_accusative.blank? %></td>
+          <td><%= @word.accusative %><%= " (#{@word.plural_accusative})" unless @word.plural_accusative.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.instrumental') %></th>
-          <td><%= @noun.instrumental %><%= " (#{@noun.plural_instrumental})" unless @noun.plural_instrumental.blank? %></td>
+          <td><%= @word.instrumental %><%= " (#{@word.plural_instrumental})" unless @word.plural_instrumental.blank? %></td>
         </tr>
         <tr>
           <th><%= t('activerecord.attributes.noun.prepositional') %></th>
-          <td><%= @noun.prepositional %><%= " (#{@noun.plural_prepositional})" unless @noun.plural_prepositional.blank? %></td>
+          <td><%= @word.prepositional %><%= " (#{@word.plural_prepositional})" unless @word.plural_prepositional.blank? %></td>
         </tr>
-        <% if @noun.has_partitive? %>
-            <tr>
-              <td colspan="2"><%= t('activerecord.attributes.noun.has_partitive') %></td>
-            </tr>
-        <% end %>
-        <% if @noun.has_locative? %>
-            <tr>
-              <td colspan="2"><%= t('activerecord.attributes.noun.has_locative') %></td>
-            </tr>
-        <% end %>
+        <tr>
+          <th><%= t('activerecord.attributes.noun.locative') %></th>
+          <td><%= @word.locative %><%= " (#{@word.plural_locative})" unless @word.plural_locative.blank? %></td>
+        </tr>
         </tbody>
       </table>
   <% end %>

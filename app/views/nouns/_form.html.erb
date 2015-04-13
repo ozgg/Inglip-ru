@@ -1,12 +1,12 @@
-<%= form_for @noun do |f| %>
-    <%= render partial: 'common/errors_list', locals: { entity: @noun } %>
+<%= form_for @word do |f| %>
+    <%= render partial: 'common/errors_list', locals: { entity: @word } %>
 
     <fieldset>
       <legend><%= t('.gender_and_number') %></legend>
 
       <div>
         <%= f.label :grammatical_gender %>
-        <%= f.select :grammatical_gender, Noun.grammatical_genders.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_genders.#{e}"), e] }, {}, size: 3 %>
+        <%= f.select :grammatical_gender, Noun.genders_for_select, {}, size: 3 %>
       </div>
       <div>
         <%= f.check_box :common_gender %>
@@ -18,7 +18,7 @@
       </div>
       <div>
         <%= f.label :grammatical_number %>
-        <%= f.select :grammatical_number, Noun.grammatical_numbers.keys.to_a.map { |e| [t("activerecord.attributes.noun.grammatical_numbers.#{e}"), e] }, {}, size: 3 %>
+        <%= f.select :grammatical_number, Noun.numbers_for_select, {}, size: 3 %>
       </div>
     </fieldset>
 
@@ -29,51 +29,59 @@
         <%= f.check_box :animated %>
         <%= f.label :animated %>
       </div>
-      <div>
-        <%= f.check_box :has_locative %>
-        <%= f.label :has_locative %>
-      </div>
-      <div>
-        <%= f.check_box :has_partitive %>
-        <%= f.label :has_partitive %>
-      </div>
 
       <table>
         <caption><%= t('.cases') %></caption>
         <thead>
-            <tr><th><%= t('.case') %></th><th><%= t('.singular_form') %></th><th><%= t('.plural_form') %></th></tr>
+        <tr>
+          <th><%= t('.case') %></th>
+          <th><%= t('.singular_form') %></th>
+          <th><%= t('.plural_form') %></th>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-              <th><%= f.label :nominative %></th>
-              <td><%= f.text_field :nominative %><button type="button" id="noun-magic">&#x2606;</button></td>
-              <td><%= f.text_field :plural_nominative %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :genitive %></th>
-              <td><%= f.text_field :genitive %></td>
-              <td><%= f.text_field :plural_genitive %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :dative %></th>
-              <td><%= f.text_field :dative %></td>
-              <td><%= f.text_field :plural_dative %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :accusative %></th>
-              <td><%= f.text_field :accusative %></td>
-              <td><%= f.text_field :plural_accusative %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :instrumental %></th>
-              <td><%= f.text_field :instrumental %></td>
-              <td><%= f.text_field :plural_instrumental %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :prepositional %></th>
-              <td><%= f.text_field :prepositional %></td>
-              <td><%= f.text_field :plural_prepositional %></td>
-            </tr>
+        <tr>
+          <th><%= f.label :nominative %></th>
+          <td><%= f.text_field :nominative %>
+            <button type="button" id="noun-magic">&#x2606;</button>
+          </td>
+          <td><%= f.text_field :plural_nominative %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :genitive %></th>
+          <td><%= f.text_field :genitive %></td>
+          <td><%= f.text_field :plural_genitive %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :dative %></th>
+          <td><%= f.text_field :dative %></td>
+          <td><%= f.text_field :plural_dative %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :partitive %></th>
+          <td><%= f.text_field :partitive %></td>
+          <td><%= f.text_field :plural_partitive %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :accusative %></th>
+          <td><%= f.text_field :accusative %></td>
+          <td><%= f.text_field :plural_accusative %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :instrumental %></th>
+          <td><%= f.text_field :instrumental %></td>
+          <td><%= f.text_field :plural_instrumental %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :prepositional %></th>
+          <td><%= f.text_field :prepositional %></td>
+          <td><%= f.text_field :plural_prepositional %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :locative %></th>
+          <td><%= f.text_field :locative %></td>
+          <td><%= f.text_field :plural_locative %></td>
+        </tr>
         </tbody>
       </table>
 

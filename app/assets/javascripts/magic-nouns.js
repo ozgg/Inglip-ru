@@ -137,15 +137,19 @@ $(document).ready(function() {
 
         $('#noun_genitive').val(root + endings[0]);
         $('#noun_dative').val(root + endings[1]);
+        $('#noun_partitive').val(root + endings[1]);
         $('#noun_accusative').val(root + endings[2]);
         $('#noun_instrumental').val(root + endings[3]);
         $('#noun_prepositional').val(root + endings[4]);
+        $('#noun_locative').val(root + endings[4]);
 
         $('#noun_plural_nominative').val(root + plurals[0]);
         $('#noun_plural_genitive').val(root + plurals[1]);
         $('#noun_plural_dative').val(root + plurals[2]);
+        $('#noun_plural_partitive').val(root + plurals[2]);
         $('#noun_plural_accusative').val(root + plurals[3]);
         $('#noun_plural_instrumental').val(root + plurals[4]);
         $('#noun_plural_prepositional').val(root + plurals[5]);
+        $('#noun_plural_locative').val(root + plurals[5]);
     });
 });

@@ -7,6 +7,18 @@ class Noun < ActiveRecord::Base
   enum grammatical_gender: [:masculine, :feminine, :neuter]
   enum grammatical_number: [:both, :singular_only, :plural_only]
 
+  def self.genders_for_select
+    grammatical_genders.keys.to_a.map { |e| [I18n.t("activerecord.attributes.noun.grammatical_genders.#{e}"), e] }
+  end
+
+  def self.numbers_for_select
+    grammatical_numbers.keys.to_a.map { |e| [I18n.t("activerecord.attributes.noun.grammatical_numbers.#{e}"), e] }
+  end
+
+  def canonical_form
+    nominative
+  end
+
   def decline(grammatical_case, number = :single)
     case grammatical_case
       when :genitive
@@ -23,14 +35,6 @@ class Noun < ActiveRecord::Base
         locative number
       else
         in_nominative number
-    end
-  end
-
-  def locative(number)
-    if has_locative?
-      in_dative number
-    else
-      in_prepositional number
     end
   end
 

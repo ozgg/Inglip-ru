@@ -1,16 +1,15 @@
-<% content_for :title, t('.title', word: @noun.nominative) %>
-<% content_for :title, t('.description', word: @noun.nominative) %>
+<% content_for :title, t('.title', word: @word.canonical_form) %>
+
+<nav class="options">
+  <ul>
+    <li><%= link_to t(:list), nouns_path %></li>
+    <li><%= link_to t(:view), @word %></li>
+    <li><%= link_to t(:create), new_noun_path %></li>
+  </ul>
+</nav>
 
 <article class="word">
-  <header>
-    <h1><%= t('.header') %></h1>
-    <nav>
-      <ul>
-        <li><%= link_to t('to_list'), nouns_path %></li>
-        <li><%= link_to t('to_view'), @noun %></li>
-      </ul>
-    </nav>
-  </header>
+  <h1><%= t('.header') %></h1>
 
   <%= render 'form' %>
 </article>

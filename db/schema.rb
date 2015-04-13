@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412002956) do
+ActiveRecord::Schema.define(version: 20150412234308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,10 @@ ActiveRecord::Schema.define(version: 20150412002956) do
     t.string   "plural_prepositional"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "partitive"
+    t.string   "locative"
+    t.string   "plural_partitive"
+    t.string   "plural_locative"
   end
 
   add_index "nouns", ["approved"], name: "index_nouns_on_approved", using: :btree

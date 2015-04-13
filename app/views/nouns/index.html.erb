@@ -1,31 +1,17 @@
-<% content_for :title, t('.title', page: params[:page] || 1) %>
-<% content_for :description, t('.description', page: params[:page] || 1) %>
+<% content_for :title, t('.title', page: current_page) %>
+
+<%= render 'words/sections' %>
+
+<nav class="options">
+  <ul>
+    <li><%= link_to t(:create), new_noun_path %></li>
+  </ul>
+</nav>
 
 <article>
-  <header>
-    <h1><%= t('.header') %></h1>
-    <h2><%= t('page', page: params[:page] || 1) %></h2>
-    <% if current_user %>
-    <nav>
-      <ul>
-        <li><%= link_to t('create'), new_noun_path %></li>
-        <li><%= link_to t('verbs.index.header'), verbs_path %></li>
-        <li><%= link_to t('perfect_verbs.index.header'), perfect_verbs_path %></li>
-        <li><%= link_to t('adjectives.index.header'), adjectives_path %></li>
-      </ul>
-    </nav>
-    <% end %>
-  </header>
+  <h1><%= t('.header') %></h1>
 
-  <% if @nouns.any? %>
-      <%= paginate @nouns %>
-      <ol start="<%= ((params[:page] || 1).to_i - 1) * 20 + 1 %>">
-        <% @nouns.each do |noun| %>
-        <li><%= link_to noun.nominative, noun %></li>
-        <% end %>
-      </ol>
-      <%= paginate @nouns %>
-  <% else %>
+  <h2><%= t('page', page: current_page) %></h2>
 
-  <% end %>
+  <%= render 'words/list' %>
 </article>

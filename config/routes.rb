@@ -1,40 +1,4 @@
 Rails.application.routes.draw do
-  root 'index#index'
-
-  get 'about' => 'index#about'
-  get 'sentence' => 'index#sentence'
-  get 'images/captcha.png' => 'captcha#index', as: :captcha
-
-  resources :posts, :nouns, :verbs, :perfect_verbs, :adjectives, :dreams, :adverbs
-
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
-
-  controller :dreambook do
-    get 'dreambook' => :index
-    get 'dreambook/search' => :search
-    get 'dreambook/:name' => :show, as: :dreambook_symbol
-  end
-
-  scope :api do
-    get 'tagline' => 'api#tagline'
-    get 'claim'   => 'api#claim'
-    get 'passage' => 'api#passage'
-    get 'post'    => 'api#post'
-  end
-
-  scope :test, controller: :test do
-    get 'subject'
-    get 'apposition'
-    get 'gerund'
-  end
-
-  get 'horoscope' => 'horoscope#index'
-  get 'horoscope/:sign' => 'horoscope#view', sign: /aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|sagittarius|capricorn|aquarius|pisces/, as: :horoscope_sign
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

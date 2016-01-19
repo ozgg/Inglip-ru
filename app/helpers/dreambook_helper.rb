@@ -1,2 +1,0 @@
-module DreambookHelper
-end

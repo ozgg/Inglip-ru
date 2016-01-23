@@ -9,3 +9,4 @@
 /config/database.yml
 /config/secrets.yml
 
+/spec/examples.txt

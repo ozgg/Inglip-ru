@@ -1,11 +1,7 @@
 FactoryGirl.define do
   factory :lexeme do
-    part 1
-decency 1
-verified false
-body "MyString"
-context "MyString"
-data ""
+    part 0
+    body 'лексема'
+    sequence(:context) { |n| "Контекст #{n}" }
   end
-
 end

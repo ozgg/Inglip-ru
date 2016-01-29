@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory :word do
-    lexeme
-    body 'слово'
+    sequence(:body) { |n| "слово #{n}" }
   end
-
 end

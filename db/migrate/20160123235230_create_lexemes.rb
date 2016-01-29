@@ -4,7 +4,6 @@ class CreateLexemes < ActiveRecord::Migration
       t.timestamps null: false
       t.integer :part, limit: 2, null: false
       t.integer :decency, limit: 2, null: false, default: 0
-      t.integer :popularity, null: false, default: 0
       t.boolean :verified, null: false, default: false
       t.string :body, null: false
       t.string :context

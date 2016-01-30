@@ -1,2 +1,24 @@
 ru:
-
+  activerecord:
+    attributes:
+      user:
+        login: "Логин"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+      user_role:
+        user_id: "Пользователь"
+        role: "Роль"
+      lexeme:
+        part: "Часть речи"
+        obscenity: "Непристойность"
+        verified: "Проверено"
+        body: "Текст"
+        context: "Контекст"
+        data: "Данные"
+      word:
+        stress: "Ударение"
+        body: "Текст"
+      wordform:
+        lexeme_id: "Лексема"
+        word_id: "Слово"
+        indicator: "Признак"

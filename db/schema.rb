@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123233222) do
+ActiveRecord::Schema.define(version: 20160129222133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lexemes", force: :cascade do |t|
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "part",       limit: 2,                 null: false
+    t.integer  "obscenity",  limit: 2, default: 0,     null: false
+    t.boolean  "verified",             default: false, null: false
+    t.string   "body",                                 null: false
+    t.string   "context"
+    t.json     "data"
+  end
+
+  add_index "lexemes", ["body", "part"], name: "index_lexemes_on_body_and_part", using: :btree
 
   create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id",              null: false
@@ -35,5 +48,23 @@ ActiveRecord::Schema.define(version: 20160123233222) do
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
 
+  create_table "wordforms", force: :cascade do |t|
+    t.integer "lexeme_id",           null: false
+    t.integer "word_id",             null: false
+    t.integer "indicator", limit: 2, null: false
+  end
+
+  add_index "wordforms", ["lexeme_id"], name: "index_wordforms_on_lexeme_id", using: :btree
+  add_index "wordforms", ["word_id"], name: "index_wordforms_on_word_id", using: :btree
+
+  create_table "words", force: :cascade do |t|
+    t.string "stress"
+    t.string "body",   null: false
+  end
+
+  add_index "words", ["body"], name: "index_words_on_body", using: :btree
+
   add_foreign_key "user_roles", "users"
+  add_foreign_key "wordforms", "lexemes"
+  add_foreign_key "wordforms", "words"
 end

@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :wordform do
     lexeme
     word
-    indicator 1
+    indicator 0
   end
 end

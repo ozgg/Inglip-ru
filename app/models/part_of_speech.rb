@@ -10,9 +10,7 @@ class PartOfSpeech
   end
 
   def infinitive=(text)
-    analyzer   = StressAnalyzer.new text
-    parameters = { body: analyzer.body, stress: analyzer.stress }
-    word       = Word.find_or_create_by! parameters
+    word = Word.stressed text
     Wordform.find_or_create_by!(lexeme: @lexeme, word: word, indicator: PartOfSpeech.indicators[:infinitive])
   end
 

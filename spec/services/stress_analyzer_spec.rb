@@ -11,6 +11,11 @@ RSpec.describe StressAnalyzer, type: :model do
       analyzer = StressAnalyzer.new 'похле"бка'
       expect(analyzer.body).to eq('похлёбка')
     end
+
+    it 'ignores *' do
+      analyzer = StressAnalyzer.new '*абы'
+      expect(analyzer.body).to eq('абы')
+    end
   end
 
   context 'stressing' do

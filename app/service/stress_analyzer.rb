@@ -41,7 +41,7 @@ class StressAnalyzer
   # @param [String] letter
   # @param [String] next_symbol
   def current_letter(letter, next_symbol)
-    if letter =~ STRESS_MARK
+    if letter =~ STRESS_MARK || letter == '*'
       ''
     else
       next_symbol.to_s == '"' ? 'ё' : letter

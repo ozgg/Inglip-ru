@@ -1,4 +1,4 @@
-class PartOfSpeech::Numeral < PartOfSpeech
+class PartOfSpeech::Pronoun < PartOfSpeech
   include GrammaticalCasesWithGender
 
   def self.indicators

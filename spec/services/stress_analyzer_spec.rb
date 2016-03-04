@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe StressAnalyzer, type: :model do
   context 'converting' do
     it 'strips stress symbols' do
-      analyzer = StressAnalyzer.new "прове'рка"
-      expect(analyzer.body).to eq('проверка')
+      analyzer = StressAnalyzer.new "а`вторулево'й"
+      expect(analyzer.body).to eq('авторулевой')
     end
 
     it 'converts «"» to ё' do
@@ -29,14 +29,14 @@ RSpec.describe StressAnalyzer, type: :model do
       expect(analyzer.stress).to be_nil
     end
 
-    it 'sets stressed vowel as 1 and unstressed as 0' do
-      analyzer = StressAnalyzer.new "ка'ша"
-      expect(analyzer.stress).to eq('10')
+    it 'sets stressed vowel as 2, semi-stressed as 1 and unstressed as 0' do
+      analyzer = StressAnalyzer.new "а`вторулево'й"
+      expect(analyzer.stress).to eq('10002')
     end
 
-    it 'sets ё as 1' do
+    it 'sets ё as 2' do
       analyzer = StressAnalyzer.new 'свёкла'
-      expect(analyzer.stress).to eq('10')
+      expect(analyzer.stress).to eq('20')
     end
   end
 end

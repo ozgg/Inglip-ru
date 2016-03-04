@@ -31,7 +31,13 @@ class StressAnalyzer
   # @param [String] letter
   # @param [String] next_symbol
   def stress_type(letter, next_symbol)
-    (letter =~ /[ёЁ]/ || next_symbol.to_s =~ STRESS_MARK) ? '1' : '0'
+    if letter =~ /[ёЁ]/ || next_symbol.to_s =~ STRESS_MARK
+      '2'
+    elsif next_symbol.to_s == '`'
+      '1'
+    else
+      '0'
+    end
   end
 
   # Get current letter using current letter and next symbol
@@ -41,7 +47,7 @@ class StressAnalyzer
   # @param [String] letter
   # @param [String] next_symbol
   def current_letter(letter, next_symbol)
-    if letter =~ STRESS_MARK || letter == '*'
+    if letter =~ STRESS_MARK || letter == '*' || letter == '`'
       ''
     else
       next_symbol.to_s == '"' ? 'ё' : letter

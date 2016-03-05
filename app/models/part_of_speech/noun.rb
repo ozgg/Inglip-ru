@@ -15,8 +15,8 @@ class PartOfSpeech::Noun < PartOfSpeech
 
   def self.plural_cases
     {
-        nominative_plural: 9, genitive_plural: 10, dative_plural: 11,
-        accusative_plural: 12, instrumental_plural: 13, prepositional_plural: 14,
+        nominative_plural: 11, genitive_plural: 12, dative_plural: 14,
+        accusative_plural: 15, instrumental_plural: 16, prepositional_plural: 17,
     }
   end
 end

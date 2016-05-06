@@ -18,13 +18,22 @@ class PartOfSpeech::Adjective < PartOfSpeech
     Wordform.find_or_create_by! lexeme: @lexeme, word: word, indicator: indicator
   end
 
+  # Качественное?
+  #
+  # У качественных прилагательных есть сравнительная форма (белый — белее)
+  def qualitative?
+    @lexeme.data['qualitative']
+  end
+
   # Превосходная форма?
+  #
+  # У качественных прилагательных есть превосходная форма (сильный — сильнее — сильнейшний)
   def superlative?
     @lexeme.data['superlative']
   end
 
   # Это причастие?
   def participle?
-    ['active', 'passive'].include? @lexeme.data['participle']
+    %w(active passive).include? @lexeme.data['participle']
   end
 end

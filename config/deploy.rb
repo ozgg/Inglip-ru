@@ -12,7 +12,7 @@ set :application_name, 'inglip'
 set :domain, '89.108.104.88'
 set :deploy_to, '/var/www/inglip.ru'
 set :repository, 'git@github.com:ozgg/Inglip-ru.git'
-set :branch, 'master'
+set :branch, 'version-1'
 
 # Optional settings:
 set :user, 'developer'          # Username in the server to SSH to.

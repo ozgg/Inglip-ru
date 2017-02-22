@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'index#about'
   get 'sentence' => 'index#sentence'
-  get 'images/captcha.png' => 'captcha#index', as: :captcha
+  # get 'images/captcha.png' => 'captcha#index', as: :captcha
 
   resources :posts, :nouns, :verbs, :perfect_verbs, :adjectives, :dreams, :adverbs
 

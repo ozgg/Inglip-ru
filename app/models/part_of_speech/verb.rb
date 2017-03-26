@@ -4,6 +4,16 @@ class PartOfSpeech::Verb < PartOfSpeech
     super.merge(active_voice).merge(passive_voice)
   end
 
+  # Глагол совершенного вида?
+  def perfective?
+    @lexeme.data['perfective']
+  end
+
+  # Глагол несовершенного вида?
+  def imperfective?
+    @lexeme.data['imperfective']
+  end
+
   protected
 
   def self.active_voice

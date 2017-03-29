@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326014822) do
+ActiveRecord::Schema.define(version: 20170328235836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,12 @@ ActiveRecord::Schema.define(version: 20170326014822) do
     t.string   "keywords",    default: "", null: false
     t.string   "description", default: "", null: false
     t.text     "body",        default: "", null: false
+  end
+
+  create_table "lexeme_groups", force: :cascade do |t|
+    t.integer "lexemes_count", default: 0, null: false
+    t.string  "name",                      null: false
+    t.string  "slug",                      null: false
   end
 
   create_table "metric_values", force: :cascade do |t|
@@ -182,6 +188,13 @@ ActiveRecord::Schema.define(version: 20170326014822) do
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["screen_name"], name: "index_users_on_screen_name", using: :btree
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "body",       null: false
+    t.index ["body"], name: "index_words_on_body", using: :btree
   end
 
   add_foreign_key "agents", "browsers"

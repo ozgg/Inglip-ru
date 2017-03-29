@@ -1,3 +1,8 @@
 ru:
   site_name: "inglip.ru"
   copyright: "2011, 2014–2015, 2017 inglip.ru"
+  admin:
+    index:
+      index:
+        title: "Администрирование"
+        heading: "Администрирование"

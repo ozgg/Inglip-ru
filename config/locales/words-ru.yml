@@ -1,0 +1,59 @@
+ru:
+  lexeme_count:
+    zero: "лексем нет"
+    one: "%{count} лексема"
+    few: "%{count} лексемы"
+    many: "%{count} лексем"
+    other: "%{count} лексем"
+  wordform_count:
+    zero: "словоформ нет"
+    one: "%{count} словоформа"
+    few: "%{count} словоформы"
+    many: "%{count} словоформ"
+    other: "%{count} словоформ"
+  activerecord:
+    models:
+      lexeme_group: "Группа лексем"
+      lexeme: "Лексема"
+      wordform_flag: "Признак словоформы"
+      wordform: "Словоформа"
+      word: "Слово"
+    attributes:
+      lexeme_group:
+        name: "Название"
+        slug: "Идентификатор"
+      wordform:
+        lexeme: "Лексема"
+        word: "Слово"
+        wordform_flag: "Признак"
+      word:
+        body: "Текст"
+  admin:
+    lexeme_groups:
+      index:
+        title: "Группы лексем"
+        heading: "Группы лексем"
+        description: "Просмотр групп лексем"
+      show:
+        title: "Лексемы группы «%{name}», страница %{page}"
+    lexemes:
+      index:
+        title: "Лексемы, страница %{page}"
+        heading: "Лексемы"
+        description: "Управление лексемами"
+      show:
+        title: "Лексема «%{body}»"
+    wordform_flags:
+      index:
+        title: "Признаки словоформ"
+        heading: "Признаки словоформ"
+        description: "Просмотр признаков словоформ"
+      show:
+        title: "Словоформы с признаком «%{name}», страница %{page}"
+    words:
+      index:
+        title: "Слова, страница %{page}"
+        heading: "Слова"
+        description: "Просмотр списка доступных слов"
+      show:
+        title: "Слово «%{body}»"

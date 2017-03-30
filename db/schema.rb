@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328235836) do
+ActiveRecord::Schema.define(version: 20170329182620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,21 @@ ActiveRecord::Schema.define(version: 20170328235836) do
     t.integer "lexemes_count", default: 0, null: false
     t.string  "name",                      null: false
     t.string  "slug",                      null: false
+  end
+
+  create_table "lexemes", force: :cascade do |t|
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "lexeme_group_id",                 null: false
+    t.boolean  "locked",          default: false, null: false
+    t.boolean  "declinable",      default: true,  null: false
+    t.boolean  "like_adjective",  default: false, null: false
+    t.integer  "flags",           default: 0,     null: false
+    t.string   "body",                            null: false
+    t.string   "context",         default: "",    null: false
+    t.index ["body", "context"], name: "index_lexemes_on_body_and_context", unique: true, using: :btree
+    t.index ["lexeme_group_id"], name: "index_lexemes_on_lexeme_group_id", using: :btree
+    t.index ["like_adjective"], name: "index_lexemes_on_like_adjective", using: :btree
   end
 
   create_table "metric_values", force: :cascade do |t|
@@ -200,6 +215,7 @@ ActiveRecord::Schema.define(version: 20170328235836) do
   add_foreign_key "agents", "browsers"
   add_foreign_key "codes", "agents"
   add_foreign_key "codes", "users"
+  add_foreign_key "lexemes", "lexeme_groups"
   add_foreign_key "metric_values", "metrics"
   add_foreign_key "privilege_group_privileges", "privilege_groups"
   add_foreign_key "privilege_group_privileges", "privileges"

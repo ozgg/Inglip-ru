@@ -1,5 +1,6 @@
 @import "biovision/base/fonts";
-@import "biovision/base/default";
+@import "colors";
+@import "shared";
 @import "biovision/base/buttons";
 @import "biovision/base/biovision";
 @import "biovision/base/filters";
@@ -7,3 +8,4 @@
 @import "biovision/base/pagination";
 @import "biovision/base/track";
 @import "biovision/base/tootik";
+@import "layout";

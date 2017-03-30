@@ -1,4 +1,4 @@
-class Admin::IndexController < ApplicationController
+class Admin::IndexController < AdminController
   # get /admin/
   def index
   end

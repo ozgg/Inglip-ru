@@ -1,0 +1,28 @@
+html {
+  background: #fff image_url('main-bg.jpg') fixed center / cover;
+  font: 10px $main-font-family;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+h1, h2 {
+  //font-weight: 600;
+  margin: 0;
+}
+
+body {
+  box-shadow: $block-shadow;
+  font-size: $normal-font-size;
+  margin: 1.6rem auto;
+  max-width: $content-width;
+  padding: 1.6rem;
+}
+
+main {
+  > article {
+    position: relative;
+  }
+}

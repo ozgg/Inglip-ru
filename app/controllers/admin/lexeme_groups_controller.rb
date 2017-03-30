@@ -8,7 +8,11 @@ class Admin::LexemeGroupsController < AdminController
 
   # get /admin/lexeme_groups/:id
   def show
+  end
 
+  # get /admin/lexeme_groups/:id/lexemes
+  def lexemes
+    @collection = @entity.lexemes.page_for_administration(current_page)
   end
 
   private

@@ -22,6 +22,13 @@ ru:
       lexeme_group:
         name: "Название"
         slug: "Идентификатор"
+      lexeme:
+        lexeme_group: "Группа"
+        declinable: "Склоняется"
+        like_adjective: "Можно использовать как пригагательное"
+        flags: "Флаги"
+        body: "Текст"
+        context: "Контекст"
       wordform:
         lexeme: "Лексема"
         word: "Слово"
@@ -36,6 +43,10 @@ ru:
         description: "Просмотр групп лексем"
       show:
         title: "Лексемы группы «%{name}», страница %{page}"
+        new_lexeme: "Новая лексема"
+      lexemes:
+        title: "Лексемы группы «%{name}», страница %{page}"
+        heading: "Лексемы группы «%{name}»"
     lexemes:
       index:
         title: "Лексемы, страница %{page}"
@@ -43,6 +54,9 @@ ru:
         description: "Управление лексемами"
       show:
         title: "Лексема «%{body}»"
+      forms:
+        fallback:
+          no_form: "Для лексем этой группы не задана форма редактирования"
     wordform_flags:
       index:
         title: "Признаки словоформ"

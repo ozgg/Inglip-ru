@@ -1,4 +1,4 @@
-class Admin::WordsController < ApplicationController
+class Admin::WordsController < AdminController
   before_action :set_entity, except: [:index]
 
   # get /admin/words

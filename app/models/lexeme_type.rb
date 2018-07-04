@@ -4,5 +4,5 @@ class LexemeType < ApplicationRecord
 
   has_many :lexemes, dependent: :delete_all
 
-  scope :list_for_administration, -> { ordered_by_name }
+  scope :list_for_administration, -> { order('id asc') }
 end

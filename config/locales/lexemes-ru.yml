@@ -1,0 +1,43 @@
+ru:
+  lexeme_count:
+    zero: "лексем нет"
+    one: "%{count} лексема"
+    few: "%{count} лексемы"
+    many: "%{count} лексем"
+    other: "%{count} лексем"
+  activerecord:
+    models:
+      lexeme: "Лексема"
+      lexeme_type: "Тип лексемы"
+      word: "Слово"
+      wordform: "Словоформа"
+    attributes:
+      lexeme:
+        body: "Текст"
+        context: "Контекст"
+        declinable: "Склоняется"
+        flags: "Флаги"
+        lexeme_type: "Тип"
+        lexeme_type_id: "Тип"
+        wordforms_count: "Количество словоформ"
+      lexeme_type:
+        lexemes_count: "Количество лексем"
+        name: "Название"
+        slug: "Идентификатор"
+  admin:
+    lexemes:
+      nav_item:
+        description: "Управление лексемами"
+        text: "Лексемы"
+      index:
+        heading: "Лексемы"
+        title: "Лексемы, страница %{page}"
+    lexeme_types:
+      nav_item:
+        description: "Управление типами лексем"
+        text: "Типы лексем"
+      index:
+        heading: "Типы лексем"
+        title: "Типы лексем"
+      show:
+        title: "Лексемы типа «%{name}», страница %{page}"

@@ -1,0 +1,18 @@
+<div class="data">
+  <div><%= admin_lexeme_link(entity) %></div>
+  <div class="info">
+    <%= entity.lexeme_type.name %>
+  </div>
+  <% unless entity.context.blank? %>
+    <div class="secondary info">
+      <%= entity.context %>
+    </div>
+  <% end %>
+  <div class="secondary info">
+    <%= t(:wordform_count, count: entity.wordforms_count) %>
+  </div>
+
+  <ul class="actions">
+    <li><%= edit_icon(edit_lexeme_path(id: entity.id)) %></li>
+  </ul>
+</div>

@@ -5,6 +5,12 @@ ru:
     few: "%{count} лексемы"
     many: "%{count} лексем"
     other: "%{count} лексем"
+  wordform_count:
+    zero: "словоформ нет"
+    one: "%{count} словоформа"
+    few: "%{count} словоформы"
+    many: "%{count} словоформ"
+    other: "%{count} словоформ"
   activerecord:
     models:
       lexeme: "Лексема"
@@ -32,6 +38,9 @@ ru:
       index:
         heading: "Лексемы"
         title: "Лексемы, страница %{page}"
+      show:
+        title: "Лексема «%{name}»"
+        no_partial: "Для лексемы этого типа нет представления"
     lexeme_types:
       nav_item:
         description: "Управление типами лексем"
@@ -41,3 +50,12 @@ ru:
         title: "Типы лексем"
       show:
         title: "Лексемы типа «%{name}», страница %{page}"
+      new_lexeme:
+        title: "%{name}: новая лексема"
+        nav_text: "Новая лексема"
+        heading: "Добавление лексемы"
+        no_form: "Для этого типа лексем нет формы добавления лексемы"
+    index:
+      dashboard:
+        lexemes:
+          heading: "Лексемы"

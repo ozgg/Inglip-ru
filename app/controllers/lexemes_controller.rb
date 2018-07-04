@@ -1,0 +1,2 @@
+class LexemesController < ApplicationController
+end

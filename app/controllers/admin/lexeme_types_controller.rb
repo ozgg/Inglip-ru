@@ -11,6 +11,10 @@ class Admin::LexemeTypesController < AdminController
     @collection = @entity.lexemes.page_for_administration(current_page)
   end
 
+  # get /admin/lexeme_types/:id/new
+  def new_lexeme
+  end
+
   private
 
   def restrict_access

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_185645) do
+ActiveRecord::Schema.define(version: 2018_07_04_200945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,25 @@ ActiveRecord::Schema.define(version: 2018_07_04_185645) do
     t.integer "priority", limit: 2, default: 1, null: false
     t.string "slug", null: false
     t.string "code", null: false
+  end
+
+  create_table "lexeme_types", force: :cascade do |t|
+    t.integer "lexemes_count", default: 0, null: false
+    t.string "name"
+    t.string "slug"
+  end
+
+  create_table "lexemes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "lexeme_type_id", null: false
+    t.boolean "declinable", default: true, null: false
+    t.integer "flags", default: 0, null: false
+    t.integer "wordforms_count", limit: 2, default: 0, null: false
+    t.string "context"
+    t.string "body", null: false
+    t.index ["body", "lexeme_type_id", "context"], name: "index_lexemes_on_body_and_lexeme_type_id_and_context", unique: true
+    t.index ["lexeme_type_id"], name: "index_lexemes_on_lexeme_type_id"
   end
 
   create_table "link_block_items", force: :cascade do |t|
@@ -390,6 +409,24 @@ ActiveRecord::Schema.define(version: 2018_07_04_185645) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  create_table "wordforms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "lexeme_id", null: false
+    t.bigint "word_id", null: false
+    t.integer "flags", default: 0, null: false
+    t.index ["lexeme_id"], name: "index_wordforms_on_lexeme_id"
+    t.index ["word_id"], name: "index_wordforms_on_word_id"
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "wordforms_count", limit: 2, default: 0, null: false
+    t.string "body"
+    t.index ["body"], name: "index_words_on_body", unique: true
+  end
+
   add_foreign_key "agents", "browsers", on_update: :cascade, on_delete: :cascade
   add_foreign_key "codes", "agents", on_update: :cascade, on_delete: :nullify
   add_foreign_key "codes", "code_types", on_update: :cascade, on_delete: :cascade
@@ -401,6 +438,7 @@ ActiveRecord::Schema.define(version: 2018_07_04_185645) do
   add_foreign_key "foreign_users", "agents", on_update: :cascade, on_delete: :nullify
   add_foreign_key "foreign_users", "foreign_sites", on_update: :cascade, on_delete: :cascade
   add_foreign_key "foreign_users", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "lexemes", "lexeme_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "link_block_items", "link_blocks", on_update: :cascade, on_delete: :cascade
   add_foreign_key "link_blocks", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "login_attempts", "agents", on_update: :cascade, on_delete: :nullify
@@ -425,4 +463,6 @@ ActiveRecord::Schema.define(version: 2018_07_04_185645) do
   add_foreign_key "users", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
   add_foreign_key "users", "users", column: "native_id", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "wordforms", "lexemes", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "wordforms", "words", on_update: :cascade, on_delete: :cascade
 end

@@ -1,8 +1,10 @@
 ru:
-  site_name: "inglip.ru"
-  copyright: "2011, 2014–2015, 2017 inglip.ru"
-  admin:
+  copyright: "2011, 2014–2015, 2018 inglip.ru"
+  shared:
+    meta_texts:
+      site_name: "inglip.ru"
+  index:
     index:
-      index:
-        title: "Администрирование"
-        heading: "Администрирование"
+      description: "Новый сайт на движке biovision"
+      heading: "Главная страница"
+      title: "Главная страница"

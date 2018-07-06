@@ -15,4 +15,8 @@ class LexemeHandler::Noun < LexemeHandler
       has_locative:     0b1000_0000,
     }
   end
+
+  def self.default_lexeme_flags
+    lexeme_flag(:singular_form, :plural_form)
+  end
 end

@@ -35,6 +35,11 @@ class LexemeHandler
     {}
   end
 
+  # @return [Integer]
+  def self.default_lexeme_flags
+    0
+  end
+
   # @return [Hash]
   def self.wordform_flags
     {
@@ -68,6 +73,11 @@ class LexemeHandler
   # @param [Symbol]
   def self.wordform_flag(*keys)
     keys.map { |key| wordform_flags[key].to_i }.reduce(&:+)
+  end
+
+  # @param [Symbol]
+  def self.lexeme_flag(*keys)
+    keys.map { |key| lexeme_flags[key].to_i }.reduce(&:+)
   end
 
   # @param [Lexeme] lexeme

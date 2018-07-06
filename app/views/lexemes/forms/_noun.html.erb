@@ -1,8 +1,17 @@
 <%
   handler = LexemeHandler::Noun.new(entity)
+  entity.flags = LexemeHandler::Noun.default_lexeme_flags if entity.id.nil?
   model_name = entity.class.to_s.underscore
 %>
-<%= form_with(model: entity, html: { id: "#{model_name}-form" }) do |f| %>
+<%=
+  form_with(
+      model: entity,
+      html:  {
+          id:           "#{model_name}-form",
+          autocomplete: 'off'
+      }
+  ) do |f|
+%>
   <%= render partial: 'shared/list_of_errors', locals: { entity: entity } %>
 
   <fieldset>
@@ -78,7 +87,13 @@
                   flag_value = LexemeHandler.wordform_flag(group_flag_name, case_flag_name)
                 %>
                 <%= label_tag(element_id, t("wordform_flags.#{case_flag_name}")) %>
-                <%= text_field_tag("wordforms[#{flag_value}]", handler.wordform(flag_value), id: element_id) %>
+                <%=
+                  text_field_tag(
+                      "wordforms[#{flag_value}]",
+                      handler.wordform(flag_value),
+                      id: element_id
+                  )
+                %>
               </li>
             <% end %>
           </ul>

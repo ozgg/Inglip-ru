@@ -65,9 +65,14 @@ class LexemeHandler
     }
   end
 
+  # @param [Symbol]
+  def self.wordform_flag(*keys)
+    keys.map { |key| wordform_flags[key].to_i }.reduce(&:+)
+  end
+
   # @param [Lexeme] lexeme
   def lexeme=(lexeme)
-    if lexeme.lexeme_type.slug != self.allowed_lexeme_type
+    if lexeme.lexeme_type.slug != self.class.allowed_lexeme_type
       error = "Lexeme of type #{lexeme.lexeme_type.slug} if not allowed for this handler"
       raise ArgumentError.new(error)
     end
@@ -78,16 +83,29 @@ class LexemeHandler
     @lexeme.declinable?
   end
 
-  # @param [Integer] flag_name
-  def wordform(flag_name = :infinitive)
+  # @param [Symbol] flag_name
+  def flag?(flag_name)
+    flag = self.class.lexeme_flags[flag_name].to_i
+
+    @lexeme&.flags.to_i & flag == flag
+  end
+
+  # @param [Integer] flag
+  def wordform(flag)
     return if @lexeme.nil?
 
-    flag = wordform_flags[flag_name].to_i
     prepare_wordforms.each do |flags, word|
-      return word if flags & flag > 0
+      return word if flags & flag == flag
     end
 
-    "[#{@lexeme.body}](#{flag_name})"
+    nil
+  end
+
+  # @param [Integer] flag
+  def wordform!(flag)
+    return if @lexeme.nil?
+
+    wordform(flag) || "[#{@lexeme.body}](#{flag})"
   end
 
   def inflect
@@ -97,6 +115,8 @@ class LexemeHandler
   private
 
   def prepare_wordforms
+    return @wordforms if @lexeme&.id.nil?
+
     unless @wordforms.keys.any?
       @lexeme.wordforms.each do |wordform|
         @wordforms[wordform.flag] = wordform.word.body

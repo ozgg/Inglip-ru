@@ -15,7 +15,12 @@
 
   <% template_name = "lexemes/forms/#{@entity.slug}" %>
   <% if lookup_context.exists?(@entity.slug, ["/lexemes/forms"], true) %>
-    <%= render partial: template_name, locals: { lexeme_type: @entity } %>
+    <%=
+      render(
+          partial: template_name,
+          locals: { lexeme_type: @entity, entity: @entity.lexemes.new }
+      )
+    %>
   <% else %>
     <div class="message-box-alert"><%= t('.no_form') %></div>
   <% end %>

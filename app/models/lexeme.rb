@@ -18,4 +18,12 @@ class Lexeme < ApplicationRecord
   def self.page_for_administration(page = 1)
     list_for_administration.page(page)
   end
+
+  def self.entity_parameters
+    %i[body context declinable]
+  end
+
+  def self.creation_parameters
+    entity_parameters + %i[lexeme_type_id]
+  end
 end

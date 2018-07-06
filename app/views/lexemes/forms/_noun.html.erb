@@ -91,7 +91,9 @@
                   text_field_tag(
                       "wordforms[#{flag_value}]",
                       handler.wordform(flag_value),
-                      id: element_id
+                      id: element_id,
+                      size: nil,
+                      maxlength: Word::BODY_LIMIT
                   )
                 %>
               </li>

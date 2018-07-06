@@ -118,11 +118,31 @@ class LexemeHandler
     wordform(flag) || "[#{@lexeme.body}](#{flag})"
   end
 
+  # @param [Integer] lexeme_flags
+  # @param [Hash] wordforms
+  def save(lexeme_flags, wordforms)
+    @lexeme.update(flags: lexeme_flags.map(&:to_i).reduce(&:+))
+    save_wordforms(wordforms)
+  end
+
+  # @param [String] text
+  # @param [Integer] flag
+  def save_wordform(text, flag)
+    word = Word.find_or_create_by(body: text)
+    link = @lexeme.wordforms.find_by(word: word)
+    if link.nil?
+      link = @lexeme.wordforms.new(word: word, flags: flag)
+    else
+      link.flags |= flag
+    end
+    link.save
+  end
+
   def inflect
     @lexeme.body
   end
 
-  private
+  protected
 
   def prepare_wordforms
     return @wordforms if @lexeme&.id.nil?
@@ -133,5 +153,12 @@ class LexemeHandler
       end
     end
     @wordforms
+  end
+
+  # @param [Hash] wordforms
+  def save_wordforms(wordforms)
+    wordforms.each do |flag, text|
+      save_wordform(text, flag.to_i)
+    end
   end
 end

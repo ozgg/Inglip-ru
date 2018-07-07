@@ -13,15 +13,5 @@
     <li><%= return_icon(admin_lexeme_type_path(id: @entity.slug)) %></li>
   </ul>
 
-  <% template_name = "lexemes/forms/#{@entity.slug}" %>
-  <% if lookup_context.exists?(@entity.slug, ["/lexemes/forms"], true) %>
-    <%=
-      render(
-          partial: template_name,
-          locals: { lexeme_type: @entity, entity: @entity.lexemes.new }
-      )
-    %>
-  <% else %>
-    <div class="message-box-alert"><%= t('.no_form') %></div>
-  <% end %>
+  <%= render partial: 'lexemes/form', locals: { lexeme_type: @entity, entity: nil } %>
 </article>

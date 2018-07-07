@@ -1,0 +1,14 @@
+<% template_name = "lexemes/forms/#{lexeme_type.slug}" %>
+<% if lookup_context.exists?(lexeme_type.slug, ["/lexemes/forms"], true) %>
+  <%=
+    render(
+        partial: template_name,
+        locals: {
+            lexeme_type: lexeme_type,
+            entity: entity || lexeme_type.lexemes.new
+        }
+    )
+  %>
+<% else %>
+  <div class="message-box-alert"><%= t('admin.lexeme_types.new_lexeme.no_form') %></div>
+<% end %>

@@ -11,12 +11,18 @@
   <ul class="actions">
     <li><%= back_icon(admin_lexemes_path) %></li>
     <li><%= return_icon(admin_lexeme_type_path(id: @entity.lexeme_type.slug)) %></li>
-    <li><%= create_icon(new_lexeme_admin_lexeme_type_path(id: @entity.lexeme_type.slug)) %></li>
+    <li><%= edit_icon(edit_lexeme_path(id: @entity.id)) %></li>
   </ul>
+
+  <% handler = LexemeHandler.handler(@entity) %>
 
   <% template_name = "admin/lexemes/show/#{@entity.lexeme_type.slug}" %>
   <% if lookup_context.exists?(@entity.lexeme_type.slug, ["/admin/lexemes/show"], true) %>
-    <%= render partial: template_name, locals: { entity: @entity } %>
+    <%= render partial: 'admin/lexemes/entity/lexeme_parameters', locals: { handler: handler } %>
+    <section>
+      <h2><%= t('admin.lexemes.show.wordforms') %></h2>
+      <%= render partial: template_name, locals: { handler: handler } %>
+    </section>
   <% else %>
     <div class="message-box-alert"><%= t('.no_partial') %></div>
   <% end %>

@@ -121,13 +121,14 @@ class LexemeHandler
   # @param [Integer] lexeme_flags
   # @param [Hash] wordforms
   def save(lexeme_flags, wordforms)
-    @lexeme.update(flags: lexeme_flags.map(&:to_i).reduce(&:+))
+    @lexeme.update(flags: lexeme_flags.values.map(&:to_i).reduce(&:+))
     save_wordforms(wordforms)
   end
 
   # @param [String] text
   # @param [Integer] flag
   def save_wordform(text, flag)
+    return if text.blank?
     word = Word.find_or_create_by(body: text)
     link = @lexeme.wordforms.find_by(word: word)
     if link.nil?
@@ -149,7 +150,7 @@ class LexemeHandler
 
     unless @wordforms.keys.any?
       @lexeme.wordforms.each do |wordform|
-        @wordforms[wordform.flag] = wordform.word.body
+        @wordforms[wordform.flags] = wordform.word.body
       end
     end
     @wordforms

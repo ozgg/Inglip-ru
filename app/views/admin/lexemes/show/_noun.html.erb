@@ -1,0 +1,22 @@
+<%
+  groups = []
+  cases = %i[case_nominative case_genitive case_dative case_accusative case_instrumental case_prepositional]
+  groups << :number_singular if handler.flag?(:singular_form)
+  groups << :number_plural if handler.flag?(:plural_form)
+  cases << :case_partitive if handler.flag?(:has_partitive)
+  cases << :case_locative if handler.flag?(:has_locative)
+%>
+<div class="wordforms">
+  <% groups.each do |group_flag_name| %>
+    <div class="group">
+      <div class="header"><%= t("wordform_flags.#{group_flag_name}") %></div>
+      <dl>
+        <% cases.each do |case_flag_name| %>
+          <% flag_value = LexemeHandler.wordform_flag(group_flag_name, case_flag_name) %>
+          <dt><%= t("wordform_flags.#{case_flag_name}") %></dt>
+          <dd><%= handler.wordform(flag_value) %></dd>
+        <% end %>
+      </dl>
+    </div>
+  <% end %>
+</div>

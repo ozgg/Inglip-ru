@@ -114,7 +114,10 @@
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function () {
-        const hide = (item) => item.classList.add('hidden');
+        const hide = (item) => {
+            item.classList.add('hidden');
+            item.querySelectorAll('input').forEach((f) => f.value = '');
+        };
         const show = (item) => item.classList.remove('hidden');
 
         const checkState = (flag, list) => {
@@ -322,8 +325,14 @@
                     for (let grammatical_case in mapping[number]) {
                         if (mapping[number].hasOwnProperty(grammatical_case)) {
                             const id = `wordform-number_${number}-case_${grammatical_case}`;
+                            const element = document.getElementById(id);
+                            const parent = element.closest('li');
 
-                            document.getElementById(id).value = mapping[number][grammatical_case];
+                            if (parent.classList.contains('hidden')) {
+                                element.value = '';
+                            } else {
+                                element.value = mapping[number][grammatical_case];
+                            }
                         }
                     }
                 }

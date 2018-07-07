@@ -76,6 +76,8 @@ ru:
       show:
         title: "Лексема «%{name}»"
         no_partial: "Для лексемы этого типа нет представления"
+        lexeme_parameters: "Параметры лексемы"
+        wordforms: "Словоформы"
     lexeme_types:
       nav_item:
         description: "Управление типами лексем"

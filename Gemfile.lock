@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/Biovision/biovision-base.git
-  revision: a3f6e62ae2a762de679cf6f6c372d6b7cd056837
+  revision: ed2b90656e680f4850ba79c0630bc1a2b5a054b3
   specs:
-    biovision-base (0.19.180704.0)
+    biovision-base (0.19.180707.0)
       bcrypt (~> 3.1)
       carrierwave (~> 1.2)
       carrierwave-bombshelter (~> 0.2)
@@ -56,7 +56,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    autoprefixer-rails (8.6.4)
+    autoprefixer-rails (8.6.5)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)

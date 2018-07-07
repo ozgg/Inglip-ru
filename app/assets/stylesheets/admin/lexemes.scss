@@ -34,4 +34,14 @@
   input {
     width: 100%;
   }
+
+  dt {
+    color: $text-color-secondary;
+    font-size: var(--font-size-normal);
+    font-weight: 300;
+  }
+
+  dd {
+    font-weight: 400;
+  }
 }

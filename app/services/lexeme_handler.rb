@@ -159,7 +159,7 @@ class LexemeHandler
   # @param [Hash] wordforms
   def save_wordforms(wordforms)
     wordforms.each do |flag, text|
-      save_wordform(text, flag.to_i)
+      save_wordform(text, flag.to_i) unless text.blank?
     end
   end
 end

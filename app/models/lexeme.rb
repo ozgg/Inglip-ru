@@ -1,4 +1,6 @@
 class Lexeme < ApplicationRecord
+  include Checkable
+
   BODY_LIMIT    = 100
   CONTEXT_LIMIT = 250
 

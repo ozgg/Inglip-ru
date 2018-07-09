@@ -1,6 +1,13 @@
 class LexemesController < AdminController
   before_action :set_entity, only: %i[edit update destroy]
 
+  # post /lexemes/check
+  def check
+    @entity = Lexeme.instance_for_check(params[:entity_id], entity_parameters)
+
+    render 'shared/forms/check'
+  end
+
   # post /lexemes
   def create
     @entity = Lexeme.new(creation_parameters)

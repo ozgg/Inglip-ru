@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   scope '(:locale)', constraints: { locale: /ru|en/ } do
     root 'index#index'
 
-    resources :lexemes, only: %i[new create edit]
+    resources :lexemes, only: %i[new create edit] do
+      collection do
+        post 'check', defaults: { format: :json }
+      end
+    end
 
     namespace :admin do
       resources :lexeme_types, only: %i[index show] do

@@ -20,6 +20,8 @@ class LexemeHandler
     case slug
     when :noun
       LexemeHandler::Noun.new(lexeme)
+    when :adjective
+      LexemeHandler::Adjective.new(lexeme)
     else
       nil
     end

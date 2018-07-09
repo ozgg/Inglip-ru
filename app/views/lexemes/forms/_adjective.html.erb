@@ -2,12 +2,12 @@
   <legend><%= t('lexemes.form.wordforms') %></legend>
 
   <div class="auto-inflect">
-    <button type="button" class="button-action" id="noun-magic">✨</button>
+    <button type="button" class="button-action" id="adjective-magic">✨</button>
   </div>
 
   <%
-    groups = %i[number_singular number_plural]
-    cases = %i[case_nominative case_genitive case_dative case_accusative case_instrumental case_prepositional case_partitive case_locative]
+    groups = %i[gender_masculine gender_feminine gender_neuter number_plural]
+    cases = %i[case_nominative case_genitive case_dative case_accusative case_instrumental case_prepositional short_form degree_superlative]
   %>
   <div class="wordforms" id="wordforms">
     <% groups.each do |group_flag_name| %>
@@ -35,5 +35,22 @@
         </ul>
       </div>
     <% end %>
+    <div class="group qualitative">
+      <div class="header"><%= t('.qualitative_forms') %></div>
+      <ul>
+        <li>
+          <%= label_tag('wordform-degree_comparative', t('wordform_flags.degree_camparative')) %>
+          <%=
+            text_field_tag(
+                "wordforms[#{LexemeHandler.wordform_flag(:degree_comparative)}]",
+                handler.wordform(:degree_comparative),
+                id:        'wordform-degree_comparative',
+                size:      nil,
+                maxlength: Word::BODY_LIMIT
+            )
+          %>
+        </li>
+      </ul>
+    </div>
   </div>
 </fieldset>

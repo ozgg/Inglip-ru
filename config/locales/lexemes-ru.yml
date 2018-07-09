@@ -36,10 +36,12 @@ ru:
       gender_masculine: "Мужской род"
       gender_feminine:  "Женский род"
       gender_neuter:    "Средний род"
-      singular_form:    "Есть форма единственного числа"
-      plural_form:      "Есть форма множественного числа"
       has_partitive:    "Есть партитив"
       has_locative:     "Есть локатив"
+      plural_form:      "Есть форма множественного числа"
+      singular_form:    "Есть форма единственного числа"
+    adjective:
+      qualitative: "Качественное"
   wordform_flags:
       infinitive:         "Инфинитив"
       gender_masculine:   "Мужской род"
@@ -111,3 +113,6 @@ ru:
       title: "Редактирование лексемы"
       nav_text: "Редактировать"
       heading: "Редактирование лексемы"
+    forms:
+      adjective:
+        qualitative_forms: "Качественные формы"

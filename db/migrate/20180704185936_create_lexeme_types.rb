@@ -23,9 +23,7 @@ class CreateLexemeTypes < ActiveRecord::Migration[5.2]
   def create_lexeme_types
     collection = {
       noun: 'Имя существительное',
-      qualitative_adjective: 'Качественное прилагательное',
-      posessive_adjective: 'Притяжательное прилагательное',
-      relative_adjective: 'Относительное прилагательное',
+      adjective: 'Имя прилагательное',
       imperfective_verb: 'Глагол несовершенного вида',
       perfective_verb: 'Глагол совершенного вида',
       imperfective_participle: 'Причастие несовершенного вида',

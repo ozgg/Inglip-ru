@@ -1,14 +1,89 @@
-<% template_name = "lexemes/forms/#{lexeme_type.slug}" %>
 <% if lookup_context.exists?(lexeme_type.slug, ["/lexemes/forms"], true) %>
-  <%=
-    render(
-        partial: template_name,
-        locals: {
-            lexeme_type: lexeme_type,
-            entity: entity || lexeme_type.lexemes.new
-        }
-    )
+  <%
+    template_name = "lexemes/forms/#{lexeme_type.slug}"
+    lexeme = entity || lexeme_type.lexemes.new
+    handler = LexemeHandler.handler(lexeme)
+    lexeme.flags = handler.class.default_lexeme_flags if lexeme.id.nil?
+    model_name = lexeme.class.to_s.underscore
   %>
+  <%=
+    form_with(
+        model: lexeme,
+        html:  {
+            id:           "#{model_name}-form",
+            autocomplete: 'off',
+            data:         { check_url: check_lexemes_path }
+        }
+    ) do |f|
+  %>
+    <%= render partial: 'shared/list_of_errors', locals: { entity: lexeme } %>
+
+    <fieldset>
+      <legend><%= t('lexemes.form.lexeme') %></legend>
+      <div class="field">
+        <div>
+          <%= f.label :body %>
+        </div>
+        <div>
+          <%=
+            f.text_field(
+                :body,
+                id:        "#{model_name}_body",
+                size:      nil,
+                maxlength: Lexeme::BODY_LIMIT,
+                required:  true,
+                data:      {
+                    check: :body
+                }
+            )
+          %>
+          <div class="check-result-error hidden" data-field="body"></div>
+          <div class="guideline"><%= t('lexemes.form.guidelines.body') %></div>
+        </div>
+      </div>
+      <div class="field">
+        <div>
+          <%= f.label :context %>
+        </div>
+        <div>
+          <%=
+            f.text_field(
+                :context,
+                id:        "#{model_name}_context",
+                size:      nil,
+                maxlength: Lexeme::CONTEXT_LIMIT,
+                data:      {
+                    check: :context
+                }
+            )
+          %>
+          <div class="check-result-error hidden" data-field="context"></div>
+          <div class="guideline"><%= t('lexemes.form.guidelines.context') %></div>
+        </div>
+      </div>
+      <div class="flag">
+        <%= f.check_box :declinable, id: "#{model_name}_declinable" %>
+        <%= f.label :declinable %>
+      </div>
+      <ul class="flags">
+        <% handler.class.lexeme_flags.each do |flag, value| %>
+          <li>
+            <% element_id = "lexeme_flag_#{flag}" %>
+            <%= check_box_tag("lexeme_flags[#{flag}]", value, handler.flag?(flag), id: element_id) %>
+            <%= label_tag(element_id, t("lexeme_flags.#{lexeme_type.slug}.#{flag}")) %>
+          </li>
+        <% end %>
+      </ul>
+    </fieldset>
+
+    <%= render(partial: template_name, locals: { handler: handler }) %>
+
+    <div class="buttons">
+      <%= hidden_field_tag :entity_id, lexeme.id %>
+      <%= f.hidden_field :lexeme_type_id if lexeme.id.nil? %>
+      <%= f.button t(:save), type: :submit, class: 'button-save' %>
+    </div>
+  <% end %>
 <% else %>
   <div class="message-box-alert"><%= t('admin.lexeme_types.new_lexeme.no_form') %></div>
 <% end %>

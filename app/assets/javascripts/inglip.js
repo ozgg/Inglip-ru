@@ -253,6 +253,11 @@ Inglip.nounForm = {
 };
 
 Inglip.adjectiveForm = {
+    flags: {
+        qualitative: undefined,
+        superlative: undefined,
+    },
+    comparative_degree: undefined,
     mapping: [
         ['lexeme_flag_qualitative', ['li.short_form', 'li.degree_superlative', 'div.qualitative']]
     ],
@@ -261,7 +266,10 @@ Inglip.adjectiveForm = {
         this.magicButton = document.getElementById('adjective-magic');
         if (this.magicButton) {
             Inglip.lexemeForm.applyMapping(this.mapping);
-            this.magicButton.addEventListener('click', Inglip.adjectiveForm.performMagic());
+            this.flags.qualitative = document.getElementById('lexeme_flag_qualitative');
+            this.flags.superlative = document.getElementById('lexeme_flag_superlative');
+            this.comparative_degree = document.getElementById('wordform-degree_comparative');
+            this.magicButton.addEventListener('click', Inglip.adjectiveForm.performMagic);
         }
     },
     performMagic() {
@@ -269,7 +277,62 @@ Inglip.adjectiveForm = {
 
         if (infinitive.value === '') {
             infinitive.focus();
-            // return;
+            return;
+        }
+
+        const qualitative = Inglip.adjectiveForm.flags.qualitative.checked;
+        const superlative = Inglip.adjectiveForm.flags.superlative.checked;
+        const base        = infinitive.value.slice(0, -2);
+        const penultimate = infinitive.value.slice(-2).substr(0, 1);
+        let soften;
+        if (['к', 'г', 'ж', 'ш'].includes(base.slice(-1), )) {
+            soften = false;
+        } else {
+            soften = (penultimate === 'и');
+        }
+
+        const m = soften ? 'е' : 'о'; // Masculine
+        const f = soften ? 'я' : 'а'; // Feminine
+        const n = soften ? 'е' : 'о'; // Neuter
+        const p = soften ? 'и' : 'ы'; // Plural
+        const i = (penultimate === 'о' ? 'ы' : penultimate); // Instrumental case
+
+        let form, ending;
+        const endings = {
+            "gender_masculine": [infinitive.value.slice(-2), m + 'го', m + 'му', m + 'го', i + 'м', m + 'м', ''],
+            "gender_feminine": [f + 'я', m + 'й', m + 'й', (soften ? 'ю' : 'у') + 'ю', m + 'й', m + 'й', 'a'],
+            "gender_neuter": [n + 'е', n + 'го', n + 'му', n + 'го', i + 'м', n + 'м', 'о'],
+            "number_plural": [p + 'е', p + 'х', p + 'м', p + 'х', p + 'ми', p + 'х', penultimate]
+        };
+
+        console.log(qualitative, superlative);
+        if (qualitative && !superlative) {
+            let short_form;
+
+            Inglip.adjectiveForm.comparative_degree.value = base + 'ее';
+            for (form in endings) {
+                if (endings.hasOwnProperty(form)) {
+                    short_form = document.getElementById(`wordform-${form}-short_form`);
+                    if (short_form && !short_form.closest('li').classList.contains('hidden')) {
+                        short_form.value = base + endings[form][6];
+                    }
+                }
+            }
+        }
+
+        const cases = ['nominative', 'genitive', 'dative', 'accusative', 'instrumental', 'prepositional'];
+        let case_index, field_id;
+
+        for (form in endings) {
+            if (endings.hasOwnProperty(form)) {
+                ending = endings[form];
+                for (case_index in cases) {
+                    if (cases.hasOwnProperty(case_index)) {
+                        field_id = `wordform-${form}-case_${cases[case_index]}`;
+                        document.getElementById(field_id).value = base + ending[case_index];
+                    }
+                }
+            }
         }
     }
 };

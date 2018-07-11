@@ -124,6 +124,7 @@ class LexemeHandler
   # @param [Hash] wordforms
   def save(lexeme_flags, wordforms)
     @lexeme.update(flags: lexeme_flags.values.map(&:to_i).reduce(&:+))
+    save_wordform(@lexeme.body, 1) # Save infinitive
     save_wordforms(wordforms)
   end
 

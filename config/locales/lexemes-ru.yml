@@ -42,6 +42,7 @@ ru:
       singular_form:    "Есть форма единственного числа"
     adjective:
       qualitative: "Качественное"
+      superlative: "Превосходная степень"
   wordform_flags:
       infinitive:         "Инфинитив"
       gender_masculine:   "Мужской род"

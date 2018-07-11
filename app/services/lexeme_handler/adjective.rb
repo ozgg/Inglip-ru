@@ -6,6 +6,7 @@ class LexemeHandler::Adjective < LexemeHandler
   def self.lexeme_flags
     {
       qualitative: 0b0001,
+      superlative: 0b0010,
     }
   end
 end

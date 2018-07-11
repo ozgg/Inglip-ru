@@ -39,11 +39,12 @@
       <div class="header"><%= t('.qualitative_forms') %></div>
       <ul>
         <li>
+          <% flag_value = LexemeHandler.wordform_flag(:degree_comparative) %>
           <%= label_tag('wordform-degree_comparative', t('wordform_flags.degree_camparative')) %>
           <%=
             text_field_tag(
-                "wordforms[#{LexemeHandler.wordform_flag(:degree_comparative)}]",
-                handler.wordform(:degree_comparative),
+                "wordforms[#{flag_value}]",
+                handler.wordform(flag_value),
                 id:        'wordform-degree_comparative',
                 size:      nil,
                 maxlength: Word::BODY_LIMIT

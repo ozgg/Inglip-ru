@@ -24,21 +24,17 @@ class CreateLexemeTypes < ActiveRecord::Migration[5.2]
     collection = {
       noun: 'Имя существительное',
       adjective: 'Имя прилагательное',
-      imperfective_verb: 'Глагол несовершенного вида',
-      perfective_verb: 'Глагол совершенного вида',
-      imperfective_participle: 'Причастие несовершенного вида',
-      perfective_participle: 'Причастие совершенного вида',
-      imperfective_gerund: 'Деепричастие несовершенного вида',
-      perfective_gerund: 'Деепричастие совершенного вида',
+      verb: 'Глагол',
+      participle: 'Причастие',
+      gerund: 'Деепричастие',
       preposition: 'Предлог',
       numeral: 'Имя числительное',
       adverb: 'Наречие',
       conjunction: 'Союз',
-      personal_predicative: 'Личный предикатив',
-      impersonal_predicative: 'Безличный предикатив',
+      predicative: 'Предикатив',
       interjection: 'Междометие',
       pronoun: 'Местоимение',
-      participle: 'Частица',
+      particle: 'Частица',
       proper_name: 'Имя собственное'
     }
 

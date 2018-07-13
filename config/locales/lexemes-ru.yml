@@ -43,6 +43,9 @@ ru:
     adjective:
       qualitative: "Качественное"
       superlative: "Превосходная степень"
+    participle:
+      perfective: "Совершенный вид"
+      passive_voice: "Страдательный залог"
   wordform_flags:
       infinitive:         "Инфинитив"
       gender_masculine:   "Мужской род"

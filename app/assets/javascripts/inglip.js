@@ -18,9 +18,11 @@ const Inglip = {
             item.classList.remove('hidden');
         },
         checkState(flag, list) {
-            const callback = flag.checked ? this.show : this.hide;
+            if (flag) {
+                const callback = flag.checked ? this.show : this.hide;
 
-            list.forEach((item) => callback(item));
+                list.forEach((item) => callback(item));
+            }
         },
         applyMapping(mapping) {
             mapping.forEach(function (pair) {
@@ -29,9 +31,11 @@ const Inglip = {
 
                 lists.forEach((list) => Inglip.lexemeForm.checkState(flag, list));
 
-                flag.addEventListener('change', function () {
-                    lists.forEach((list) => Inglip.lexemeForm.checkState(flag, list));
-                });
+                if (flag) {
+                    flag.addEventListener('change', function () {
+                        lists.forEach((list) => Inglip.lexemeForm.checkState(flag, list));
+                    });
+                }
             });
         }
     },
@@ -280,8 +284,17 @@ Inglip.adjectiveForm = {
             return;
         }
 
-        const qualitative = Inglip.adjectiveForm.flags.qualitative.checked;
-        const superlative = Inglip.adjectiveForm.flags.superlative.checked;
+        let qualitative, superlative;
+        if (Inglip.adjectiveForm.flags.qualitative) {
+            qualitative = Inglip.adjectiveForm.flags.qualitative.checked;
+        } else {
+            qualitative = false;
+        }
+        if (Inglip.adjectiveForm.flags.superlative) {
+            superlative = Inglip.adjectiveForm.flags.superlative.checked;
+        } else {
+            superlative = false;
+        }
         const base        = infinitive.value.slice(0, -2);
         const penultimate = infinitive.value.slice(-2).substr(0, 1);
         let soften;

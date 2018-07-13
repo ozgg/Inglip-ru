@@ -63,8 +63,11 @@ class LexemesController < AdminController
   end
 
   def save_with_handler
-    handler = LexemeHandler.handler(@entity)
-    handler.save(params[:lexeme_flags].permit!, params[:wordforms].permit!)
+    handler      = LexemeHandler.handler(@entity)
+    lexeme_flags = params[:lexeme_flags]&.permit! || {}
+    wordforms    = params[:wordforms]&.permit! || {}
+
+    handler.save(lexeme_flags, wordforms)
     form_processed_ok(admin_lexeme_path(id: @entity.id))
   end
 end

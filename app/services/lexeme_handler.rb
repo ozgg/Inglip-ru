@@ -22,6 +22,8 @@ class LexemeHandler
       LexemeHandler::Noun.new(lexeme)
     when :adjective
       LexemeHandler::Adjective.new(lexeme)
+    when :participle
+      LexemeHandler::Participle.new(lexeme)
     else
       nil
     end
@@ -122,7 +124,7 @@ class LexemeHandler
   # @param [Integer] lexeme_flags
   # @param [Hash] wordforms
   def save(lexeme_flags, wordforms)
-    @lexeme.update(flags: lexeme_flags.values.map(&:to_i).reduce(&:+))
+    @lexeme.update(flags: lexeme_flags.values.map(&:to_i).reduce(&:+).to_i)
     save_wordform(@lexeme.body, 1) # Save infinitive
     save_wordforms(wordforms)
   end

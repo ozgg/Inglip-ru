@@ -1,0 +1,39 @@
+<fieldset>
+  <legend><%= t('lexemes.form.wordforms') %></legend>
+
+  <div class="auto-inflect">
+    <button type="button" class="button-action" id="adjective-magic">✨</button>
+  </div>
+
+  <%
+    groups = %i[gender_masculine gender_feminine gender_neuter number_plural]
+    cases = %i[case_nominative case_genitive case_dative case_accusative case_instrumental case_prepositional]
+  %>
+  <div class="wordforms" id="wordforms">
+    <% groups.each do |group_flag_name| %>
+      <div class="group <%= group_flag_name %>">
+        <div class="header"><%= t("wordform_flags.#{group_flag_name}") %></div>
+        <ul>
+          <% cases.each do |case_flag_name| %>
+            <li class="<%= case_flag_name %>">
+              <%
+                element_id = "wordform-#{group_flag_name}-#{case_flag_name}"
+                flag_value = LexemeHandler.wordform_flag(group_flag_name, case_flag_name)
+              %>
+              <%= label_tag(element_id, t("wordform_flags.#{case_flag_name}")) %>
+              <%=
+                text_field_tag(
+                    "wordforms[#{flag_value}]",
+                    handler.wordform(flag_value),
+                    id:        element_id,
+                    size:      nil,
+                    maxlength: Word::BODY_LIMIT
+                )
+              %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</fieldset>

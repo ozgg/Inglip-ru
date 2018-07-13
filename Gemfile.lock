@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/Biovision/biovision-base.git
-  revision: 67d3176f6dfcf7e4718c7498cdca7b7c1937eab5
+  revision: 61dc4a4f32e803a25ab32493e8e7d0583f9b4fc2
   specs:
-    biovision-base (0.19.180710.0)
+    biovision-base (0.19.180713.0)
       bcrypt (~> 3.1)
       carrierwave (~> 1.2)
       carrierwave-bombshelter (~> 0.2)
@@ -138,7 +138,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     open4 (1.3.4)
     pg (1.0.0)
-    puma (3.11.4)
+    puma (3.12.0)
     rack (2.0.5)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -214,7 +214,7 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.14)
+    uglifier (4.1.15)
       execjs (>= 0.3.0, < 3)
     web-console (3.6.2)
       actionview (>= 5.0)

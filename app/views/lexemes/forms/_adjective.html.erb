@@ -19,6 +19,7 @@
               <%
                 element_id = "wordform-#{group_flag_name}-#{case_flag_name}"
                 flag_value = LexemeHandler.wordform_flag(group_flag_name, case_flag_name)
+                flag_value |= LexemeHandler.wordform_flag(:number_singular) unless group_flag_name == :number_plural
               %>
               <%= label_tag(element_id, t("wordform_flags.#{case_flag_name}")) %>
               <%=

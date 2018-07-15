@@ -68,8 +68,68 @@ namespace :legacy do
     puts "\nDone."
   end
 
-  desc "TODO"
+  desc "Import adjectives and participles from legacy CSV data"
   task adjectives: :environment do
+    require 'csv'
+    csv_file = "#{Rails.root}/tmp/legacy/adjectives.csv"
+    type_a   = LexemeType.find_by!(slug: 'adjective')
+    type_p   = LexemeType.find_by!(slug: 'participle')
+
+    puts "Importing legacy adjectives/participles from #{csv_file}..."
+    CSV.parse(File.read(csv_file), headers: true) do |line|
+      infinitive = line['nominative_masculine']
+      print "\r#{infinitive}    "
+
+      type = line['participle'] == 't' ? type_p : type_a
+
+      next if type.lexemes.exists?(body: infinitive)
+
+      lexeme  = Lexeme.new(lexeme_type: type, body: infinitive)
+      handler = LexemeHandler.handler(lexeme)
+      c       = handler.class
+      flags   = c.lexeme_flags
+
+      qualitative      = line['qualitative'] == 't'
+      superlative      = line['superlative'] == 't'
+      lexeme_flags     = {}
+
+      lexeme_flags[:q] = flags[:qualitative] if qualitative
+      lexeme_flags[:s] = flags[:superlative] if superlative
+
+      wordforms = {
+        c.wordform_flag(:number_singular, :gender_masculine, :case_nominative)    => line['nominative_masculine'],
+        c.wordform_flag(:number_singular, :gender_masculine, :case_genitive)      => line['genitive_masculine'],
+        c.wordform_flag(:number_singular, :gender_masculine, :case_dative)        => line['dative_masculine'],
+        c.wordform_flag(:number_singular, :gender_masculine, :case_accusative)    => line['accusative_masculine'],
+        c.wordform_flag(:number_singular, :gender_masculine, :case_instrumental)  => line['instrumental_masculine'],
+        c.wordform_flag(:number_singular, :gender_masculine, :case_prepositional) => line['prepositional_masculine'],
+        c.wordform_flag(:number_singular, :gender_feminine, :case_nominative)     => line['nominative_feminine'],
+        c.wordform_flag(:number_singular, :gender_feminine, :case_genitive)       => line['genitive_feminine'],
+        c.wordform_flag(:number_singular, :gender_feminine, :case_dative)         => line['dative_feminine'],
+        c.wordform_flag(:number_singular, :gender_feminine, :case_accusative)     => line['accusative_feminine'],
+        c.wordform_flag(:number_singular, :gender_feminine, :case_instrumental)   => line['instrumental_feminine'],
+        c.wordform_flag(:number_singular, :gender_feminine, :case_prepositional)  => line['prepositional_feminine'],
+        c.wordform_flag(:number_singular, :gender_neuter, :case_nominative)       => line['nominative_neuter'],
+        c.wordform_flag(:number_singular, :gender_neuter, :case_genitive)         => line['genitive_neuter'],
+        c.wordform_flag(:number_singular, :gender_neuter, :case_dative)           => line['dative_neuter'],
+        c.wordform_flag(:number_singular, :gender_neuter, :case_accusative)       => line['accusative_neuter'],
+        c.wordform_flag(:number_singular, :gender_neuter, :case_instrumental)     => line['instrumental_neuter'],
+        c.wordform_flag(:number_singular, :gender_neuter, :case_prepositional)    => line['prepositional_neuter'],
+        c.wordform_flag(:number_plural, :case_nominative)                         => line['nominative_plural'],
+        c.wordform_flag(:number_plural, :case_genitive)                           => line['genitive_plural'],
+        c.wordform_flag(:number_plural, :case_dative)                             => line['dative_plural'],
+        c.wordform_flag(:number_plural, :case_accusative)                         => line['accusative_plural'],
+        c.wordform_flag(:number_plural, :case_instrumental)                       => line['instrumental_plural'],
+        c.wordform_flag(:number_plural, :case_prepositional)                      => line['prepositional_plural']
+      }
+      unless line['comparative'].blank?
+        wordforms[c.wordform_flag(:degree_comparative)] = line['comparative']
+      end
+
+      handler.save(lexeme_flags, wordforms)
+    end
+
+    puts "\nDone."
   end
 
   desc "TODO"

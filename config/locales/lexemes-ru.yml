@@ -46,6 +46,10 @@ ru:
     participle:
       perfective: "Совершенный вид"
       passive_voice: "Страдательный залог"
+    adverb:
+      qualitative: "Качественное"
+      adjunct: "Обстоятельственное"
+      attributive: "Определительное"
   wordform_flags:
       infinitive:         "Инфинитив"
       gender_masculine:   "Мужской род"
@@ -67,7 +71,7 @@ ru:
       tense_past:         "Прошедшее время"
       tense_present:      "Настоящее время"
       tense_future:       "Будущее время"
-      degree_camparative: "Сравнительная степень"
+      degree_comparative: "Сравнительная степень"
       degree_superlative: "Превосходная степень"
       short_form:         "Краткая форма"
       vovel_pair:         "Пара с гласной"
@@ -120,3 +124,5 @@ ru:
     forms:
       adjective:
         qualitative_forms: "Качественные формы"
+      adverb:
+        qualitative_forms: "Сравнительные формы"

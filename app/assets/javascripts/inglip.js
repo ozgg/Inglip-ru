@@ -8,6 +8,7 @@ const Inglip = {
             if (this.infinitive) {
                 Inglip.nounForm.initialize();
                 Inglip.adjectiveForm.initialize();
+                Inglip.adverbForm.initialize();
             }
         },
         hide(item) {
@@ -347,6 +348,35 @@ Inglip.adjectiveForm = {
                 }
             }
         }
+    }
+};
+
+Inglip.adverbForm = {
+    flags: {
+        qualitative: undefined,
+        adjunct: undefined,
+        attributive: undefined
+    },
+    comparative_degree: undefined,
+    superlative_degree: undefined,
+    mapping: [
+        ['lexeme_flag_qualitative', ['div.qualitative']]
+    ],
+    magicButton: undefined,
+    initialize() {
+        this.magicButton = document.getElementById('adverb-magic');
+        if (this.magicButton) {
+            Inglip.lexemeForm.applyMapping(this.mapping);
+            this.flags.qualitative = document.getElementById('lexeme_flag_qualitative');
+            this.flags.adjunct = document.getElementById('lexeme_flag_adjunct');
+            this.flags.attributive = document.getElementById('lexeme_flag_attributive');
+            this.comparative_degree = document.getElementById('wordform-degree_comparative');
+            this.superlative_degree = document.getElementById('wordform-degree_superlative');
+            this.magicButton.addEventListener('click', Inglip.adverbForm.performMagic);
+        }
+    },
+    performMagic() {
+        // Not implemented
     }
 };
 

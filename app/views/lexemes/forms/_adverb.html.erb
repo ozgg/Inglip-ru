@@ -1,0 +1,36 @@
+<fieldset>
+  <legend><%= t('lexemes.form.wordforms') %></legend>
+
+  <div class="auto-inflect">
+    <button type="button" class="button-action" id="adverb-magic">✨</button>
+  </div>
+
+  <%
+    degrees = %i[degree_comparative degree_superlative]
+  %>
+  <div class="wordforms" id="wordforms">
+      <div class="group qualitative">
+        <div class="header"><%= t(".qualitative_forms") %></div>
+        <ul>
+          <% degrees.each do |degree_flag_name| %>
+            <li class="<%= degree_flag_name %>">
+              <%
+                element_id = "wordform-#{degree_flag_name}"
+                flag_value = LexemeHandler.wordform_flag(degree_flag_name)
+              %>
+              <%= label_tag(element_id, t("wordform_flags.#{degree_flag_name}")) %>
+              <%=
+                text_field_tag(
+                    "wordforms[#{flag_value}]",
+                    handler.wordform(flag_value),
+                    id:        element_id,
+                    size:      nil,
+                    maxlength: Word::BODY_LIMIT
+                )
+              %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+  </div>
+</fieldset>

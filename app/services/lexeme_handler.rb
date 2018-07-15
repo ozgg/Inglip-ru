@@ -24,6 +24,8 @@ class LexemeHandler
       LexemeHandler::Adjective.new(lexeme)
     when :participle
       LexemeHandler::Participle.new(lexeme)
+    when :adverb
+      LexemeHandler::Adverb.new(lexeme)
     else
       nil
     end

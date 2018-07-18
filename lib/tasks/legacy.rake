@@ -132,8 +132,36 @@ namespace :legacy do
     puts "\nDone."
   end
 
-  desc "TODO"
+  desc "Import adverbs from legacy CSV data"
   task adverbs: :environment do
+    require 'csv'
+    csv_file = "#{Rails.root}/tmp/legacy/adverbs.csv"
+    type     = LexemeType.find_by!(slug: 'adverb')
+
+    puts "Importing legacy adjectives/participles from #{csv_file}..."
+    CSV.parse(File.read(csv_file), headers: true) do |line|
+      infinitive = line['body']
+      print "\r#{infinitive}    "
+
+      next if type.lexemes.exists?(body: infinitive)
+
+      lexeme  = Lexeme.new(lexeme_type: type, body: infinitive)
+      handler = LexemeHandler.handler(lexeme)
+      c       = handler.class
+      flags   = c.lexeme_flags
+
+      lexeme_flags = {}
+      wordforms    = {}
+      unless line['comparative_degree'].blank?
+        wordforms[c.wordform_flag(:degree_comparative)] = line['comparative_degree']
+
+        lexeme_flags[:c] = flags[:qualitative]
+      end
+
+      handler.save(lexeme_flags, wordforms)
+    end
+
+    puts "\nDone."
   end
 
   desc "TODO"

@@ -6,7 +6,8 @@ class LexemeHandler::Verb < LexemeHandler
   def self.lexeme_flags
     {
       perfective:   0b0001,
-      transitional: 0b0010
+      transitive:   0b0010,
+      passive_mood: 0b0100
     }
   end
 end

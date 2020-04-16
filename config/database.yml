@@ -6,7 +6,7 @@ default: &default
 development:
   <<: *default
   database: inglip2
-  #username: inglip2
+  #username: inglip_ru
   #password:
   #host: localhost
   #port: 5432

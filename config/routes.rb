@@ -1,23 +1,3 @@
 Rails.application.routes.draw do
-  resources :lexemes, only: %i[update destroy]
-
-  scope '(:locale)', constraints: { locale: /ru|en/ } do
-    root 'index#index'
-
-    resources :lexemes, only: %i[new create edit] do
-      collection do
-        post 'check', defaults: { format: :json }
-      end
-    end
-
-    namespace :admin do
-      resources :lexeme_types, only: %i[index show] do
-        member do
-          get 'new_lexeme'
-        end
-      end
-      resources :lexemes, only: %i[index show]
-      resources :words, only: %i[index show]
-    end
-  end
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

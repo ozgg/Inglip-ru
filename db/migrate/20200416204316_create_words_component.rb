@@ -36,7 +36,8 @@ class CreateWordsComponent < ActiveRecord::Migration[6.0]
     collection = {
       noun: 'Имя существительное',
       adjective: 'Имя прилагательное',
-      verb: 'Глагол',
+      imperfective_verb: 'Глагол несовершенного вида',
+      perfective_verb: 'Глагол совершенного вида',
       participle: 'Причастие',
       gerund: 'Деепричастие',
       preposition: 'Предлог',

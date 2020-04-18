@@ -41,4 +41,15 @@ class Lexeme < ApplicationRecord
   def self.creation_parameters
     entity_parameters + %i[lexeme_type_id]
   end
+
+  def declinable?
+    !flag?('indeclinable')
+  end
+
+  # @param [String]
+  def flag?(key)
+    return false unless data.key?(key.to_s)
+
+    [true, 1, '1', 'true'].include? data[key.to_s]
+  end
 end

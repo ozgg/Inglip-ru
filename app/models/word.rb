@@ -24,4 +24,9 @@ class Word < ApplicationRecord
   def self.page_for_administration(page = 1)
     list_for_administration.page(page)
   end
+
+  # @param [String] body
+  def self.[](body)
+    find_or_create_by(body: body)
+  end
 end

@@ -22,7 +22,7 @@ module Biovision
         # @param [String] body
         # @param [Integer] flags
         def []=(body, flags)
-          return if lexeme.nil?
+          return if lexeme.nil? || body.blank?
 
           link = lexeme.wordforms.find_or_initialize_by(word: Word[body])
           link.flags |= flags
@@ -48,6 +48,7 @@ module Biovision
         end
 
         # @param [Hash] attributes
+        # @param [Hash] lexeme_data
         def create(attributes, lexeme_data)
           lexeme = Lexeme.new(attributes)
           lexeme.data = self.class.normalized_lexeme_data(lexeme_data)
@@ -56,6 +57,30 @@ module Biovision
           end
           self.lexeme = lexeme
           lexeme
+        end
+
+        # @param [Hash] data
+        def wordforms=(data)
+          data.each do |flag, body|
+            next if body.blank?
+
+            self[body] = flag.to_i
+          end
+          normalize
+        end
+
+        # @param [Hash] attributes
+        # @param [Hash] lexeme_data
+        def update(attributes, lexeme_data)
+          lexeme.assign_attributes(attributes)
+          lexeme.data = self.class.normalized_lexeme_data(lexeme_data)
+          lexeme.save
+        end
+
+        protected
+
+        def normalize
+          self[lexeme.body] = 0xffffffff unless lexeme.declinable?
         end
       end
     end

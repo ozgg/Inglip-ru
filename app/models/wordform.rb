@@ -13,4 +13,18 @@ class Wordform < ApplicationRecord
   belongs_to :lexeme, counter_cache: :wordforms_count
 
   validates_uniqueness_of :word_id, scope: :lexeme_id
+
+  scope :with_flag, ->(f) { where("flag & #{f.to_i} = #{f.to_i}") }
+
+  # @param [Integer] flag
+  def add_flag!(flag)
+    self.flags |= flag.to_i
+    save!
+  end
+
+  # @param [Integer] flag
+  def remove_flag!(flag)
+    self.flags &= (0xffffffff - flag.to_i)
+    save!
+  end
 end

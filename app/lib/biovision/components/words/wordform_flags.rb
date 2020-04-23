@@ -52,6 +52,46 @@ module Biovision
             tense_future: 0b0001_0000_0000_0000_0000 # 16
           }
         end
+
+        def person_flags
+          {
+            person_first: 1 << 17,
+            person_second: 1 << 18,
+            person_third: 1 << 19
+          }
+        end
+
+        def verb_form_flags
+          {
+            imperative: 1 << 20,
+            gerund: 1 << 21
+          }
+        end
+
+        def adjective_form_flags
+          {
+            short_form: 1 << 22
+          }
+        end
+
+        def comparative_form_flags
+          {
+            comparative: 1 << 23
+          }
+        end
+
+        def superlative_form_flags
+          {
+            superlative: 1 << 24
+          }
+        end
+
+        def preposition_form_flags
+          {
+            vowel_ending: 1 << 25,
+            consonant_ending: 1 << 26
+          }
+        end
       end
     end
   end

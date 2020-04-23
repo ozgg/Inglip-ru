@@ -5,7 +5,9 @@ module Biovision
     module Words
       # Particle handler
       class ParticleHandler < LexemeHandler
-        
+        # TBD
+        # @see https://ru.wikipedia.org/wiki/Частица_(часть_речи)
+        # @see https://ru.wiktionary.org/wiki/Категория:Русские_частицы
       end
     end
   end

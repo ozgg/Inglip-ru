@@ -36,19 +36,16 @@ class CreateWordsComponent < ActiveRecord::Migration[6.0]
     collection = {
       noun: 'Имя существительное',
       adjective: 'Имя прилагательное',
-      imperfective_verb: 'Глагол несовершенного вида',
-      perfective_verb: 'Глагол совершенного вида',
+      verb: 'Глагол',
       participle: 'Причастие',
-      gerund: 'Деепричастие',
       preposition: 'Предлог',
       numeral: 'Имя числительное',
       adverb: 'Наречие',
       conjunction: 'Союз',
-      predicative: 'Предикатив',
       interjection: 'Междометие',
       pronoun: 'Местоимение',
-      particle: 'Частица',
-      proper_name: 'Имя собственное'
+      parenthesis: 'Вводное слово',
+      particle: 'Частица'
     }
 
     collection.each do |slug, name|

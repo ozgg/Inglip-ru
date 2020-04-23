@@ -5,7 +5,8 @@ module Biovision
     module Words
       # Interjection handler
       class InterjectionHandler < LexemeHandler
-        
+        # TBD
+        # @see https://ru.wikipedia.org/wiki/Междометие
       end
     end
   end

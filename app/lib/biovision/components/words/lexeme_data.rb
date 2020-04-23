@@ -21,6 +21,13 @@ module Biovision
           {}
         end
 
+        def lexeme_valency_flags
+          %w[
+            genitive_case dative_case accusative_case prepositional_case
+            instrumental_case
+          ]
+        end
+
         # @param [Hash] input
         def normalized_lexeme_data(input)
           data = normalized_lexeme_flags(input)

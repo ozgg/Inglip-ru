@@ -23,7 +23,7 @@ module Biovision
         end
 
         def self.lexeme_data_flags
-          super + %w[has_locative has_partitive]
+          super + %w[has_locative has_partitive animated proper_name]
         end
 
         def self.lexeme_data_enum

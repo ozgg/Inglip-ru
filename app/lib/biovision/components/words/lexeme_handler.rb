@@ -12,11 +12,16 @@ module Biovision
 
         # @param [Lexeme] lexeme
         def self.[](lexeme)
-          handler_name = "biovision/components/words/#{lexeme.lexeme_type.slug}"
-          handler_class = "#{handler_name}_handler".classify.constantize
-          handler = handler_class.new
+          handler = for_type(lexeme.lexeme_type)
           handler.lexeme = lexeme
           handler
+        end
+
+        # @param [LexemeType|BelongsToAssociation] lexeme_type
+        def self.for_type(lexeme_type)
+          handler_name = "biovision/components/words/#{lexeme_type.slug}"
+          handler_class = "#{handler_name}_handler".classify.constantize
+          handler_class.new
         end
 
         # @param [String] body
@@ -51,16 +56,18 @@ module Biovision
         # @param [Hash] lexeme_data
         def create(attributes, lexeme_data)
           lexeme = Lexeme.new(attributes)
+          self.lexeme = lexeme
           lexeme.data = self.class.normalized_lexeme_data(lexeme_data)
           if lexeme.save
             self[lexeme.body] = self.class.wordform_flags[:infinitive]
           end
-          self.lexeme = lexeme
           lexeme
         end
 
         # @param [Hash] data
         def wordforms=(data)
+          return if data.blank?
+
           data.each do |flag, body|
             next if body.blank?
 

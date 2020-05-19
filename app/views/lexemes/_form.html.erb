@@ -1,0 +1,29 @@
+<%
+  model_name = entity.class.to_s.underscore
+  type_slug = entity.lexeme_type&.slug
+%>
+<%=
+  form_with(
+      model: entity,
+      html: {
+          autocomplete: 'off',
+          class: "#{type_slug}-lexeme-form",
+          id: "#{model_name}-form"
+      }
+  ) do |f|
+%>
+  <%= render partial: 'shared/list_of_errors', locals: { entity: entity } %>
+
+  <%= render partial: 'lexemes/form/lexeme_attributes', locals: { f: f } %>
+
+  <% if lookup_context.exists?("lexemes/form/_#{type_slug}") %>
+    <%= render(partial: "lexemes/form/#{type_slug}", locals: { f: f }) %>
+  <% else %>
+    <div class="message-box warning"><%= t('.no_form') %></div>
+  <% end %>
+
+  <div class="buttons">
+    <%= f.hidden_field :lexeme_type_id if entity.id.nil? %>
+    <%= f.button t(:submit), class: 'button-save' %>
+  </div>
+<% end %>

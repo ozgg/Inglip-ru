@@ -13,4 +13,9 @@ class LexemeType < ApplicationRecord
   has_many :lexemes, dependent: :delete_all
 
   scope :list_for_administration, -> { order('id asc') }
+
+  # @param [String] slug
+  def self.[](slug)
+    find_by(slug: slug)
+  end
 end

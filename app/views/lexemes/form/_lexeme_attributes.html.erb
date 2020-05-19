@@ -1,0 +1,29 @@
+<dl class="fields">
+  <div>
+    <dt><%= f.label :body %></dt>
+    <dd>
+      <%=
+        f.text_field(
+            :body,
+            class: 'input-text',
+            maxlength: Lexeme::BODY_LIMIT,
+            required: true,
+            size: nil
+        )
+      %>
+    </dd>
+  </div>
+  <div>
+    <dt><%= f.label :context %></dt>
+    <dd>
+      <%=
+        f.text_field(
+            :context,
+            class: 'input-text',
+            maxlength: Lexeme::CONTEXT_LIMIT,
+            size: nil
+        )
+      %>
+    </dd>
+  </div>
+</dl>

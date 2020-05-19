@@ -1,0 +1,7 @@
+<section>
+  <h2><%= t(:lexeme_count, count: entity.lexemes_count) %></h2>
+
+  <%= paginate collection %>
+  <%= render partial: 'shared/admin/list', locals: { collection: collection } %>
+  <%= paginate collection %>
+</section>

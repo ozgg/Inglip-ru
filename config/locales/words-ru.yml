@@ -1,0 +1,55 @@
+ru:
+  lexeme_count:
+    zero: "лексем нет"
+    one: "%{count} лексема"
+    few: "%{count} лексемы"
+    many: "%{count} лексем"
+    other: "%{count} лексем"
+  word_count:
+    zero: "слов нет"
+    one: "%{count} слово"
+    few: "%{count} слова"
+    many: "%{count} слов"
+    other: "%{count} слов"
+  wordform_count:
+    zero: "словоформ нет"
+    one: "%{count} словоформа"
+    few: "%{count} словоформы"
+    many: "%{count} словоформ"
+    other: "%{count} словоформ"
+  admin:
+    lexeme_types:
+      index:
+        heading: "Типы лексем"
+        nav_text: "Типы лексем"
+        title: "Типы лексем"
+      nav_item:
+        description: "Список типов лексем"
+        text: "Типы лексем"
+      new_lexeme:
+        heading: "Новая лексема"
+        nav_text: "Добавить лексему"
+        title: "Добавление лексемы типа «%{name}»"
+      show:
+        title: "Лексемы типа «%{name}», страница %{page}"
+    lexemes:
+      index:
+        heading: "Лексемы"
+        nav_text: "Все лексемы"
+        title: "Лексемы, страница %{page}"
+      nav_item:
+        description: "Управление лексемами"
+        text: "Лексемы"
+  lexemes:
+    destroy:
+      success: "Лексема удалена"
+    edit:
+      heading: "Редактировать лексему"
+      nav_text: "Редактировать"
+      title: "Редактирование лексемы"
+    form:
+      no_form: "Для лексемы этого типа нет формы."
+    new:
+      heading: "Добавить лексему"
+      nav_text: "Новая лексема"
+      title: "Добавление лексемы"

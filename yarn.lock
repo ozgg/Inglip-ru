@@ -773,6 +773,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@biovision/biovision@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@biovision/biovision/-/biovision-0.0.1.tgz#d11c54e3cbc90f0418311778ed4c53f8640d8d7d"
+  integrity sha512-wCi08j+CZd8/FIQainses8PzeTraeWrzuyCm6ccTR/NjkGw3dKB/ej1qp8hg7ZrCnxyLpd+echrRgXh1U3t9/g==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"

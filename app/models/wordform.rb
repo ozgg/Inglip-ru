@@ -15,6 +15,7 @@ class Wordform < ApplicationRecord
   validates_uniqueness_of :word_id, scope: :lexeme_id
 
   scope :with_flag, ->(f) { where("flags & #{f.to_i} = #{f.to_i}") }
+  scope :ordered_by_flags, -> { order('flags asc')}
 
   def text
     word.body

@@ -13,43 +13,43 @@ module Biovision
         # Every lexeme must have infinitive
         def wordform_flags
           {
-            infinitive: 0b0001 # 0
+            infinitive: 1
           }
         end
 
         def gender_flags
           {
-            gender_masculine: 0b0010, # 1
-            gender_feminine: 0b0100, # 2
-            gender_neuter: 0b1000 # 3
+            gender_masculine: 1 << 1,
+            gender_feminine: 1 << 2,
+            gender_neuter: 1 << 3
           }
         end
 
         def number_flags
           {
-            number_singular: 0b0001_0000, # 4
-            number_plural: 0b0010_0000 # 5
+            number_singular: 1 << 4,
+            number_plural: 1 << 5
           }
         end
 
         def case_flags
           {
-            case_nominative: 0b0000_0000_0100_0000, # 6
-            case_genitive: 0b0000_0000_1000_0000, # 7
-            case_dative: 0b0000_0001_0000_0000, # 8
-            case_accusative: 0b0000_0010_0000_0000, # 9
-            case_instrumental: 0b0000_0100_0000_0000, # 10
-            case_prepositional: 0b0000_1000_0000_0000, # 11
-            case_partitive: 0b0001_0000_0000_0000, # 12
-            case_locative: 0b0010_0000_0000_0000 # 13
+            case_nominative: 1 << 6,
+            case_genitive: 1 << 7,
+            case_dative: 1 << 8,
+            case_accusative: 1 << 9,
+            case_instrumental: 1 << 10,
+            case_prepositional: 1 << 11,
+            case_partitive: 1 << 12,
+            case_locative: 1 << 13
           }
         end
 
         def tense_flags
           {
-            tense_past: 0b0000_0100_0000_0000_0000, # 14
-            tense_present: 0b0000_1000_0000_0000_0000, # 15
-            tense_future: 0b0001_0000_0000_0000_0000 # 16
+            tense_past: 1 << 14,
+            tense_present: 1 << 15,
+            tense_future: 1 << 16
           }
         end
 

@@ -27,7 +27,8 @@
               text_field_tag(
                   "wordforms[#{flag}]",
                   handler.wordform(flag)&.text,
-                  class: 'input-text'
+                  class: 'input-text',
+                  title: flag
               )
             %>
           </th>

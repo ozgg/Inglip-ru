@@ -71,6 +71,9 @@ ru:
       show:
         title: "Лексема «%{infinitive}»"
         no_section: "Для этого типа лексемы нет раздела для отображения"
+      entity:
+        wordforms:
+          heading: "Флаги словоформ"
   biovision:
     components:
       words:

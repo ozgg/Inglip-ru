@@ -49,4 +49,11 @@
   <% else %>
     <div class="message-box warning"><%= t('.no_section') %></div>
   <% end %>
+
+  <%=
+    render(
+        partial: 'admin/lexemes/entity/wordforms',
+        locals: { collection: @entity.wordforms.ordered_by_flags }
+    )
+  %>
 </article>

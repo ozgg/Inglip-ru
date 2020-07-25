@@ -12,7 +12,7 @@
             radio_button_tag(
                 "lexeme_data[#{part}]",
                 value,
-                handler.lexeme.data[part].to_i == value,
+                handler.lexeme.data[part.to_s].to_i == value,
                 data: options[key].to_h,
                 id: element_id
             )

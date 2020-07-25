@@ -1,0 +1,22 @@
+<% if collection.any? %>
+  <section class="lexeme-wordforms-raw">
+    <h2><%= t('.heading') %></h2>
+
+    <table>
+      <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.wordform.flags') %></th>
+        <th><%= t('activerecord.attributes.wordform.word') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% collection.each do |entity| %>
+      <tr>
+        <td><%= entity.flags.to_s(2).rjust(27, '0') %></td>
+        <td><%= entity.text %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </section>
+<% end %>

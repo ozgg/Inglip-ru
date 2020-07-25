@@ -24,6 +24,6 @@
 
   <div class="buttons">
     <%= f.hidden_field :lexeme_type_id if entity.id.nil? %>
-    <%= f.button t(:submit), class: 'button-save' %>
+    <%= f.button t(:save), class: 'button-save', name: nil %>
   </div>
 <% end %>

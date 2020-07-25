@@ -1,0 +1,52 @@
+<% content_for :meta_title, t('.title', infinitive: @entity.body) %>
+<% content_for :breadcrumbs do %>
+  <%= admin_biovision_component_link(component_handler.component) %>
+  <%= link_to(t('admin.lexeme_types.nav_item.text'), admin_lexeme_types_path) %>
+  <%= admin_lexeme_type_link(@entity.lexeme_type) %>
+  <span><%= @entity.body %></span>
+<% end %>
+
+<article>
+  <h1><%= @entity.body %></h1>
+
+  <nav>
+    <%=
+      link_to(
+          t('lexemes.edit.nav_text'),
+          edit_lexeme_path(id: @entity.id),
+          class: 'button-nav'
+      )
+    %>
+  </nav>
+
+  <dl class="fields">
+    <div>
+      <dt><%= t('activerecord.attributes.lexeme.body') %></dt>
+      <dd><%= @entity.body %></dd>
+    </div>
+
+    <% unless @entity.context.blank? %>
+      <div>
+        <dt><%= t('activerecord.attributes.lexeme.context') %></dt>
+        <dd><%= @entity.context %></dd>
+      </div>
+    <% end %>
+
+    <div>
+      <dt><%= t('activerecord.attributes.lexeme.lexeme_type') %></dt>
+      <dd><%= admin_lexeme_type_link(@entity.lexeme_type) %></dd>
+    </div>
+  </dl>
+
+  <% type_slug = @entity.lexeme_type.slug %>
+  <% if lookup_context.exists?("admin/lexemes/entity/_#{type_slug}") %>
+    <%=
+      render(
+          partial: "admin/lexemes/entity/#{type_slug}",
+          locals: { entity: @entity }
+      )
+    %>
+  <% else %>
+    <div class="message-box warning"><%= t('.no_section') %></div>
+  <% end %>
+</article>

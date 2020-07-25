@@ -25,8 +25,6 @@ Rails.application.routes.draw do
   resources :lexemes, only: %i[destroy update]
 
   scope '(:locale)', constraints: { locale: /ru|en/ } do
-    root 'index#index'
-
     resources :lexemes, only: %i[create edit]
 
     namespace :admin do

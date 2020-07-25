@@ -23,8 +23,8 @@ module Biovision
 
         def lexeme_valency_flags
           %w[
-            genitive_case dative_case accusative_case prepositional_case
-            instrumental_case
+            genitive_case dative_case accusative_case instrumental_case
+            prepositional_case locative_case
           ]
         end
 
@@ -61,10 +61,10 @@ module Biovision
           data = {}
           list = lexeme_data_enum
           list.select { |k| input.key?(k) }.each do |enum|
-            value = input[enum].to_i
-            next unless enum.keys.include?(value)
+            value = input[enum[0]].to_i
+            next unless enum[1].keys.include?(value)
 
-            data[enum] = value
+            data[enum[0].to_s] = value
           end
 
           data

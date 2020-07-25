@@ -14,7 +14,11 @@ class Wordform < ApplicationRecord
 
   validates_uniqueness_of :word_id, scope: :lexeme_id
 
-  scope :with_flag, ->(f) { where("flag & #{f.to_i} = #{f.to_i}") }
+  scope :with_flag, ->(f) { where("flags & #{f.to_i} = #{f.to_i}") }
+
+  def text
+    word.body
+  end
 
   # @param [Integer] flag
   def add_flag!(flag)

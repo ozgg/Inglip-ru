@@ -1,3 +1,9 @@
 <div class="data">
-  <div><%= entity.body %></div>
+  <div><%= admin_lexeme_link(entity) %></div>
+  <div class="info">
+    <%= entity.lexeme_type.name %>
+  </div>
+  <div class="secondary info">
+    <%= t(:wordform_count, count: entity.wordforms_count) %>
+  </div>
 </div>

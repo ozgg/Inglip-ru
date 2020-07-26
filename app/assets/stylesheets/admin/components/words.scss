@@ -1,0 +1,43 @@
+.wordform-flag-toggle {
+  list-style: none;
+  margin: var(--spacer-xs) 0;
+  padding: 0;
+
+  li {
+    margin-bottom: var(--spacer-xxxs);
+  }
+
+  label {
+    border: .1rem solid;
+    border-radius: var(--spacer-xxs);
+    cursor: pointer;
+    display: inline-block;
+    padding: var(--spacer-xxs);
+    transition: .25s;
+  }
+
+  input {
+    &:not(:checked) {
+      + label {
+        background-color: hsl(0, 0%, 98%);
+        border-color: hsl(0, 0%, 95%);
+        color: var(--text-color-secondary);
+      }
+    }
+
+    &:checked {
+      + label {
+        background-color: hsl(90, 75%, 95%);
+        border-color: hsl(90, 50%, 50%);
+        box-shadow: 0 0 .2rem hsl(90, 50%, 25%);
+      }
+    }
+
+    &:indeterminate {
+      + label {
+        background-color: hsl(45, 75%, 95%);
+        border-color: hsl(45, 50%, 50%);
+      }
+    }
+  }
+}

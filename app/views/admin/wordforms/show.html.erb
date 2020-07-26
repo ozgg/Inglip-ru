@@ -1,0 +1,51 @@
+<% content_for :meta_title, t('.title', text: @entity.text, infinitive: @entity.lexeme.body) %>
+<% content_for :breadcrumbs do %>
+  <%= admin_biovision_component_link(component_handler.component) %>
+  <%= link_to(t('admin.lexeme_types.nav_item.text'), admin_lexeme_types_path) %>
+  <%= admin_lexeme_type_link(@entity.lexeme.lexeme_type) %>
+  <%= admin_lexeme_link(@entity.lexeme) %>
+  <span><%= @entity.text %></span>
+<% end %>
+<% handler = Biovision::Components::Words::LexemeHandler[@entity.lexeme] %>
+
+<article>
+  <h1><%= @entity.text %></h1>
+
+  <dl class="fields">
+    <div>
+      <dt><%= t('attributes.lexeme') %></dt>
+      <dd>
+        <%= admin_lexeme_link(@entity.lexeme) %>
+        (<%= @entity.lexeme.lexeme_type.name %>)
+      </dd>
+    </div>
+    <div>
+      <dt><%= t('activerecord.attributes.wordform.flags') %></dt>
+      <dd>
+        <div class="current-flag"><%= @entity.flags.to_s(2).rjust(32, '0') %></div>
+        <ul class="wordform-flag-toggle">
+          <% 32.times do |f| %>
+            <li>
+              <%
+                flag = 1 << f
+                element_id = "wordform_flag_#{flag}"
+              %>
+              <%=
+                check_box_tag(
+                    "wordform_flags[#{flag}]",
+                    flag,
+                    @entity.flag?(flag),
+                    data: {
+                        url: flag_admin_wordform_path(id: @entity.id, flag: flag)
+                    },
+                    id: element_id
+                )
+              %>
+              <%= label_tag(element_id, handler.class.wordform_flag_name(flag)) %>
+            </li>
+          <% end %>
+        </ul>
+      </dd>
+    </div>
+  </dl>
+</article>

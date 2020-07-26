@@ -74,6 +74,10 @@ ru:
       entity:
         wordforms:
           heading: "Флаги словоформ"
+          form: "Форма"
+    wordforms:
+      show:
+        title: "Словоформа «%{text}» (%{infinitive})"
   biovision:
     components:
       words:

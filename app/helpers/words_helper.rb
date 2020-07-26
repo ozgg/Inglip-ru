@@ -15,4 +15,11 @@ module WordsHelper
   def admin_lexeme_link(entity, text = entity.body, options = {})
     link_to(text, admin_lexeme_path(id: entity.id), options)
   end
+
+  # @param [Wordform] entity
+  # @param [String] text
+  # @param [Hash] options
+  def admin_wordform_link(entity, text = entity.text, options = {})
+    link_to(text, admin_wordform_path(id: entity.id), options)
+  end
 end

@@ -52,23 +52,28 @@ module Biovision
         protected
 
         def normalize
-          mix_locative unless locative?
-          mix_partitive unless partitive?
-          super
+          add_locative unless locative?
+          add_partitive unless partitive?
         end
 
-        def mix_locative
-          flags = self.class.wordform_flags
-          lexeme.wordforms.with_flag(flags[:prepositional]).each do |wordform|
-            wordform.add_flag! flags[:locative]
+        # @param [Symbol] from_case
+        # @param [Symbol] to_case
+        def copy_case(from_case, to_case)
+          %i[number_singular number_plural].each do |number_flag|
+            flags = self.class.wordform_flag(number_flag, from_case)
+            source = wordform(flags)
+            next if source.nil?
+
+            self[source.text] = self.class.wordform_flag(number_flag, to_case)
           end
         end
 
-        def mix_partitive
-          flags = self.class.wordform_flags
-          lexeme.wordforms.with_flag(flags[:genitive]).each do |wordform|
-            wordform.add_flag! flags[:partitive]
-          end
+        def add_locative
+          copy_case(:case_prepositional, :case_locative)
+        end
+
+        def add_partitive
+          copy_case(:case_genitive, :case_partitive)
         end
       end
     end

@@ -82,7 +82,7 @@ class CreateWordsComponent < ActiveRecord::Migration[6.0]
       t.references :word, null: false, foreign_key: { on_update: :cascade, on_delete: :cascade }
       t.references :lexeme, null: false, foreign_key: { on_update: :cascade, on_delete: :cascade }
       t.timestamps
-      t.integer :flags
+      t.integer :flags, index: true
     end
   end
 

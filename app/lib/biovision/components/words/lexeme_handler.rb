@@ -29,9 +29,8 @@ module Biovision
         def []=(body, flags)
           return if lexeme.nil? || body.blank?
 
-          link = lexeme.wordforms.find_or_initialize_by(word: Word[body])
-          link.flags |= flags
-          link.save
+          criteria = { flags: flags.to_i, word: Word[body] }
+          lexeme.wordforms.find_or_create_by criteria
         end
 
         # @param [Integer] flags
@@ -39,15 +38,16 @@ module Biovision
           f = flags.to_i
           return if f.zero?
 
-          lexeme.wordforms.find_by("flags & #{f} = #{f}")
+          lexeme.wordforms.with_flag(f).first
         end
 
         # @param [Symbol] keys
         def decline(*keys)
           return if lexeme.nil?
+          return lexeme.body unless lexeme.declinable?
 
           flags = self.class.wordform_flag(*keys)
-          word = wordform(flag)&.word
+          word = wordform(flags)&.word
 
           word&.body || "[#{lexeme.body}:#{flags}]"
         end
@@ -87,7 +87,7 @@ module Biovision
         protected
 
         def normalize
-          self[lexeme.body] = 0xffffffff unless lexeme.declinable?
+          # add wordforms for all cases
         end
       end
     end

@@ -10,6 +10,16 @@ module Biovision
           keys.map { |key| wordform_flags[key].to_i }.sum
         end
 
+        # @param [Integer] flag
+        def wordform_flag_name(flag)
+          result = flag
+          wordform_flags.each do |k, v|
+            return I18n.t("wordform.flags.#{k}", default: k) if flag.to_i == v
+          end
+
+          result
+        end
+
         # Every lexeme must have infinitive
         def wordform_flags
           {

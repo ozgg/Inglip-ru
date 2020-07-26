@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :lexemes, only: %i[destroy update]
+  resources :lexemes, :wordforms, only: %i[destroy update]
 
   scope '(:locale)', constraints: { locale: /ru|en/ } do
     resources :lexemes, only: %i[create edit]
@@ -34,6 +34,12 @@ Rails.application.routes.draw do
         end
       end
       resources :lexemes, only: %i[index show]
+      resources :wordforms, only: %i[index show] do
+        member do
+          put 'flags/:flag' => :add_flag, as: :flag
+          delete 'flags/:flag' => :remove_flag
+        end
+      end
     end
   end
 end

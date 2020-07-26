@@ -12,13 +12,24 @@ class Wordform < ApplicationRecord
   belongs_to :word, counter_cache: :wordforms_count
   belongs_to :lexeme, counter_cache: :wordforms_count
 
-  validates_uniqueness_of :word_id, scope: :lexeme_id
+  validates_uniqueness_of :word_id, scope: %i[lexeme_id flags]
 
-  scope :with_flag, ->(f) { where("flags & #{f.to_i} = #{f.to_i}") }
-  scope :ordered_by_flags, -> { order('flags asc')}
+  scope :with_flag, ->(f) { where(flags: f.to_i) }
+  scope :ordered_by_flags, -> { order('flags asc') }
+  scope :list_for_administration, -> { order('lexeme_id asc, flags asc') }
+
+  # @param [Integer] page
+  def self.page_for_administration(page = 1)
+    list_for_administration.page(page)
+  end
 
   def text
     word.body
+  end
+
+  # @param [Integer] flag
+  def flag?(flag)
+    flags & flag.to_i == flag.to_i
   end
 
   # @param [Integer] flag

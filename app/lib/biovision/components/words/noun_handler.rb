@@ -52,8 +52,8 @@ module Biovision
         protected
 
         def normalize
-          add_locative unless locative?
-          add_partitive unless partitive?
+          # add_locative unless locative?
+          # add_partitive unless partitive?
         end
 
         # @param [Symbol] from_case

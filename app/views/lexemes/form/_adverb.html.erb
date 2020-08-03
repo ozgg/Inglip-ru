@@ -1,0 +1,22 @@
+<%
+  handler = Biovision::Components::Words::LexemeHandler[f.object]
+  flags = Biovision::Components::Words::AdverbHandler.lexeme_data_flags
+%>
+
+<fieldset class="lexeme-data">
+  <legend><%= t('lexemes.form.lexeme_data') %></legend>
+
+  <%=
+    render(
+        partial: 'lexemes/form/lexeme_flags',
+        locals: { handler: handler, flags: flags, options: {} }
+    )
+  %>
+</fieldset>
+
+<%=
+  render(
+      partial: 'lexemes/form/adverb/wordforms',
+      locals: { handler: handler }
+  )
+%>

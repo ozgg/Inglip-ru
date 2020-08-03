@@ -1,0 +1,22 @@
+<%
+  handler = Biovision::Components::Words::LexemeHandler[entity]
+  flags = Biovision::Components::Words::AdjectiveHandler.lexeme_data_flags
+%>
+
+<section class="lexeme-data">
+  <h2><%= t('lexemes.form.lexeme_data') %></h2>
+
+  <%=
+    render(
+        partial: 'admin/lexemes/entity/lexeme_flags',
+        locals: { handler: handler, flags: flags }
+    )
+  %>
+</section>
+
+<%=
+  render(
+      partial: 'admin/lexemes/entity/adverb/wordforms',
+      locals: { handler: handler }
+  )
+%>

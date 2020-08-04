@@ -118,8 +118,11 @@ ru:
       instrumental_case: "Валентность в творительный падеж"
       prepositional_case: "Валентность в предложный падеж"
       locative_case: "Валентность в локатив"
+      partitive_case: "Валентность в партитив"
       vowel_ending: "Окончание на гласную"
       consonant_ending: "Окончание на согласную"
+      forms: "Формы"
+      transitivity: "Переходность"
       enums:
         gender:
           feminine: "Женский"
@@ -139,7 +142,7 @@ ru:
           intransitive: "Непереходное"
           transitive: "Переходное"
           both: "Оба"
-        form:
+        forms:
           imperfective: "Несовершенный вид"
           perfective: "Совершенный вид"
           both: "Оба вида"

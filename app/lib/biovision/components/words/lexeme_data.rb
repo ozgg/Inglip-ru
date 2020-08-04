@@ -24,7 +24,7 @@ module Biovision
         def lexeme_valency_flags
           %w[
             genitive_case dative_case accusative_case instrumental_case
-            prepositional_case locative_case
+            prepositional_case locative_case partitive_case
           ]
         end
 

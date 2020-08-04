@@ -26,7 +26,7 @@ module Biovision
         end
 
         def self.lexeme_data_flags
-          super + lexeme_valency_flags + %w[passive]
+          lexeme_valency_flags + %w[passive]
         end
 
         def self.lexeme_data_numbers
@@ -38,6 +38,18 @@ module Biovision
             forms: FORMS,
             transitivity: TRANSITIVITY
           }
+        end
+
+        def self.past_tense_flags
+          result = {}
+          tense_flag = tense_flags[:tense_past]
+          gender_flags.each do |k, v|
+            result[k] = v | number_flags[:number_singular] | tense_flag
+          end
+          result[:number_plural] = number_flags[:number_plural] | tense_flag
+          result[:gerund] = verb_form_flags[:gerund] | tense_flag
+
+          result
         end
       end
     end

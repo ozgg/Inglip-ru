@@ -31,7 +31,7 @@
             flag = case_flag | col_flag
             flag |= number_flags[:number_singular] unless col_key == :number_plural
           %>
-          <th data-col="<%= col_key %>">
+          <td data-col="<%= col_key %>">
             <%=
               text_field_tag(
                   "wordforms[#{flag}]",
@@ -41,7 +41,7 @@
                   title: flag
               )
             %>
-          </th>
+          </td>
         <% end %>
       </tr>
     <% end %>

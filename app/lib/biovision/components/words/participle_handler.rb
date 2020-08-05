@@ -12,7 +12,7 @@ module Biovision
         }.freeze
 
         def self.lexeme_data_flags
-          super + lexeme_valency_flags + %w[perfective passive]
+          lexeme_valency_flags + %w[perfective passive]
         end
 
         def self.lexeme_data_enum
@@ -23,7 +23,8 @@ module Biovision
 
         def self.wordform_flags
           sets = [
-            gender_flags, number_flags, case_flags, adjective_form_flags
+            gender_flags, number_flags, case_flags, adjective_form_flags,
+            tense_flags.reject { |k, _| k == :tense_future }
           ]
           result = super
           sets.each { |part| result.merge! part }

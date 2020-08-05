@@ -1,0 +1,53 @@
+<fieldset class="lexeme-wordforms">
+  <legend><%= t('lexemes.form.wordforms') %></legend>
+
+  <%
+    gender_flags = Biovision::Components::Words::ParticipleHandler.gender_flags
+    number_flags = Biovision::Components::Words::ParticipleHandler.number_flags
+    case_flags = Biovision::Components::Words::ParticipleHandler.case_flags
+    skip_cases = %i[case_partitive case_locative]
+    cols = gender_flags.merge(number_flags).reject { |k, _| k == :number_singular }
+    rows = case_flags.reject { |k, _| skip_cases.include? k }
+    tenses = Biovision::Components::Words::ParticipleHandler.tense_flags
+  %>
+  <% %i[tense_past tense_present].each do |tense_key| %>
+    <% tense_flag = tenses[tense_key] %>
+    <table>
+      <caption><%= t("wordform.flags.#{tense_key}") %></caption>
+      <thead>
+      <tr>
+        <th></th>
+        <% cols.keys.each do |key| %>
+          <th data-col="<%= key %>" scope="col">
+            <%= t("wordform.flags.#{key}") %>
+          </th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+      <% rows.each do |case_key, case_flag| %>
+        <tr data-row="<%= case_key %>">
+          <th scope="row"><%= t("wordform.flags.#{case_key}") %></th>
+          <% cols.each do |col_key, col_flag| %>
+            <%
+              flag = case_flag | col_flag | tense_flag
+              flag |= number_flags[:number_singular] unless col_key == :number_plural
+            %>
+            <th data-col="<%= col_key %>">
+              <%=
+                text_field_tag(
+                    "wordforms[#{flag}]",
+                    handler.wordform(flag)&.text,
+                    class: 'input-text',
+                    placeholder: flag,
+                    title: flag
+                )
+              %>
+            </th>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</fieldset>

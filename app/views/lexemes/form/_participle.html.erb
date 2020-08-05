@@ -1,0 +1,31 @@
+<%
+  handler = Biovision::Components::Words::LexemeHandler[f.object]
+  flags = Biovision::Components::Words::ParticipleHandler.lexeme_data_flags
+  enums = Biovision::Components::Words::ParticipleHandler.lexeme_data_enum
+  enum_options = {}
+%>
+
+<fieldset class="lexeme-data">
+  <legend><%= t('lexemes.form.lexeme_data') %></legend>
+
+  <%=
+    render(
+        partial: 'lexemes/form/lexeme_flags',
+        locals: { handler: handler, flags: flags, options: {} }
+    )
+  %>
+
+  <%=
+    render(
+        partial: 'lexemes/form/lexeme_enums',
+        locals: { handler: handler, enums: enums, options: enum_options }
+    )
+  %>
+</fieldset>
+
+<%=
+  render(
+      partial: 'lexemes/form/participle/wordforms',
+      locals: { handler: handler }
+  )
+%>

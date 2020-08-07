@@ -1,0 +1,18 @@
+<section class="lexeme-wordforms">
+  <h2><%= t('lexemes.form.wordforms') %></h2>
+
+  <%
+    flags = Biovision::Components::Words::PrepositionHandler.wordform_flags
+  %>
+
+  <dl class="fields">
+    <% flags.each do |key, flag| %>
+      <%=
+        render(
+            partial: 'admin/lexemes/entity/wordform_list_flag',
+            locals: { key: key, text: handler.wordform(flag)&.text }
+        )
+      %>
+    <% end %>
+  </dl>
+</section>

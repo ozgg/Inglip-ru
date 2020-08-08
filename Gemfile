@@ -26,9 +26,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'dotenv-rails'
-
 gem 'autoprefixer-rails', group: :production
+gem 'csv'
+gem 'dotenv-rails'
 
 # gem 'biovision', git: 'https://github.com/Biovision/biovision.git'
 gem 'biovision', path: '/Users/maxim/Projects/Biovision/gems/biovision'

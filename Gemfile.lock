@@ -90,8 +90,9 @@ GEM
       activesupport (>= 3.2.0)
       carrierwave
       fastimage
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     crass (1.0.6)
+    csv (3.1.7)
     database_cleaner (1.8.5)
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
@@ -276,6 +277,7 @@ DEPENDENCIES
   biovision!
   bootsnap (>= 1.4.2)
   byebug
+  csv
   database_cleaner
   dotenv-rails
   factory_bot_rails

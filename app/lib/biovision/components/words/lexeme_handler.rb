@@ -58,7 +58,7 @@ module Biovision
           lexeme = Lexeme.new(attributes)
           self.lexeme = lexeme
           lexeme.data = self.class.normalized_lexeme_data(lexeme_data)
-          if lexeme.save!
+          if lexeme.save
             self[lexeme.body] = self.class.wordform_flags[:infinitive]
           end
           lexeme

@@ -7,25 +7,28 @@ module Biovision
       class AdverbImporter < BaseImporter
         FAMILIES = %i[conduct measure time place reason totality].freeze
 
-        def self.handler_class
+        def handler_class
           Biovision::Components::Words::AdverbHandler
         end
 
-        def self.lexeme_type
+        def lexeme_type
           LexemeType['adverb']
+        end
+
+        def infinitive_key
+          'body'
         end
 
         def attributes
           {
-            lexeme_type: self.class.lexeme_type,
-            body: @row['body'],
+            lexeme_type: lexeme_type,
+            body: @row[infinitive_key],
             context: FAMILIES[@row['family'].to_i]
           }
         end
 
         def wordforms
-          flag = self.class.handler_class.wordform_flags[:comparative]
-          { flag => @row['comparative_degree'] }
+          { handler_class.wordform_flags[:comparative] => @row['comparative_degree'] }
         end
 
         private

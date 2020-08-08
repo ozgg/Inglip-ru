@@ -7,12 +7,16 @@ module Biovision
       class PrepositionImporter < BaseImporter
         CASES = %w[genitive dative accusative instrumental prepositional locative].freeze
 
-        def self.handler_class
+        def handler_class
           Biovision::Components::Words::PrepositionHandler
         end
 
-        def self.lexeme_type
+        def lexeme_type
           LexemeType['preposition']
+        end
+
+        def infinitive_key
+          'name'
         end
 
         private

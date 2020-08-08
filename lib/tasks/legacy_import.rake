@@ -10,8 +10,21 @@ namespace :legacy_import do
   task verbs: :environment do
   end
 
-  desc 'Import adjectives from legacy CSV'
+  desc 'Import adjectives and participles from legacy CSV'
   task adjectives: :environment do
+    file_name = "#{Rails.root}/tmp/import/legacy/adjectives.csv"
+    if File.exist?(file_name)
+      importer = Biovision::Components::Legacy::AdjectiveImporter.new
+      CSV.foreach(file_name, headers: true) do |row|
+        print "\r#{row['nominative_masculine']}  "
+        importer << row
+      end
+    else
+      puts "Cannot find file #{file_name}"
+    end
+
+    puts "\nDone. Now we have #{LexemeType['adjective'].lexemes.count} adjectives."
+    puts "Also now we have #{LexemeType['participle'].lexemes.count} participles."
   end
 
   desc 'Import prepositions from legacy CSV'

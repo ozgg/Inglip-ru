@@ -8,23 +8,27 @@ module Biovision
         # @param [CSV::Row] row
         def <<(row)
           @row = row
-          handler = self.class.handler_class.new
+          handler = handler_class.new
           handler.create(attributes, lexeme_data)
           handler.wordforms = wordforms
         end
 
-        def self.handler_class
+        def handler_class
           Biovision::Components::Words::LexemeHandler
         end
 
-        def self.lexeme_type
+        def lexeme_type
           nil
+        end
+
+        def infinitive_key
+          ''
         end
 
         def attributes
           {
-            lexeme_type: self.class.lexeme_type,
-            body: @row['name'],
+            lexeme_type: lexeme_type,
+            body: @row[infinitive_key],
             context: 'legacy'
           }
         end

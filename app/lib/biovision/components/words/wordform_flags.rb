@@ -49,9 +49,7 @@ module Biovision
             case_dative: 1 << 8,
             case_accusative: 1 << 9,
             case_instrumental: 1 << 10,
-            case_prepositional: 1 << 11,
-            case_partitive: 1 << 12,
-            case_locative: 1 << 13
+            case_prepositional: 1 << 11
           }
         end
 
@@ -100,6 +98,14 @@ module Biovision
           {
             vowel_ending: 1 << 25,
             consonant_ending: 1 << 26
+          }
+        end
+
+        def noun_case_flags
+          {
+            partitive: 1 << 12,
+            locative: 1 << 13,
+            vocative: 1 << 27
           }
         end
       end

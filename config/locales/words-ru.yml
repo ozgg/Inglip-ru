@@ -131,7 +131,7 @@ ru:
           mutual: "Обоюдный"
         number:
           any: "Любое"
-          single_only: "Только единственное"
+          singular_only: "Только единственное"
           plural_only: "Только множественное"
         type:
           quantitative: "Качественное"
@@ -160,8 +160,9 @@ ru:
       case_accusative: "Винительный падеж"
       case_instrumental: "Творительный падеж"
       case_prepositional: "Предложный падеж"
-      case_partitive: "Партитив"
-      case_locative: "Локатив"
+      partitive: "Партитив"
+      locative: "Локатив"
+      vocative: "Вокатив"
       tense_past: "Прошедшее время"
       tense_present: "Настоящее время"
       tense_future: "Будущее время"

@@ -3,7 +3,18 @@
 namespace :legacy_import do
   desc 'Import nouns from legacy CSV'
   task nouns: :environment do
+    file_name = "#{Rails.root}/tmp/import/legacy/nouns.csv"
+    if File.exist?(file_name)
+      importer = Biovision::Components::Legacy::NounImporter.new
+      CSV.foreach(file_name, headers: true) do |row|
+        print "\r#{row['nominative']}  "
+        importer << row
+      end
+    else
+      puts "Cannot find file #{file_name}"
+    end
 
+    puts "\nDone. Now we have #{LexemeType['noun'].lexemes.count} nouns."
   end
 
   desc 'Import imperfective verbs from legacy CSV'

@@ -36,6 +36,10 @@ module Biovision
         def wordforms
           { }
         end
+
+        def lexeme_data
+          { }
+        end
       end
     end
   end

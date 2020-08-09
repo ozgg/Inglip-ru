@@ -19,6 +19,18 @@ namespace :legacy_import do
 
   desc 'Import imperfective verbs from legacy CSV'
   task verbs: :environment do
+    file_name = "#{Rails.root}/tmp/import/legacy/verbs.csv"
+    if File.exist?(file_name)
+      importer = Biovision::Components::Legacy::VerbImporter.new
+      CSV.foreach(file_name, headers: true) do |row|
+        print "\r#{row['infinitive']}  "
+        importer << row
+      end
+    else
+      puts "Cannot find file #{file_name}"
+    end
+
+    puts "\nDone. Now we have #{LexemeType['verb'].lexemes.count} verbs."
   end
 
   desc 'Import adjectives and participles from legacy CSV'
@@ -55,6 +67,18 @@ namespace :legacy_import do
 
   desc 'Import perective verbs from legacy CSV'
   task perfective_verbs: :environment do
+    file_name = "#{Rails.root}/tmp/import/legacy/perfective_verbs.csv"
+    if File.exist?(file_name)
+      importer = Biovision::Components::Legacy::VerbImporter.new
+      CSV.foreach(file_name, headers: true) do |row|
+        print "\r#{row['infinitive']}  "
+        importer << row
+      end
+    else
+      puts "Cannot find file #{file_name}"
+    end
+
+    puts "\nDone. Now we have #{LexemeType['verb'].lexemes.count} verbs."
   end
 
   desc 'Import adverbs from legacy CSV'

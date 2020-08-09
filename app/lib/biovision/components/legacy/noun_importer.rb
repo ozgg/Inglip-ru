@@ -3,7 +3,7 @@
 module Biovision
   module Components
     module Legacy
-      # Import legacy data for adjectives from CSV
+      # Import legacy data for nouns from CSV
       class NounImporter < BaseImporter
         GENDERS = { 0 => 1, 1 => 0, 2 => 2 }.freeze
         FLAGS = {

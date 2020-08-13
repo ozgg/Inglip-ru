@@ -35,7 +35,7 @@ module Biovision
 
         def self.lexeme_data_enum
           {
-            forms: FORMS,
+            form: FORMS,
             transitivity: TRANSITIVITY
           }
         end
@@ -50,6 +50,10 @@ module Biovision
           result[:gerund] = verb_form_flags[:gerund] | tense_flag
 
           result
+        end
+
+        def perfective?
+          lexeme.data['form'] == 1
         end
       end
     end

@@ -41,6 +41,10 @@ module Biovision
           lexeme.flag?(:has_partitive)
         end
 
+        def vocative?
+          lexeme.flag?(:has_vocative)
+        end
+
         def gender
           GENDERS[lexeme.data['gender'].to_i]
         end

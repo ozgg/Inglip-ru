@@ -52,7 +52,7 @@ module Biovision
 
         def lexeme_data
           result = {}
-          result[:forms] = 1 if @row.key?('passive_masculine')
+          result[:form] = 1 if @row.key?('passive_masculine')
           result['passive'] = '1' if @row['infinitive'].end_with?('ся')
           result['valency'] = @row['valency'].to_i
 

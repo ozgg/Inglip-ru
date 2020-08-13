@@ -39,5 +39,15 @@ module Sentence
     def gender_flag
       (@flags & handler.class.gender_flags.keys).first
     end
+
+    # @param [Symbol] new_flag
+    def tense_flag=(new_flag)
+      @flags -= handler.class.tense_flags.keys
+      @flags << new_flag unless new_flag.nil?
+    end
+
+    def tense_flag
+      (@flags & handler.class.tense_flags.keys).first
+    end
   end
 end

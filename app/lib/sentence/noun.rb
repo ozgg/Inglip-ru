@@ -10,8 +10,12 @@ module Sentence
 
     # @param [Array] permitted
     def randomize_flags(permitted = handler.class.wordform_flags.keys)
-      randomize_case(permitted)
-      randomize_number(permitted)
+      if handler.lexeme.declinable?
+        randomize_case(permitted)
+        randomize_number(permitted)
+      else
+        self.flags = [:infinitive]
+      end
     end
 
     # @param [Array] permitted

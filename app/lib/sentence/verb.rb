@@ -10,7 +10,6 @@ module Sentence
 
     # @param [Array] permitted
     def randomize_flags(permitted = handler.class.wordform_flags.keys)
-      # tense_flags, number_flags, person_flags, verb_form_flags
       randomize_tense(permitted)
       randomize_number(permitted)
       randomize_person(permitted)
@@ -20,45 +19,23 @@ module Sentence
 
     # @param [Array] permitted
     def randomize_tense(permitted)
-      set = permitted & handler.class.tense_flags.keys
-      self.tense_flag = sample(set)
+      self.tense_flag = sample(handler.class.tense_flags.keys & permitted)
     end
 
     # @param [Array] permitted
     def randomize_person(permitted)
-      set = permitted & handler.class.person_flags.keys
-      self.person_flag = sample(set)
+      self.person_flag = sample(handler.class.person_flags.keys & permitted)
     end
 
     # @param [Array] permitted
     def randomize_form(permitted)
-      set = permitted & handler.class.verb_form_flags.keys
-      self.form_flag = sample(set)
+      self.form_flag = sample(handler.class.verb_form_flags.keys & permitted)
     end
 
     def check_flags
-      if handler.lexeme.flag?(:gerund)
-        self.number_flag = nil
-        self.person_flag = nil
-        self.tense_flag = nil
-      end
-      if handler.perfective? && tense_flag == :tense_present
-        self.tense_flag = :tense_past
-      end
-      if handler.lexeme.flag?(:imperative)
-        self.tense_flag = nil
-        self.person_flag = nil
-      end
-    end
-
-    # @param [Symbol] new_flag
-    def tense_flag=(new_flag)
-      @flags -= handler.class.tense_flags.keys
-      @flags << new_flag unless new_flag.nil?
-    end
-
-    def tense_flag
-      (@flags & handler.class.tense_flags.keys).first
+      check_gerund
+      check_tense
+      check_imperative
     end
 
     # @param [Symbol] new_flag
@@ -79,6 +56,29 @@ module Sentence
 
     def form_flag
       (@flags & handler.class.verb_form_flags.keys).first
+    end
+
+    private
+
+    def check_imperative
+      return unless handler.lexeme.flag?(:imperative)
+
+      self.tense_flag = nil
+      self.person_flag = nil
+    end
+
+    def check_tense
+      return unless handler.perfective? || tense_flag == :tense_present
+
+      self.tense_flag = :tense_past
+    end
+
+    def check_gerund
+      return unless handler.lexeme.flag?(:gerund)
+
+      self.number_flag = nil
+      self.person_flag = nil
+      self.tense_flag = nil
     end
   end
 end

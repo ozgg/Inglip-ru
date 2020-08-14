@@ -30,8 +30,8 @@ gem 'autoprefixer-rails', group: :production
 gem 'csv'
 gem 'dotenv-rails'
 
-# gem 'biovision', git: 'https://github.com/Biovision/biovision.git'
-gem 'biovision', path: '/Users/maxim/Projects/Biovision/gems/biovision'
+gem 'biovision', git: 'https://github.com/Biovision/biovision.git'
+# gem 'biovision', path: '/Users/maxim/Projects/Biovision/gems/biovision'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

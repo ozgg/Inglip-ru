@@ -7,7 +7,6 @@ module Biovision
       module WordformFlags
         # @param [Symbol]
         def wordform_flag(*keys)
-          Rails.logger.debug "\n\n\n#{keys}\n\n\n"
           keys.map { |key| wordform_flags[key].to_i }.sum
         end
 

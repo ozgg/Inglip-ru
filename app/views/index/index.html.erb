@@ -1,0 +1,6 @@
+<%
+  seed = params.key?(:seed) ? params[:seed].to_i : nil
+  bidding = Sentence::Bidding.new(seed)
+%>
+<p><%= bidding %></p>
+<p><%= bidding.seed %></p>

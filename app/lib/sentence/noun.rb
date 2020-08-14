@@ -39,5 +39,15 @@ module Sentence
         self.number_flag = sample(set)
       end
     end
+
+    def gender_flag
+      mapping = {
+        0 => :gender_feminine,
+        1 => :gender_masculine,
+        2 => :gender_neuter,
+      }
+
+      mapping[handler.lexeme.data['gender']]
+    end
   end
 end

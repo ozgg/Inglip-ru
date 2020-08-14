@@ -23,6 +23,11 @@ module Sentence
     end
 
     # @param [Array] permitted
+    def randomize_number(permitted)
+      self.number_flag = sample(handler.class.number_flags.keys & permitted)
+    end
+
+    # @param [Array] permitted
     def randomize_person(permitted)
       self.person_flag = sample(handler.class.person_flags.keys & permitted)
     end
@@ -56,6 +61,10 @@ module Sentence
 
     def form_flag
       (@flags & handler.class.verb_form_flags.keys).first
+    end
+
+    def perfective?
+      handler.perfective?
     end
 
     private

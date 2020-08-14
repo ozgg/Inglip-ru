@@ -8,7 +8,7 @@ module Sentence
     attr_accessor :generator, :handler
     attr_reader :flags
 
-    # @param [Integer] seed
+    # @param [Integer|nil] seed
     # @param [Lexeme] lexeme
     def initialize(seed = nil, lexeme = nil)
       self.generator = Random.new(seed || Random.new_seed)
@@ -33,6 +33,25 @@ module Sentence
 
     def seed
       generator.seed
+    end
+
+    # @param [Symbol] flag
+    def remove_flag(flag)
+      @flags -= [flag]
+    end
+
+    # @param [Symbol] flag
+    def add_flag(flag)
+      @flags << flag unless @flags.include?(flag)
+    end
+
+    def reset_flags
+      @flags = []
+    end
+
+    # @param [Symbol] flag
+    def flag?(flag)
+      @flags.include? flag
     end
 
     # @param [Array] permitted

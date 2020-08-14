@@ -49,7 +49,7 @@ module Biovision
           flags = self.class.wordform_flag(*keys)
           word = wordform(flags)&.word
 
-          word&.body || "[#{lexeme.body}:#{flags}]"
+          word&.body || "[#{lexeme.body}:#{flags}/#{lexeme.id}] (#{keys.join(',')})"
         end
 
         # @param [Hash] attributes

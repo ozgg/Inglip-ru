@@ -18,7 +18,7 @@ module Biovision
         }.freeze
 
         def self.wordform_flags
-          sets = [tense_flags, number_flags, person_flags, verb_form_flags]
+          sets = [tense_flags, number_flags, person_flags, verb_form_flags, gender_flags]
           result = super
           sets.each { |part| result.merge! part }
 

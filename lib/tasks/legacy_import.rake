@@ -62,7 +62,7 @@ namespace :legacy_import do
       puts "Cannot find file #{file_name}"
     end
 
-    puts "Done. Now we have #{LexemeType['preposision'].lexemes.count} prepositions."
+    puts "Done. Now we have #{LexemeType['preposition'].lexemes.count} prepositions."
   end
 
   desc 'Import perective verbs from legacy CSV'

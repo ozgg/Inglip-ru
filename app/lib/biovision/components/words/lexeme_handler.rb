@@ -8,7 +8,11 @@ module Biovision
         extend LexemeData
         extend WordformFlags
 
-        attr_accessor :lexeme
+        attr_accessor :lexeme, :declension_flags
+
+        def to_s
+          decline(*Array(declension_flags))
+        end
 
         # @param [Lexeme] lexeme
         def self.[](lexeme)
@@ -49,7 +53,7 @@ module Biovision
           flags = self.class.wordform_flag(*keys)
           word = wordform(flags)&.word
 
-          word&.body || "[#{lexeme.body}:#{flags}/#{lexeme.id}] (#{keys.join(',')})"
+          word&.body || "[#{lexeme.body}:#{keys.join(',')}/#{lexeme.id}]"
         end
 
         # @param [Hash] attributes

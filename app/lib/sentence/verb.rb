@@ -70,7 +70,7 @@ module Sentence
     private
 
     def check_imperative
-      return unless handler.lexeme.flag?(:imperative)
+      return unless flag?(:imperative)
 
       self.tense_flag = nil
       self.person_flag = nil
@@ -83,11 +83,11 @@ module Sentence
     end
 
     def check_gerund
-      return unless handler.lexeme.flag?(:gerund)
+      return unless flag?(:gerund)
 
       self.number_flag = nil
       self.person_flag = nil
-      self.tense_flag = nil
+      self.tense_flag = handler.perfective? ? :tense_past : :tense_present
     end
   end
 end

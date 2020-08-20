@@ -33,7 +33,7 @@ module Biovision
         end
 
         def perfective?
-          lexeme.data['form'] == 1
+          lexeme.flag?('perfective')
         end
       end
     end

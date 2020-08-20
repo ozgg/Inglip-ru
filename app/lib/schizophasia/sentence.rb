@@ -29,8 +29,11 @@ module Schizophasia
     end
 
     def prepare
-      parts << SentenceMembers::Subject.new(generator, flags)
-      parts << SentenceMembers::Predicate.new(generator, flags)
+      subject = SentenceMembers::Subject.new(generator, flags)
+      predicate = SentenceMembers::Predicate.new(generator, flags)
+      predicate.subject = subject
+      parts << subject
+      parts << predicate
     end
   end
 end

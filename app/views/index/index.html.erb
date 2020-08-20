@@ -1,11 +1,7 @@
 <%
   seed = params.key?(:seed) ? params[:seed].to_i : nil
-  bidding = Sentence::Bidding.new(seed)
-%>
-<p><%= bidding %></p>
-<%
   generator = seed.nil? ? Random.new : Random.new(seed)
   sentence = Schizophasia::Sentence.new(generator)
 %>
 <p><%= sentence %></p>
-<p><%= bidding.seed %></p>
+<p><%= sentence.seed %></p>

@@ -46,6 +46,10 @@ module Schizophasia
         random_lexeme('adjective')
       end
 
+      def random_participle
+        random_lexeme('participle')
+      end
+
       def random_noun
         random_lexeme('noun')
       end

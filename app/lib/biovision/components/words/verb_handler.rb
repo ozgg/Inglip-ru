@@ -55,6 +55,15 @@ module Biovision
         def perfective?
           lexeme.data['form'] == 1
         end
+
+        def valency
+          result = []
+          self.class.lexeme_valency_flags.each do |f|
+            result << f.split('_').reverse.join('_').to_sym if lexeme.flag? f
+          end
+
+          result
+        end
       end
     end
   end

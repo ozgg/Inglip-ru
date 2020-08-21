@@ -52,6 +52,13 @@ module Biovision
         def number
           NUMBERS[lexeme.data['number'].to_i]
         end
+
+        def grammatical_case_flag
+          flag_list = self.class.case_flags.keys
+          flag_list.each do |flag|
+            return flag if declension_flags.include?(flag)
+          end
+        end
       end
     end
   end

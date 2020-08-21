@@ -15,34 +15,39 @@ module Schizophasia
         }
       end
 
+      def build
+        if case_valency.blank?
+          noun_handler.declension_flags += [:case_nominative]
+        else
+          noun_handler.declension_flags += sample(case_valency)
+        end
+        prepare_modifier if flags[:use_modifier]
+        parts << noun_handler.to_s
+      end
+
       def prepare
         seed_flags
         prepare_noun_handler
-        if flags[:use_modifier]
-          if flags[:use_participle]
-            prepare_participle_handler
-            parts << participle_handler.to_s
-          else
-            prepare_adjective_handler
-            parts << adjective_handler.to_s
-          end
-        end
-        parts << noun_handler.to_s
       end
 
       def prepare_noun_handler
         handler = random_noun
         handler.declension_flags = %i[number_singular]
-        if case_valency.blank?
-          handler.declension_flags += [:case_nominative]
-        else
-          handler.declension_flags += sample(*case_valency)
-        end
         self.noun_handler = handler
       end
 
+      def prepare_modifier
+        if flags[:use_participle]
+          prepare_participle_handler
+          parts << participle_handler
+        else
+          prepare_adjective_handler
+          parts << adjective_handler
+        end
+      end
+
       def prepare_adjective_handler
-        declension_flags = [number_flag, gender_flag, :case_nominative]
+        declension_flags = [number_flag, gender_flag, case_flag]
         handler = random_adjective
         handler.declension_flags = declension_flags
         self.adjective_handler = handler
@@ -50,7 +55,7 @@ module Schizophasia
 
       def prepare_participle_handler
         handler = random_participle
-        declension_flags = [number_flag, gender_flag, :case_nominative]
+        declension_flags = [number_flag, gender_flag, case_flag]
         declension_flags += handler.perfective? ? [:tense_past] : [:tense_present]
         handler.declension_flags = declension_flags
         self.participle_handler = handler
@@ -75,6 +80,10 @@ module Schizophasia
         }
 
         mapping[noun_handler.gender]
+      end
+
+      def case_flag
+        noun_handler.grammatical_case_flag
       end
     end
   end

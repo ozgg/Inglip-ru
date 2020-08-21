@@ -18,13 +18,15 @@ module Schizophasia
     end
 
     def to_s
-      parts.map(&:to_s).join(' ')
+      parts.map(&:to_s).join(' ').upcase_first
     end
 
     def seed_flags
       self.flags = {
-        tense: %i[tense_present tense_past][generator.rand(2)],
-        number: %i[number_singular number_plural][generator.rand(2)]
+        tense: sample(:tense_present, :tense_past),
+        number: sample(:number_singular, :number_plural),
+        use_gerund: sample(true, false),
+        use_apposition: sample(true, false)
       }
     end
 
@@ -32,8 +34,23 @@ module Schizophasia
       subject = SentenceMembers::Subject.new(generator, flags)
       predicate = SentenceMembers::Predicate.new(generator, flags)
       predicate.subject = subject
+      if flags[:use_gerund]
+        gerund = SentenceMembers::Gerund.new(generator, flags)
+        parts << gerund.to_s + ','
+      end
       parts << subject
       parts << predicate
+      if flags[:use_apposition]
+        apposition = SentenceMembers::Subject.new(generator)
+        apposition.flags[:use_apposition] = false
+        apposition.case_valency = [:case_instrumental] #predicate.case_valency
+        parts << apposition.to_s
+      end
+    end
+
+    # @param items
+    def sample(*items)
+      items[generator.rand(items.count)]
     end
   end
 end

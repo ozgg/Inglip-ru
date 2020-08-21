@@ -1,7 +1,10 @@
 <%
   seed = params.key?(:seed) ? params[:seed].to_i : nil
   generator = seed.nil? ? Random.new : Random.new(seed)
-  sentence = Schizophasia::Sentence.new(generator)
 %>
-<p><%= sentence %></p>
-<p><%= sentence.seed %></p>
+<p>
+  <% 10.times do %>
+    <%= Schizophasia::Sentence.new(generator) %>.
+  <% end %>
+</p>
+<p><%= generator.seed %></p>

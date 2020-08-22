@@ -25,7 +25,7 @@ module Schizophasia
 
       def prepare_verb_handler
         handler = random_verb
-        flags[:tense] = [:tense_past] if handler.perfective?
+        flags[:tense] = :tense_past if handler.perfective?
         handler.declension_flags = [:gerund, flags[:tense]]
 
         self.verb_handler = handler
@@ -38,8 +38,8 @@ module Schizophasia
       end
 
       def case_valency
-        [:case_instrumental]
-        # verb_handler.valency
+        result = verb_handler.valency
+        result.blank? ? [:case_instrumental] : result
       end
     end
   end

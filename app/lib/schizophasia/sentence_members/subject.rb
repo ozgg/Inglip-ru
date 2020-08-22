@@ -5,13 +5,14 @@ module Schizophasia
     # Subject in sentence
     class Subject < SentenceMember
       attr_accessor :case_valency
-      attr_accessor :noun_handler, :adjective_handler, :participle_handler
+      attr_accessor :noun_handler, :adjective_handler, :participle_handler, :preposition_handler
 
       def seed_flags
         self.flags = {
           use_apposition: sample(true, false),
           use_modifier: sample(true, false),
-          use_participle: sample(true, false)
+          use_participle: sample(true, false),
+          use_preposition: sample(true, false)
         }
       end
 
@@ -20,6 +21,12 @@ module Schizophasia
           noun_handler.declension_flags += [:case_nominative]
         else
           noun_handler.declension_flags += sample(case_valency)
+          flags[:use_preposition] = true if %i[case_locative case_prepositional].include? case_flag
+        end
+        flags[:use_preposition] = false if case_flag == :case_nominative
+        if flags[:use_preposition]
+          prepare_preposition_handler
+          parts << preposition_handler.to_s
         end
         prepare_modifier if flags[:use_modifier]
         parts << noun_handler.to_s
@@ -59,6 +66,12 @@ module Schizophasia
         declension_flags += handler.perfective? ? [:tense_past] : [:tense_present]
         handler.declension_flags = declension_flags
         self.participle_handler = handler
+      end
+
+      def prepare_preposition_handler
+        preposition_valency = case_flag.to_s.split('_').reverse.join('_')
+        self.preposition_handler = random_preposition(preposition_valency)
+        preposition_handler.declension_flags = [:infinitive]
       end
 
       def number_flag

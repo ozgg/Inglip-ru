@@ -36,8 +36,9 @@ module Schizophasia
       end
 
       # @param [String] type
-      def random_lexeme(type)
-        list = LexemeType[type].lexemes
+      # @param [Hash|String] criteria
+      def random_lexeme(type, criteria = {})
+        list = LexemeType[type].lexemes.where(criteria)
         lexeme = list.offset(generator.rand(list.count)).first
         Biovision::Components::Words::LexemeHandler[lexeme]
       end
@@ -56,6 +57,12 @@ module Schizophasia
 
       def random_verb
         random_lexeme('verb')
+      end
+
+      # @param [Symbol|nil] valency
+      def random_preposition(valency = nil)
+        criteria = valency.blank? ? {} : "(data->>'#{valency}')::boolean = true"
+        random_lexeme('preposition', criteria)
       end
     end
   end

@@ -8,6 +8,7 @@ module Schizophasia
 
       def prepare
         prepare_verb_handler
+        prepare_adverb if flags[:use_adverb]
         parts << verb_handler
       end
 
@@ -25,6 +26,13 @@ module Schizophasia
         handler.declension_flags = %i[person_third number_singular]
 
         self.verb_handler = handler
+      end
+
+      def prepare_adverb
+        handler = random_adverb
+        handler.declension_flags = [:infinitive]
+
+        parts << handler
       end
 
       def case_valency

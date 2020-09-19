@@ -5,6 +5,21 @@ module Biovision
     module Words
       # Adverb handler
       class AdverbHandler < LexemeHandler
+        FAMILIES = {
+          0 => :conduct,
+          1 => :measure,
+          2 => :time,
+          3 => :place,
+          4 => :reason,
+          5 => :totality
+        }.freeze
+
+        def self.lexeme_data_enum
+          {
+            family: FAMILIES
+          }
+        end
+
         def self.lexeme_data_flags
           %w[qualitative superlative]
         end

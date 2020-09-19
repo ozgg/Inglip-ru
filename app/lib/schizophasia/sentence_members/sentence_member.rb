@@ -59,6 +59,10 @@ module Schizophasia
         random_lexeme('verb')
       end
 
+      def random_adverb
+        random_lexeme('adverb')
+      end
+
       # @param [Symbol|nil] valency
       def random_preposition(valency = nil)
         criteria = valency.blank? ? {} : "(data->>'#{valency}')::boolean = true"

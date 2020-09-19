@@ -26,7 +26,8 @@ module Schizophasia
         tense: sample(:tense_present, :tense_past),
         number: sample(:number_singular, :number_plural),
         use_gerund: sample(true, false),
-        use_apposition: sample(true, false)
+        use_apposition: sample(true, false),
+        use_adverb: sample(true, false)
       }
     end
 

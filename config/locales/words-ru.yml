@@ -123,6 +123,7 @@ ru:
       consonant_ending: "Окончание на согласную"
       forms: "Формы"
       transitivity: "Переходность"
+      family: "Семейство"
       enums:
         gender:
           feminine: "Женский"
@@ -146,6 +147,13 @@ ru:
           imperfective: "Несовершенный вид"
           perfective: "Совершенный вид"
           both: "Оба вида"
+        family:
+          conduct: "образ действия"
+          measure: "мера и степень"
+          time: "время"
+          place: "место"
+          reason: "причина и цель"
+          totality: "совокупность"
   wordform:
     flags:
       infinitive: "Инфинитив"

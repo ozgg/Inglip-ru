@@ -1,0 +1,15 @@
+html {
+  font: 400 10px sans-serif;
+}
+
+body {
+  font-size: var(--font-size-normal);
+  min-width: var(--content-width-min);
+}
+
+.content-wrapper {
+  margin: 0 auto;
+  max-width: var(--content-width);
+}
+
+@import "application/layout/header";

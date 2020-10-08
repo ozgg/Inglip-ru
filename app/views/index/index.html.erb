@@ -1,10 +1,11 @@
 <%
   seed = params.key?(:seed) ? params[:seed].to_i : nil
   generator = seed.nil? ? Random.new : Random.new(seed)
+  passage_count = generator.rand(5) + 1
 %>
 <article class="frontpage">
   <div class="content-wrapper">
-    <% generator.rand(5).times do %>
+    <% passage_count.times do %>
       <p>
         <% generator.rand(10).times do %>
           <%= Schizophasia::Sentence.new(generator) %>.

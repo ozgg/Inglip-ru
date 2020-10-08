@@ -18,4 +18,8 @@ class LexemeType < ApplicationRecord
   def self.[](slug)
     find_by(slug: slug)
   end
+
+  def text_for_link
+    name
+  end
 end

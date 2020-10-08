@@ -87,4 +87,8 @@ class CorpusText < ApplicationRecord
     link.quantity += quantity
     link.save
   end
+
+  def text_for_link
+    checksum
+  end
 end

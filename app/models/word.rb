@@ -12,6 +12,9 @@ class Word < ApplicationRecord
 
   has_many :wordforms, dependent: :delete_all
   has_many :lexemes, through: :wordforms
+  has_many :pending_words, dependent: :nullify
+  has_many :corpus_text_words, dependent: :destroy
+  has_many :corpus_texts, through: :corpus_text_words
 
   validates_presence_of :body
   validates_uniqueness_of :body
@@ -28,5 +31,9 @@ class Word < ApplicationRecord
   # @param [String] body
   def self.[](body)
     find_or_create_by(body: body)
+  end
+
+  def text_for_link
+    body
   end
 end

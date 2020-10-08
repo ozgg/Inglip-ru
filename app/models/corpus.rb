@@ -36,4 +36,8 @@ class Corpus < ApplicationRecord
   def self.entity_parameters
     %i[name]
   end
+
+  def text_for_link
+    name
+  end
 end

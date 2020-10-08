@@ -1,0 +1,65 @@
+ru:
+  pending_word_count:
+    zero: "необработанных слов нет"
+    one: "%{count} необработанное слово"
+    few: "%{count} необработанных слова"
+    many: "%{count} необработанных слов"
+    other: "%{count} необработанных слов"
+  activerecord:
+    models:
+      corpus: "Корпус текстов"
+      corpus_text: "Образец текста в корпусе"
+      corpus_text_lexeme: "Лексема в образце текста"
+      corpus_text_pending_word: "Необработанное слово в образце текста"
+      corpus_text_word: "Слово в образце текста"
+      pending_word: "Необработанное слово"
+    attributes:
+      corpus:
+        corpus_texts_count: "Количество образцов текста"
+        name: "Название"
+      corpus_text:
+        body: "Текст"
+        checksum: "Контрольная сумма"
+        corpus: "Корпус"
+        lexeme_count: "Количество лексем"
+        pending_word_count: "Количество необработанных слов"
+        processed: "Обработан"
+        word_count: "Количество слов"
+      corpus_text_lexeme:
+        weight: "Вес"
+      corpus_text_pending_word:
+        pending_word: "Необработанное слово"
+        weight: "Вес"
+      corpus_text_word:
+        weight: "Вес"
+      pending_word:
+        weight: "Вес"
+        body: "Слово"
+  attributes:
+    corpus_text: "Образец текста корпуса"
+  admin:
+    corpora:
+      index:
+        heading: "Корпусы текстов"
+        nav_text: "Все корпусы текстов"
+        title: "Корпусы текстов"
+      nav_item:
+        description: "Список корпусов текстов"
+        text: "Все корпусы"
+      show:
+        title: "Корпус текстов «%{name}»"
+    pending_words:
+      index:
+        heading: "Необработанные слова"
+        nav_text: "Необработанные слова"
+        title: "Необработанные слова, страница %{page}"
+      nav_item:
+        description: "Очередь слов для привязки к лексемам"
+        text: "Необработанные слова"
+  biovision:
+    components:
+      corpora:
+        name: "Корпусы текстов"
+  pending_words:
+    destroy:
+      success: "Необработанное слово удалено"

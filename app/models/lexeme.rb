@@ -20,6 +20,8 @@ class Lexeme < ApplicationRecord
   has_many :wordforms, dependent: :delete_all
   has_many :words, through: :wordforms
   has_many :lexeme_links, dependent: :delete_all
+  has_many :corpus_text_lexemes, dependent: :destroy
+  has_many :corpus_texts, through: :corpus_text_lexemes
 
   validates_uniqueness_of :body, scope: %i[lexeme_type_id context]
   validates_presence_of :body
@@ -51,5 +53,9 @@ class Lexeme < ApplicationRecord
     return false unless data.key?(key.to_s)
 
     [true, 1, '1', 'true'].include? data[key.to_s]
+  end
+
+  def text_for_link
+    body
   end
 end

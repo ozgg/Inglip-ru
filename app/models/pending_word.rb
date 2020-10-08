@@ -10,6 +10,8 @@ class PendingWord < ApplicationRecord
   include Checkable
 
   belongs_to :word, optional: true
+  has_many :corpus_text_pending_words, dependent: :delete_all
+  has_many :corpus_texts, through: :corpus_text_pending_words
 
   validates_presence_of :body
   validates_uniqueness_of :body

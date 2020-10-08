@@ -27,6 +27,10 @@ class Wordform < ApplicationRecord
     word.body
   end
 
+  def text_for_link
+    text
+  end
+
   # @param [Integer] flag
   def flag?(flag)
     flags & flag.to_i == flag.to_i

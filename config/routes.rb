@@ -13,13 +13,14 @@ Rails.application.routes.draw do
 
   resources :lexemes, :wordforms, only: %i[destroy update]
 
-  resources :corpora, :corpus_texts, only: %i[destroy update]
-  resources :pending_words, only: %i[destroy]
+  resources :corpora, only: %i[destroy update]
+  resources :corpus_texts, :pending_words, only: %i[destroy]
 
   scope '(:locale)', constraints: { locale: /ru|en/ } do
     resources :lexemes, only: %i[create edit]
 
-    resources :corpora, :corpus_texts, only: %i[create edit], concerns: :check
+    resources :corpora, only: %i[create edit new], concerns: :check
+    resources :corpus_texts, only: :create, concerns: :check
 
     namespace :admin do
       resources :lexeme_types, only: %i[index show] do

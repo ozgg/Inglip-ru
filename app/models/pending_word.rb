@@ -5,11 +5,9 @@
 # Attributes:
 #   body [string]
 #   weight [integer]
-#   word_id [Word], optional
 class PendingWord < ApplicationRecord
   include Checkable
 
-  belongs_to :word, optional: true
   has_many :corpus_text_pending_words, dependent: :delete_all
   has_many :corpus_texts, through: :corpus_text_pending_words
 
@@ -27,5 +25,10 @@ class PendingWord < ApplicationRecord
 
   def self.entity_parameters
     %i[body]
+  end
+
+  # @param [String] body
+  def self.[](body)
+    find_or_create_by(body: body)
   end
 end

@@ -33,6 +33,7 @@ class CorpusText < ApplicationRecord
   validates_uniqueness_of :checksum, scope: :corpus_id
 
   before_validation { self.checksum = Digest::MD5.hexdigest(body.to_s) }
+  after_create { ProcessCorpusTextJob.perform_later(id) }
 
   scope :processed, ->(f = 1) { where(processed: f.to_i.positive?) unless f.blank? }
   scope :recent, -> { order('id desc') }
@@ -52,7 +53,7 @@ class CorpusText < ApplicationRecord
   end
 
   def <<(entity)
-    case entity.class
+    case entity
     when Word
       add_word(entity)
     when Lexeme
@@ -68,7 +69,7 @@ class CorpusText < ApplicationRecord
   # @param [Integer] quantity
   def add_word(entity, quantity = 1)
     link = corpus_text_words.find_or_initialize_by(word: entity)
-    link.quantity += quantity
+    link.weight += quantity
     link.save
   end
 
@@ -76,7 +77,7 @@ class CorpusText < ApplicationRecord
   # @param [Integer] quantity
   def add_lexeme(entity, quantity = 1)
     link = corpus_text_lexemes.find_or_initialize_by(lexeme: entity)
-    link.quantity += quantity
+    link.weight += quantity
     link.save
   end
 
@@ -84,7 +85,7 @@ class CorpusText < ApplicationRecord
   # @param [Integer] quantity
   def add_pending_word(entity, quantity = 1)
     link = corpus_text_pending_words.find_or_initialize_by(pending_word: entity)
-    link.quantity += quantity
+    link.weight += quantity
     link.save
   end
 

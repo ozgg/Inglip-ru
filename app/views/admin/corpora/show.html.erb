@@ -1,0 +1,50 @@
+<% content_for :meta_title, t('.title', name: @entity.name, page: current_page) %>
+<% content_for :breadcrumbs do %>
+  <%= admin_biovision_component_link(component_handler.component) %>
+  <%= link_to(t('admin.corpora.nav_item.text'), admin_corpora_path) %>
+  <span><%= @entity.name %></span>
+<% end %>
+
+<article>
+  <h1><%= @entity.name %></h1>
+
+  <dl>
+    <% unless @entity.user.nil? %>
+      <div>
+        <dt><%= @entity.class.human_attribute_name(:user) %></dt>
+        <dd><%= admin_entity_link(@entity.user) %></dd>
+      </div>
+    <% end %>
+
+    <%=
+      render(
+          partial: 'shared/entity/text_fields',
+          locals: {
+              entity: @entity,
+              list: %w[name corpus_texts_count]
+          }
+      )
+    %>
+
+    <%= render(partial: 'shared/entity/uuid', locals: { entity: @entity }) %>
+    <%= render(partial: 'shared/entity/timestamps', locals: { entity: @entity }) %>
+  </dl>
+
+  <%=
+    render(
+        partial: 'admin/corpora/entity/texts',
+        locals: { collection: @collection }
+    )
+  %>
+
+  <section>
+    <h2><%= t('corpus_texts.new.nav_text') %></h2>
+
+    <%=
+      render(
+          partial: 'corpus_texts/form',
+          locals: { entity: @entity.corpus_texts.new }
+      )
+    %>
+  </section>
+</article>

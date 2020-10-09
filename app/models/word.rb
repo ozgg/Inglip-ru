@@ -12,7 +12,6 @@ class Word < ApplicationRecord
 
   has_many :wordforms, dependent: :delete_all
   has_many :lexemes, through: :wordforms
-  has_many :pending_words, dependent: :nullify
   has_many :corpus_text_words, dependent: :destroy
   has_many :corpus_texts, through: :corpus_text_words
 

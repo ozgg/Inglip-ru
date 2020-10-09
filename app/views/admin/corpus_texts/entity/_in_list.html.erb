@@ -1,0 +1,11 @@
+<div class="data">
+  <div><%= admin_entity_link(entity) %></div>
+  <div class="secondary info">
+    <%= entity.uuid %>
+  </div>
+  <div class="secondary info">
+    <%= t(:lexeme_count, count: entity.lexeme_count) %>,
+    <%= t(:word_count, count: entity.word_count) %>,
+    <%= t(:pending_word_count, count: entity.pending_word_count) %>
+  </div>
+</div>

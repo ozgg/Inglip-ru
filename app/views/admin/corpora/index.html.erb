@@ -1,11 +1,21 @@
 <% content_for :meta_title, t('.title', page: current_page) %>
 <% content_for :breadcrumbs do %>
   <%= admin_biovision_component_link(component_handler.component) %>
-  <span><%= t('admin.pending_words.nav_item.text') %></span>
+  <span><%= t('admin.corpora.nav_item.text') %></span>
 <% end %>
 
 <article>
   <h1><%= t('.heading') %></h1>
+
+  <nav>
+    <%=
+      link_to(
+          t('corpora.new.nav_text'),
+          new_corpus_path,
+          class: 'button-nav'
+      )
+    %>
+  </nav>
 
   <%=
     render(

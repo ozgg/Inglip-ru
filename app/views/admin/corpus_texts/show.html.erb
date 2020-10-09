@@ -1,0 +1,39 @@
+<% content_for :meta_title, t('.title', name: @entity.corpus.name, id: @entity.id) %>
+<% content_for :breadcrumbs do %>
+  <%= admin_biovision_component_link(component_handler.component) %>
+  <%= link_to(t('admin.corpora.nav_item.text'), admin_corpora_path) %>
+  <%= admin_entity_link(@entity.corpus) %>
+  <span><%= @entity.model_name.human %> <%= @entity.id %></span>
+<% end %>
+
+<article>
+  <h1><%= @entity.checksum %></h1>
+
+  <dl>
+    <div>
+      <dt><%= @entity.class.human_attribute_name(:corpus) %></dt>
+      <dd><%= admin_entity_link(@entity.corpus) %></dd>
+    </div>
+
+    <div>
+      <dt><%= @entity.class.human_attribute_name(:body) %></dt>
+      <dd>
+        <div class="text">
+          <%= simple_format(@entity.body) %>
+        </div>
+      </dd>
+    </div>
+
+    <%=
+      render(
+          partial: 'shared/entity/text_fields',
+          locals: {
+              entity: @entity,
+              list: %w[lexeme_count word_count pending_word_count]
+          }
+      )
+    %>
+
+    <%= render(partial: 'shared/entity/uuid', locals: { entity: @entity }) %>
+  </dl>
+</article>

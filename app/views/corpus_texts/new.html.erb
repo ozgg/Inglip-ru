@@ -1,0 +1,13 @@
+<% content_for :meta_title, t('.title') %>
+<% content_for :breadcrumbs do %>
+  <%= admin_biovision_component_link(component_handler.component) %>
+  <%= link_to(t('admin.corpora.index.nav_text'), admin_corpora_path) %>
+  <%= admin_entity_link(@entity.corpus) %>
+  <span><%= t('.nav_text') %></span>
+<% end %>
+
+<article>
+  <h1><%= t('.heading') %></h1>
+
+  <%= render partial: 'form', locals: { entity: @entity } %>
+</article>

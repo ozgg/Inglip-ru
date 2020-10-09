@@ -1,4 +1,10 @@
 ru:
+  corpus_text_count:
+    zero: "текстоов нет"
+    one: "%{count} текст"
+    few: "%{count} текста"
+    many: "%{count} текстов"
+    other: "%{count} текстов"
   pending_word_count:
     zero: "необработанных слов нет"
     one: "%{count} необработанное слово"
@@ -42,12 +48,25 @@ ru:
       index:
         heading: "Корпусы текстов"
         nav_text: "Все корпусы текстов"
-        title: "Корпусы текстов"
+        title: "Корпусы текстов, страница %{page}"
       nav_item:
         description: "Список корпусов текстов"
         text: "Все корпусы"
       show:
-        title: "Корпус текстов «%{name}»"
+        title: "Корпус текстов «%{name}», страница %{page}"
+      entity:
+        texts:
+          heading: "Образцы текстов"
+    corpus_texts:
+      index:
+        heading: "Образцы текстов"
+        nav_text: "Все тексты"
+        title: "Тексты корпусов, страница %{page}"
+      nav_item:
+        description: "Список текстов в корпусах"
+        text: "Все тексты"
+      show:
+        title: "Корпус текстов «%{name}», образец %{id}"
     pending_words:
       index:
         heading: "Необработанные слова"
@@ -63,3 +82,17 @@ ru:
   pending_words:
     destroy:
       success: "Необработанное слово удалено"
+  corpus_texts:
+    new:
+      nav_text: "Добавить текст"
+      title: "Добавление текста в корпус"
+      heading: "Новый текст для корпуса"
+  corpora:
+    new:
+      nav_text: "Добавить корпус"
+      title: "Создание корпуса текстов"
+      heading: "Новый корпус текстов"
+    edit:
+      title: "Редактирование корпуса текстов"
+      nav_text: "Редактировать корпус"
+      heading: "Редактирование корпуса текстов"

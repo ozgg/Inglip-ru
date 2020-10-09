@@ -1,9 +1,4 @@
 <div class="data">
   <div><%= entity.body %></div>
   <div class="info"><%= entity.weight %></div>
-  <% unless entity.word.nil? %>
-    <div class="secondary info">
-      <%= admin_entity_link(entity.word) %>
-    </div>
-  <% end %>
 </div>

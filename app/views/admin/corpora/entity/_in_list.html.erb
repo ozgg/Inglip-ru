@@ -1,0 +1,10 @@
+<div class="data">
+  <div><%= admin_entity_link(entity) %></div>
+  <div class="info"><%= admin_entity_link(entity.user) %></div>
+  <div class="secondary info">
+    <%= entity.uuid %>
+  </div>
+  <div class="secondary info">
+    <%= t(:corpus_text_count, count: entity.corpus_texts_count) %>
+  </div>
+</div>

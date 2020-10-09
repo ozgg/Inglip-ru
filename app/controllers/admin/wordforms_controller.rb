@@ -2,16 +2,9 @@
 
 # Handling wordforms
 class Admin::WordformsController < AdminController
+  include ListAndShowEntities
+
   before_action :set_entity, except: :index
-
-  # get /admin/wordforms
-  def index
-    @collection = Wordform.page_for_administration(current_page)
-  end
-
-  # get /admin/wordforms/:id
-  def show
-  end
 
   # put /admin/wordforms/:id/flags/:flag
   def add_flag
@@ -31,10 +24,5 @@ class Admin::WordformsController < AdminController
 
   def component_class
     Biovision::Components::WordsComponent
-  end
-
-  def set_entity
-    @entity = Wordform.find_by(id: params[:id])
-    handle_http_404('Cannot find wordform') if @entity.nil?
   end
 end

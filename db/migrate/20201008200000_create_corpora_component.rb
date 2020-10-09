@@ -85,7 +85,6 @@ class CreateCorporaComponent < ActiveRecord::Migration[6.0]
 
   def create_pending_words
     create_table :pending_words, comment: 'Pending words' do |t|
-      t.references :word, foreign_key: { on_update: :cascade, on_delete: :cascade }
       t.integer :weight, default: 0, null: false
       t.string :body, null: false
     end

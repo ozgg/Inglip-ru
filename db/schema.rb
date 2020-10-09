@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_181626) do
+ActiveRecord::Schema.define(version: 2020_10_08_200000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,62 @@ ActiveRecord::Schema.define(version: 2020_07_02_181626) do
     t.index ["data"], name: "index_codes_on_data", using: :gin
     t.index ["ip_address_id"], name: "index_codes_on_ip_address_id"
     t.index ["user_id"], name: "index_codes_on_user_id"
+  end
+
+  create_table "corpora", comment: "Text corpora", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "corpus_texts_count", default: 0, null: false
+    t.string "name", null: false
+    t.jsonb "data", default: {}, null: false
+    t.index ["data"], name: "index_corpora_on_data", using: :gin
+    t.index ["user_id"], name: "index_corpora_on_user_id"
+    t.index ["uuid"], name: "index_corpora_on_uuid", unique: true
+  end
+
+  create_table "corpus_text_lexemes", comment: "Lexemes in corpus texts", force: :cascade do |t|
+    t.bigint "corpus_text_id", null: false
+    t.bigint "lexeme_id", null: false
+    t.integer "weight", default: 0, null: false
+    t.index ["corpus_text_id"], name: "index_corpus_text_lexemes_on_corpus_text_id"
+    t.index ["lexeme_id"], name: "index_corpus_text_lexemes_on_lexeme_id"
+  end
+
+  create_table "corpus_text_pending_words", comment: "Pending words in corpus texts", force: :cascade do |t|
+    t.bigint "corpus_text_id", null: false
+    t.bigint "pending_word_id", null: false
+    t.integer "weight", default: 0, null: false
+    t.index ["corpus_text_id"], name: "index_corpus_text_pending_words_on_corpus_text_id"
+    t.index ["pending_word_id"], name: "index_corpus_text_pending_words_on_pending_word_id"
+  end
+
+  create_table "corpus_text_words", comment: "Words in corpus texts", force: :cascade do |t|
+    t.bigint "corpus_text_id", null: false
+    t.bigint "word_id", null: false
+    t.integer "weight", default: 0, null: false
+    t.index ["corpus_text_id"], name: "index_corpus_text_words_on_corpus_text_id"
+    t.index ["word_id"], name: "index_corpus_text_words_on_word_id"
+  end
+
+  create_table "corpus_texts", comment: "Texts in corpora", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.bigint "corpus_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "processed", default: false, null: false
+    t.integer "lexeme_count", default: 0, null: false
+    t.integer "word_count", default: 0, null: false
+    t.integer "pending_word_count", default: 0, null: false
+    t.string "checksum"
+    t.text "body", null: false
+    t.jsonb "data", default: {}, null: false
+    t.index "corpus_texts_tsvector(body)", name: "corpus_texts_search_idx", using: :gin
+    t.index ["checksum"], name: "index_corpus_texts_on_checksum"
+    t.index ["corpus_id"], name: "index_corpus_texts_on_corpus_id"
+    t.index ["data"], name: "index_corpus_texts_on_data", using: :gin
+    t.index ["uuid"], name: "index_corpus_texts_on_uuid", unique: true
   end
 
   create_table "dynamic_blocks", comment: "Dynamic blocks", force: :cascade do |t|
@@ -288,6 +344,12 @@ ActiveRecord::Schema.define(version: 2020_07_02_181626) do
     t.index ["uuid"], name: "index_notifications_on_uuid", unique: true
   end
 
+  create_table "pending_words", comment: "Pending words", force: :cascade do |t|
+    t.integer "weight", default: 0, null: false
+    t.string "body", null: false
+    t.index ["body"], name: "index_pending_words_on_body", unique: true
+  end
+
   create_table "simple_image_tag_images", comment: "Links between simple images and tags", force: :cascade do |t|
     t.bigint "simple_image_id", null: false
     t.bigint "simple_image_tag_id", null: false
@@ -419,6 +481,14 @@ ActiveRecord::Schema.define(version: 2020_07_02_181626) do
   add_foreign_key "codes", "biovision_components", on_update: :cascade, on_delete: :cascade
   add_foreign_key "codes", "ip_addresses", on_update: :cascade, on_delete: :nullify
   add_foreign_key "codes", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "corpora", "users", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "corpus_text_lexemes", "corpus_texts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "corpus_text_lexemes", "lexemes", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "corpus_text_pending_words", "corpus_texts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "corpus_text_pending_words", "pending_words", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "corpus_text_words", "corpus_texts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "corpus_text_words", "words", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "corpus_texts", "corpora", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dynamic_pages", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dynamic_pages", "simple_images", on_update: :cascade, on_delete: :nullify
   add_foreign_key "foreign_users", "agents", on_update: :cascade, on_delete: :nullify

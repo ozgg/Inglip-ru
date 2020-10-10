@@ -62,11 +62,20 @@ ru:
         heading: "Образцы текстов"
         nav_text: "Все тексты"
         title: "Тексты корпусов, страница %{page}"
+      lexemes:
+        nav_text: "Лексемы"
+        title: "Лексемы корпуса текстов «%{name}», образец %{id}, страница %{page}"
       nav_item:
         description: "Список текстов в корпусах"
         text: "Все тексты"
+      pending_words:
+        nav_text: "Необработанные слова"
+        title: "Необработанные слова корпуса текстов «%{name}», образец %{id}, страница %{page}"
       show:
         title: "Корпус текстов «%{name}», образец %{id}"
+      words:
+        nav_text: "Слова"
+        title: "Слова корпуса текстов «%{name}», образец %{id}, страница %{page}"
     pending_words:
       index:
         heading: "Необработанные слова"

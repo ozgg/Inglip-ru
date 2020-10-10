@@ -24,15 +24,26 @@
       </dd>
     </div>
 
-    <%=
-      render(
-          partial: 'shared/entity/text_fields',
-          locals: {
-              entity: @entity,
-              list: %w[lexeme_count word_count pending_word_count]
-          }
-      )
-    %>
+    <div>
+      <dt><%= @entity.class.human_attribute_name(:lexeme_count) %></dt>
+      <dd>
+        <%= link_to(@entity.lexeme_count, lexemes_admin_corpus_text_path(id: @entity.id)) %>
+      </dd>
+    </div>
+
+    <div>
+      <dt><%= @entity.class.human_attribute_name(:word_count) %></dt>
+      <dd>
+        <%= link_to(@entity.word_count, words_admin_corpus_text_path(id: @entity.id)) %>
+      </dd>
+    </div>
+
+    <div>
+      <dt><%= @entity.class.human_attribute_name(:pending_word_count) %></dt>
+      <dd>
+        <%= link_to(@entity.pending_word_count, pending_words_admin_corpus_text_path(id: @entity.id)) %>
+      </dd>
+    </div>
 
     <%= render(partial: 'shared/entity/uuid', locals: { entity: @entity }) %>
   </dl>

@@ -60,8 +60,6 @@ class CorpusText < ApplicationRecord
       add_lexeme(entity)
     when PendingWord
       add_pending_word(entity)
-    else
-      nil
     end
   end
 

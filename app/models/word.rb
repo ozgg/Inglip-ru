@@ -32,6 +32,10 @@ class Word < ApplicationRecord
     find_or_create_by(body: body)
   end
 
+  def self.entity_parameters
+    %i[body]
+  end
+
   def text_for_link
     body
   end

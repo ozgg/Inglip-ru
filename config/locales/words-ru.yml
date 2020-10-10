@@ -78,6 +78,22 @@ ru:
     wordforms:
       show:
         title: "Словоформа «%{text}» (%{infinitive})"
+      index:
+        title: "Словоформы, страница %{page}"
+        heading: "Словоформы"
+      nav_item:
+        text: "Словоформы"
+        description: "Список всех словоформ"
+    words:
+      index:
+        heading: "Слова"
+        nav_text: "Все слова"
+        title: "Слова, страница %{page}"
+      show:
+        title: "Слово «%{body}»"
+      nav_item:
+        text: "Все слова"
+        description: "Управление списком всех слов"
   biovision:
     components:
       words:
@@ -184,3 +200,13 @@ ru:
       superlative: "Превосходная форма"
       vowel_ending: "Окончание на гласную"
       consonant_ending: "Окончание на согласную"
+  words:
+    destroy:
+      success: "Слово удалено"
+    edit:
+      heading: "Редактирование слова"
+      nav_text: "Редактировать"
+      title: "Редактировать слово"
+    form:
+      guidelines:
+        body: "Максимум 100 символов."

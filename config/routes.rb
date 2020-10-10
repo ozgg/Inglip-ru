@@ -11,13 +11,14 @@ Rails.application.routes.draw do
     post :priority, on: :member, defaults: { format: :json }
   end
 
-  resources :lexemes, :wordforms, only: %i[destroy update]
+  resources :lexemes, :wordforms, :words, only: %i[destroy update]
 
   resources :corpora, only: %i[destroy update]
   resources :corpus_texts, :pending_words, only: %i[destroy]
 
   scope '(:locale)', constraints: { locale: /ru|en/ } do
     resources :lexemes, only: %i[create edit]
+    resources :words, only: :edit, concerns: :check
 
     resources :corpora, only: %i[create edit new], concerns: :check
     resources :corpus_texts, only: :create, concerns: :check
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
           get :new_lexeme
         end
       end
-      resources :lexemes, only: %i[index show]
+      resources :lexemes, :words, only: %i[index show]
       resources :wordforms, only: %i[index show] do
         member do
           put 'flags/:flag' => :add_flag, as: :flag
@@ -37,7 +38,13 @@ Rails.application.routes.draw do
       end
 
       resources :corpora, only: %i[index show]
-      resources :corpus_texts, only: %i[index show], concerns: :toggle
+      resources :corpus_texts, only: %i[index show], concerns: :toggle do
+        member do
+          get :lexemes
+          get :words
+          get :pending_words
+        end
+      end
       resources :pending_words, only: :index
     end
   end

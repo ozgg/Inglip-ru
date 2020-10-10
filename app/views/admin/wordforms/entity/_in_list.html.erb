@@ -1,0 +1,9 @@
+<div class="data">
+  <div><%= admin_entity_link(entity) %></div>
+  <div class="info">
+    <%= entity.lexeme.lexeme_type.name %>
+    <cite><%= admin_entity_link(entity.lexeme) %></cite>:
+    <%= entity.flags.to_s(2).rjust(32, '0') %>
+    (<%= entity.flags %>)
+  </div>
+</div>

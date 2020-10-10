@@ -21,10 +21,13 @@ class Word < ApplicationRecord
 
   scope :ordered_by_body, -> { order('body asc') }
   scope :list_for_administration, -> { ordered_by_body }
+  scope :body_like, ->(v) { where('body like ?', v) unless v.blank?}
+  scope :filtered, ->(f) { body_like(f[:body]) }
 
   # @param [Integer] page
-  def self.page_for_administration(page = 1)
-    list_for_administration.page(page)
+  # @param [Hash] filter
+  def self.page_for_administration(page = 1, filter = {})
+    filtered(filter).list_for_administration.page(page)
   end
 
   # @param [String] body

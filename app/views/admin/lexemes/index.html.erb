@@ -6,8 +6,7 @@
 
 <article>
   <h1><%= t('.heading') %></h1>
-  
-  <%= paginate @collection %>
+
+  <%= render partial: 'admin/lexemes/filters', locals: { filters: @filters } %>
   <%= render partial: 'shared/admin/list', locals: { collection: @collection } %>
-  <%= paginate @collection %>
 </article>

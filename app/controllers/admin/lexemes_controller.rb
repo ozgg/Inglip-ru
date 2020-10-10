@@ -6,6 +6,12 @@ class Admin::LexemesController < AdminController
 
   before_action :set_entity, except: :index
 
+  # get /admin/lexemes
+  def index
+    @filters = params[:filters]&.permit!.to_h
+    @collection = Lexeme.page_for_administration(current_page, @filters)
+  end
+
   private
 
   def component_class

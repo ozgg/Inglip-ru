@@ -6,6 +6,7 @@
 
 <article>
   <h1><%= t('.heading') %></h1>
-  
+
+  <%= render partial: 'admin/words/filters', locals: { filters: @filters } %>
   <%= render partial: 'shared/admin/list', locals: { collection: @collection } %>
 </article>

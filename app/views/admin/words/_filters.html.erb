@@ -1,0 +1,24 @@
+<form action="<%= url_for %>" autocomplete="off" method="get" class="filter-form">
+  <fieldset>
+    <legend><%= t(:filter) %></legend>
+    <dl class="filters">
+      <div>
+        <dt><%= Word.human_attribute_name(:body) %></dt>
+        <dd>
+          <%=
+            text_field_tag(
+                'filters[body]',
+                filters[:body],
+                class: 'input-text',
+                required: true
+            )
+          %>
+        </dd>
+      </div>
+    </dl>
+    <div class="buttons">
+      <button class="button-primary"><%= t(:filter) %></button>
+      <%= link_to(t(:reset), url_for, class: 'button-ghost') %>
+    </div>
+  </fieldset>
+</form>

@@ -45,7 +45,8 @@ class CreateWordsComponent < ActiveRecord::Migration[6.0]
       interjection: 'Междометие',
       pronoun: 'Местоимение',
       parenthesis: 'Вводное слово',
-      particle: 'Частица'
+      particle: 'Частица',
+      predicative: 'Предикатив'
     }
 
     collection.each do |slug, name|

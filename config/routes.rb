@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :corpus_texts, :pending_words, only: %i[destroy]
 
   scope '(:locale)', constraints: { locale: /ru|en/ } do
+    scope :api, controller: :api, defaults: { format: :json } do
+      get 'normalize/:word' => :normalize
+    end
+
     resources :lexemes, only: %i[create edit]
     resources :words, only: :edit, concerns: :check
 

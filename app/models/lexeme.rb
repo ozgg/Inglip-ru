@@ -31,6 +31,7 @@ class Lexeme < ApplicationRecord
   scope :ordered_by_body, -> { order('body asc, context asc') }
   scope :body_like, ->(v) { where('body like ?', v) unless v.blank?}
   scope :list_for_administration, -> { ordered_by_body }
+  scope :list_for_visitors, -> { ordered_by_body }
   scope :filtered, ->(f) { body_like(f[:body]) }
 
   # @param [Integer] page

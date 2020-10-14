@@ -3,6 +3,11 @@
 module Porters
   # Shared parts for porters
   class BasePorter
+    # @param [String] type
+    def self.[](type)
+      "porters/#{type}_porter".classify.constantize.new
+    end
+
     # @param [Hash] data
     def parse(data)
       @data = data
@@ -10,7 +15,7 @@ module Porters
       @attributes = {
         lexeme_type: type,
         context: data['context'],
-        body: data['infinitive']
+        body: data['infinitive'].gsub(/[^-а-яё]/, '')
       }
       return if Lexeme.exists?(@attributes)
 
@@ -30,11 +35,9 @@ module Porters
 
     def handle
       @entity = @handler.create(@attributes, lexeme_data)
-      if @entity.valid?
-        @handler.wordforms = wordforms
-      else
-        raise "Cannot save entity: #{@entity.errors}"
-      end
+      raise "Cannot save entity: #{@entity.errors}" unless @entity.valid?
+
+      @handler.wordforms = wordforms
     end
   end
 end

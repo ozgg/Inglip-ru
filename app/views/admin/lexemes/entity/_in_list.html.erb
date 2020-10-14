@@ -4,6 +4,9 @@
     <%= entity.lexeme_type.name %>
   </div>
   <div class="secondary info">
+    <%= entity.context %>
+  </div>
+  <div class="secondary info">
     <%= t(:wordform_count, count: entity.wordforms_count) %>
   </div>
 </div>

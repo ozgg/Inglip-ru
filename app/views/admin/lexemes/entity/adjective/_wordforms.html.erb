@@ -32,7 +32,7 @@
             flag |= number_flags[:number_singular] unless col_key == :number_plural
           %>
           <td data-col="<%= col_key %>">
-            <%= handler.wordform(flag)&.text %>
+            <%= handler.wordform(flag) %>
           </td>
         <% end %>
       </tr>
@@ -45,7 +45,7 @@
       <% qualitative_flags.each do |key, flag| %>
         <div>
           <dt><%= t("wordform.flags.#{key}") %></dt>
-          <dd><%= handler.wordform(flag)&.text %></dd>
+          <dd><%= handler.wordform(flag) %></dd>
         </div>
       <% end %>
     </dl>

@@ -4,7 +4,7 @@
     <%=
       text_field_tag(
           "wordforms[#{flag}]",
-          handler.wordform(flag)&.text,
+          handler.wordform(flag),
           class: 'input-text',
           placeholder: flag,
           title: flag

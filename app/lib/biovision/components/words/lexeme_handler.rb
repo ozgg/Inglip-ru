@@ -38,11 +38,18 @@ module Biovision
         end
 
         # @param [Integer] flags
-        def wordform(flags)
+        # @param [TrueClass|FalseClass] use_first
+        # @param [TrueClass|FalseClass] scalar
+        def wordform(flags, use_first = false, scalar = true)
           f = flags.to_i
           return if f.zero?
 
-          lexeme.wordforms.with_flag(f).first
+          list = lexeme.wordforms.with_flag(f)
+          if use_first
+            list.first
+          else
+            scalar ? list.map(&:text).join(',') : list
+          end
         end
 
         # @param [Symbol] keys
@@ -51,7 +58,7 @@ module Biovision
           return lexeme.body unless lexeme.declinable?
 
           flags = self.class.wordform_flag(*keys)
-          word = wordform(flags)&.word
+          word = wordform(flags, true)&.word
 
           word&.body || "[#{lexeme.body}:#{keys.join(',')}/#{lexeme.id},#{flags}]"
         end
@@ -75,7 +82,7 @@ module Biovision
           data.each do |flag, body|
             next if body.blank?
 
-            self[body] = flag.to_i
+            body.split(/,\s*/).each { |chunk| self[chunk] = flag.to_i }
           end
           normalize
         end

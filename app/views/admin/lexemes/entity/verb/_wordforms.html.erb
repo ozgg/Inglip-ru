@@ -28,7 +28,7 @@
           <% numbers.each do |number_key, number_flag| %>
             <% flag = person_flag | number_flag | tense_flag %>
             <td data-col="<%= number_key %>">
-              <%= handler.wordform(flag)&.text %>
+              <%= handler.wordform(flag) %>
             </td>
           <% end %>
         </tr>
@@ -38,7 +38,7 @@
           <th><%= t('wordform.flags.gerund') %></th>
           <td colspan="2">
             <% flag = tense_flag | forms[:gerund] %>
-            <%= handler.wordform(flag)&.text %>
+            <%= handler.wordform(flag) %>
           </td>
         </tr>
       <% end %>
@@ -52,7 +52,7 @@
       <%=
         render(
             partial: 'admin/lexemes/entity/wordform_list_flag',
-            locals: { key: key, text: handler.wordform(flag)&.text }
+            locals: { key: key, text: handler.wordform(flag) }
         )
       %>
     <% end %>
@@ -65,7 +65,7 @@
       <%=
         render(
             partial: 'admin/lexemes/entity/wordform_list_flag',
-            locals: { key: key, text: handler.wordform(flag)&.text }
+            locals: { key: key, text: handler.wordform(flag) }
         )
       %>
     <% end %>

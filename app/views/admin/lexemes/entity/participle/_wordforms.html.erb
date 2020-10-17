@@ -34,7 +34,7 @@
               flag |= number_flags[:number_singular] unless col_key == :number_plural
             %>
             <td data-col="<%= col_key %>">
-              <%= handler.wordform(flag)&.text %>
+              <%= handler.wordform(flag) %>
             </td>
           <% end %>
         </tr>

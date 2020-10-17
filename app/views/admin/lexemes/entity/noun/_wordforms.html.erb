@@ -23,7 +23,7 @@
         <% cols.each do |number_key, number_flag| %>
           <% flag = case_flag | number_flag %>
           <td data-col="<%= number_key %>">
-            <%= handler.wordform(flag)&.text %>
+            <%= handler.wordform(flag) %>
           </td>
         <% end %>
       </tr>

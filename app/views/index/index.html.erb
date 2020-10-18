@@ -5,14 +5,22 @@
 %>
 <article class="frontpage">
   <div class="content-wrapper">
-    <% passage_count.times do %>
-      <p>
-        <% generator.rand(10).times do %>
-          <%= Schizophasia::Sentence.new(generator) %>.
+    <h1>Инглип снова вызван</h1>
+    <p>Генератор уникальных текстов. Версия 3.0.0-preview.</p>
+
+    <figure class="sample">
+      <blockquote>
+        <% passage_count.times do %>
+          <p>
+            <% generator.rand(10).times do %>
+              <%= Schizophasia::Sentence.new(generator) %>.
+            <% end %>
+          </p>
         <% end %>
-      </p>
-    <% end %>
-    <hr />
-    <p><%= generator.seed %></p>
+      </blockquote>
+      <figcaption class="seed">
+        Seed: <%= generator.seed %>
+      </figcaption>
+    </figure>
   </div>
 </article>

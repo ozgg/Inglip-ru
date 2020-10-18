@@ -4,5 +4,13 @@
   --content-width: 128rem;
   --content-width-min: 32rem;
 
+  --spacer-s: 1.6rem;
+  --spacer-xs: calc(var(--spacer-s) / 2);
+  --spacer-m: calc(var(--spacer-s) * 2);
+
   --font-size-normal: 1.6rem;
+  --font-size-decreased: 1.4rem;
+  --font-size-small: 1.2rem;
+
+  --text-color-secondary: #777;
 }

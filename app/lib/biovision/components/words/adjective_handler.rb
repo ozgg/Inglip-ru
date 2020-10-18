@@ -6,7 +6,7 @@ module Biovision
       # Adjective handler
       class AdjectiveHandler < LexemeHandler
         def self.lexeme_data_flags
-          %w[qualitative superlative]
+          super + %w[qualitative superlative]
         end
 
         def self.wordform_flags

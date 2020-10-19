@@ -14,7 +14,7 @@ module Porters
       type = LexemeType[data['type']]
       @attributes = {
         lexeme_type: type,
-        context: data['context'],
+        context: data['context'].to_s[0..249],
         body: data['infinitive'].gsub(/[^-а-яё]/, '')
       }
       return if Lexeme.exists?(@attributes)

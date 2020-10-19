@@ -7,12 +7,13 @@
   <div class="content-wrapper">
     <h1>Инглип снова вызван</h1>
     <p>Генератор уникальных текстов. Версия 3.0.0-preview.</p>
+    <p>В словаре <%= t(:lexeme_count, count: Lexeme.count) %>.</p>
 
     <figure class="sample">
       <blockquote>
         <% passage_count.times do %>
           <p>
-            <% generator.rand(10).times do %>
+            <% (generator.rand(10) + 1).times do %>
               <%= Schizophasia::Sentence.new(generator) %>.
             <% end %>
           </p>

@@ -24,8 +24,8 @@ namespace :porter do
   desc 'Port declinable lexemes'
   task declinable: :environment do
     porters = {}
-    processable = %w[adjective]
-    Dir.glob("#{Rails.root}/tmp/lexemes/adjective/**/*.yml").each_with_index do |path, index|
+    processable = %w[noun]
+    Dir.glob("#{Rails.root}/tmp/lexemes/noun/**/*.yml").each_with_index do |path, index|
       type = File.basename(File.dirname(File.dirname(path)))
       i = File.basename(File.dirname(path))
       print "\r#{index}: #{type}/#{i}/#{File.basename(path)} "

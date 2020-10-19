@@ -140,6 +140,7 @@ ru:
       forms: "Формы"
       transitivity: "Переходность"
       family: "Семейство"
+      type: "Разряд"
       enums:
         gender:
           feminine: "Женский"
@@ -155,6 +156,16 @@ ru:
           collective: "Собирательное"
           ordinal: "Числительное"
           fractional: "Дробное"
+          personal: "Личное"
+          possessive: "Притяжательное"
+          reflexive: "Возвратное"
+          indefinite: "Неопределённое"
+          demonstrative: "Указательное"
+          interrogative: "Вопросительное"
+          relative: "Относительное"
+          reciprocal: "Взаимное"
+          definitive: "Определительное"
+          negatory: "Отрицательное"
         transitivity:
           intransitive: "Непереходное"
           transitive: "Переходное"

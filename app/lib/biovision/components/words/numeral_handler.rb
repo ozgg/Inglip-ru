@@ -16,6 +16,12 @@ module Biovision
           super.merge(gender_flags).merge(case_flags)
         end
 
+        def self.lexeme_data_enum
+          {
+            type: TYPES
+          }
+        end
+
         def self.lexeme_data_flags
           super + %w[gender defined_number]
         end

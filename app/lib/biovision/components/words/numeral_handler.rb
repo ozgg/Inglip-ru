@@ -13,7 +13,7 @@ module Biovision
         }.freeze
 
         def self.wordform_flags
-          super.merge(gender_flags).merge(case_flags)
+          super.merge(gender_flags).merge(case_flags).merge(number_flags)
         end
 
         def self.lexeme_data_enum

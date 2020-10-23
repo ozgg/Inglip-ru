@@ -24,7 +24,7 @@ module Porters
         'св' => 1, 'св,' => 1,
         'св-нсв' => 2, 'св-нсв,' => 2
       }
-      chunk = @data['context'].split(' ').first
+      chunk = @data['context'].gsub(/^\([^)]+\)\s/, '').split(' ').first
       raise "Unknown verb form: #{chunk}" unless forms.key?(chunk)
 
       @form = forms[chunk]

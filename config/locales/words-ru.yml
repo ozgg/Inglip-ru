@@ -137,7 +137,7 @@ ru:
       partitive_case: "Валентность в партитив"
       vowel_ending: "Окончание на гласную"
       consonant_ending: "Окончание на согласную"
-      forms: "Формы"
+      form: "Формы"
       transitivity: "Переходность"
       family: "Семейство"
       type: "Разряд"
@@ -170,7 +170,7 @@ ru:
           intransitive: "Непереходное"
           transitive: "Переходное"
           both: "Оба"
-        forms:
+        form:
           imperfective: "Несовершенный вид"
           perfective: "Совершенный вид"
           both: "Оба вида"

@@ -1,10 +1,28 @@
+//* { outline: solid pink 1px }
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
 html {
-  font: 400 10px sans-serif;
+  font: 300 10px var(--font-family-main);
 }
 
 body {
   font-size: var(--font-size-normal);
   min-width: var(--content-width-min);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 500;
 }
 
 .content-wrapper {
@@ -29,6 +47,10 @@ body {
     padding: var(--spacer-s);
   }
 
+  h2 {
+    margin-top: 0;
+  }
+
   p:first-of-type {
     margin-top: 0;
   }
@@ -43,3 +65,5 @@ body {
 }
 
 @import "application/layout/header";
+@import "application/layout/footer";
+@import "widgets/captcha";

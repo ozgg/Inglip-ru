@@ -1,5 +1,17 @@
 <footer class="layout-footer">
   <div class="content-wrapper">
+    <div class="contact">
+      <div class="social">
+        <%=
+          link_to(
+              image_tag('telegram.svg', alt: 'Telegram'),
+              'https://t.me/inglip_ru',
+              rel: 'external nofollow noopener noreferrer',
+              target: '_blank'
+          )
+        %>
+      </div>
+    </div>
     <div class="copyright">
       &copy; <%= t(:copyright) %>
     </div>

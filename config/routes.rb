@@ -21,6 +21,11 @@ Rails.application.routes.draw do
       get 'normalize/:word' => :normalize
     end
 
+    scope :samples, controller: :samples do
+      get 'text', as: :sample_text
+      get 'bidding', as: :sample_bidding
+    end
+
     resources :lexemes, only: %i[create edit]
     resources :words, only: :edit, concerns: :check
 

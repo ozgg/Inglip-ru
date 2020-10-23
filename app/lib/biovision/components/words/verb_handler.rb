@@ -18,7 +18,10 @@ module Biovision
         }.freeze
 
         def self.wordform_flags
-          sets = [tense_flags, number_flags, person_flags, verb_form_flags, gender_flags]
+          sets = [
+            tense_flags, number_flags, person_flags, verb_form_flags,
+            gender_flags
+          ]
           result = super
           sets.each { |part| result.merge! part }
 
@@ -54,6 +57,10 @@ module Biovision
 
         def perfective?
           lexeme.data['form'] == 1
+        end
+
+        def passive?
+          lexeme.data['passive'] == 1
         end
 
         def valency

@@ -34,12 +34,12 @@ module Porters
     protected
 
     def normalize(value)
-      value.gsub('е"', 'ё').gsub(%r{//\s*}, ',').gsub(/[^-,а-яё]/, '')
+      value.to_s.gsub('е"', 'ё').gsub(%r{//\s*}, ',').gsub(/[^-,а-яё]/, '')
     end
 
     def handle
-      @entity = @handler.create(@attributes, lexeme_data)
-      raise "Cannot save entity: #{@entity.errors}" unless @entity.valid?
+      entity = @handler.create(@attributes, lexeme_data)
+      raise "Cannot save entity: #{entity.errors.messages}" unless entity.valid?
 
       @handler.wordforms = wordforms
     end

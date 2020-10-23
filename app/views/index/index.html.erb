@@ -1,27 +1,11 @@
-<%
-  seed = params.key?(:seed) ? params[:seed].to_i : nil
-  generator = seed.nil? ? Random.new : Random.new(seed)
-  passage_count = generator.rand(5) + 1
-%>
 <article class="frontpage">
   <div class="content-wrapper">
     <h1>Инглип снова вызван</h1>
     <p>Генератор уникальных текстов. Версия 3.0.0-preview.</p>
     <p>В словаре <%= t(:lexeme_count, count: Lexeme.count) %>.</p>
 
-    <figure class="sample">
-      <blockquote>
-        <% passage_count.times do %>
-          <p>
-            <% (generator.rand(10) + 1).times do %>
-              <%= Schizophasia::Sentence.new(generator) %>.
-            <% end %>
-          </p>
-        <% end %>
-      </blockquote>
-      <figcaption class="seed">
-        Seed: <%= generator.seed %>
-      </figcaption>
-    </figure>
+    <%= render 'widgets/captcha' %>
+
+    <p><%= link_to('Пример текста', sample_text_path) %></p>
   </div>
 </article>

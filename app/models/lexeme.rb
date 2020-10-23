@@ -14,7 +14,7 @@ class Lexeme < ApplicationRecord
   include Checkable
 
   BODY_LIMIT = 100
-  CONTEXT_LIMIT = 250
+  CONTEXT_LIMIT = 255
 
   belongs_to :lexeme_type, counter_cache: true
   has_many :wordforms, dependent: :delete_all

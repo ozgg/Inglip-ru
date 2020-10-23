@@ -4,7 +4,7 @@
     <% flag_options = options[flag.to_s].to_h %>
     <li>
       <% element_id = "lexeme_data_#{flag}" %>
-      <%= hidden_field_tag("lexeme_data[#{flag}]", "") %>
+      <%= hidden_field_tag("lexeme_data[#{flag}]", "", id: nil) %>
       <%=
         check_box_tag(
             "lexeme_data[#{flag}]",

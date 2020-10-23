@@ -1,0 +1,17 @@
+.layout-footer {
+  margin-bottom: var(--spacer-m);
+
+  .contact {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .social {
+    margin-left: auto;
+  }
+
+  .copyright {
+    font-size: var(--font-size-decreased);
+  }
+}

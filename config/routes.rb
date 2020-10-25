@@ -19,11 +19,13 @@ Rails.application.routes.draw do
   scope '(:locale)', constraints: { locale: /ru|en/ } do
     scope :api, controller: :api, defaults: { format: :json } do
       get 'normalize/:word' => :normalize
+      post 'analyze'
     end
 
     scope :samples, controller: :samples do
       get 'text', as: :sample_text
       get 'bidding', as: :sample_bidding
+      get 'analyze', as: :sample_analyze
     end
 
     resources :lexemes, only: %i[create edit]

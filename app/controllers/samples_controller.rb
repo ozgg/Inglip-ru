@@ -6,6 +6,7 @@ class SamplesController < ApplicationController
   def text
   end
 
+  # get /samples/bidding
   def bidding
     data = {
       id: @generator.seed,
@@ -15,6 +16,10 @@ class SamplesController < ApplicationController
       }
     }
     render json: { data: data }
+  end
+
+  # get /samples/analyze
+  def analyze
   end
 
   private

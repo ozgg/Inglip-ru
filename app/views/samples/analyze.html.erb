@@ -1,0 +1,39 @@
+<% content_for :meta_title, 'Analyze' %>
+
+<article>
+  <div class="content-wrapper">
+    <h1>Анализ текстов</h1>
+
+    <%=
+      form_with(
+          url: analyze_path,
+          method: :post,
+          local: true,
+          class: 'js-analyze-form'
+      ) do
+    %>
+      <dl class="fields">
+        <div>
+          <dt>
+            <%= label_tag :text, 'Введите текст (до 10 слов)' %>
+          </dt>
+          <dd>
+            <%=
+              text_field_tag(
+                  :text,
+                  nil,
+                  class: 'input-text',
+                  required: true
+              )
+            %>
+
+          </dd>
+        </div>
+      </dl>
+      <div class="buttons">
+        <%= button_tag 'Разобрать' %>
+      </div>
+      <ul class="result"></ul>
+    <% end %>
+  </div>
+</article>

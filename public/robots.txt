@@ -1,1 +1,8 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-Agent: *
+
+Allow: /
+Disallow: /admin       # Restricted administrative area
+Disallow: /auth        # OAuth makes sense only for humans
+Disallow: /api         # API is not for search engines
+Disallow: /my          # Part for logged-in users only
+Disallow: /samples     # Generated samples are not for robots

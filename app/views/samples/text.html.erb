@@ -13,7 +13,7 @@
 
         <% passage_count.times do %>
           <p>
-            <% (@generator.rand(10) + 1).times do %>
+            <% (@generator.rand(7) + 5).times do %>
               <%= Schizophasia::Sentence.new(@generator) %>.
             <% end %>
           </p>

@@ -79,6 +79,45 @@ Inglip.components.captcha = {
     }
 }
 
+Inglip.components.analyzer = {
+    selector: ".js-analyze-form",
+    form: undefined,
+    container: undefined,
+    init: function () {
+        this.form = document.querySelector(this.selector);
+        if (this.form) {
+            this.apply();
+        }
+    },
+    apply: function () {
+        const component = Inglip.components.analyzer;
+        this.container = this.form.querySelector(".result");
+        this.form.addEventListener("submit", component.handler);
+    },
+    handler: function (event) {
+        event.preventDefault();
+        const component = Inglip.components.analyzer;
+        const url = component.form.action;
+        const request = Biovision.jsonAjaxRequest("post", url, component.process);
+        const data = {text: component.form.querySelector(".input-text").value};
+        request.send(JSON.stringify(data));
+    },
+    process: function () {
+        const component = Inglip.components.analyzer;
+        const response = JSON.parse(this.responseText);
+        component.container.innerHTML = "";
+        if (response.hasOwnProperty("data")) {
+            response.data.forEach(component.addResult);
+        }
+    },
+    addResult: function (data) {
+        const component = Inglip.components.analyzer;
+        const li = document.createElement("li");
+        li.innerHTML = `${data.attributes.body} (${data.attributes.context})`;
+        component.container.append(li);
+    }
+}
+
 window.Inglip = Inglip;
 
 Biovision.components.inglip = Inglip;

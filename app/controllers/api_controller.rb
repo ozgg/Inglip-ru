@@ -11,4 +11,13 @@ class ApiController < ApplicationController
       @collection = entity.lexemes.list_for_visitors
     end
   end
+
+  # post /api/analyze
+  def analyze
+    @collection = []
+    param_from_request(:text).to_s.split(/\s+/).uniq.first(10).each do |body|
+      word = Word.find_by(body: body.downcase)
+      @collection << word.lexemes.list_for_visitors unless word.nil?
+    end
+  end
 end

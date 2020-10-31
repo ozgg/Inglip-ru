@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-# Managing text corpora
-class CorporaController < AdminController
+# Managing sentence patterns
+class SentencePatternsController < AdminController
   include CreateAndModifyEntities
 
-  def creation_parameters
-    super.merge(owner_for_entity)
+  # get /sentence_patterns/new
+  def new
+    @entity = SentencePattern.new
   end
 
   private

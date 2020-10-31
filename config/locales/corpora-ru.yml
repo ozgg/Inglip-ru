@@ -19,6 +19,7 @@ ru:
       corpus_text_pending_word: "Необработанное слово в образце текста"
       corpus_text_word: "Слово в образце текста"
       pending_word: "Необработанное слово"
+      sentence_pattern: "Шаблон предложения"
     attributes:
       corpus:
         corpus_texts_count: "Количество образцов текста"
@@ -26,23 +27,21 @@ ru:
       corpus_text:
         body: "Текст"
         checksum: "Контрольная сумма"
-        corpus: "Корпус"
         lexeme_count: "Количество лексем"
         pending_word_count: "Количество необработанных слов"
         processed: "Обработан"
         word_count: "Количество слов"
-      corpus_text_lexeme:
-        weight: "Вес"
       corpus_text_pending_word:
         pending_word: "Необработанное слово"
-        weight: "Вес"
-      corpus_text_word:
-        weight: "Вес"
       pending_word:
-        weight: "Вес"
         body: "Слово"
+      sentence_pattern:
+        pattern: "Шаблон"
+        sample: "Образец"
   attributes:
+    corpus: "Корпус"
     corpus_text: "Образец текста корпуса"
+    weight: "Вес"
   admin:
     corpora:
       index:
@@ -84,6 +83,16 @@ ru:
       nav_item:
         description: "Очередь слов для привязки к лексемам"
         text: "Необработанные слова"
+    sentence_patterns:
+      index:
+        heading: "Шаблоны предложений"
+        nav_text: "Шаблоны предложений"
+        title: "Шаблоны предложений, страница %{page}"
+      nav_item:
+        description: "Управление шаблонами предложений"
+        text: "Шаблоны предложений"
+      show:
+        title: "Шаблон предложения №%{id}"
   biovision:
     components:
       corpora:
@@ -105,3 +114,12 @@ ru:
       title: "Редактирование корпуса текстов"
       nav_text: "Редактировать корпус"
       heading: "Редактирование корпуса текстов"
+  sentence_patterns:
+    new:
+      title: "Добавить шаблон предложения"
+      heading: "Новый шаблон предложения"
+      nav_text: "Добавить шаблон"
+      manual: "Добавить вручную"
+    analyze:
+      heading: "Анализировать текст"
+      analyze: "Анализировать"

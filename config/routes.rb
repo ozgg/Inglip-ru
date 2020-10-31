@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :corpora, only: %i[destroy update]
   resources :corpus_texts, :pending_words, only: %i[destroy]
 
+  resources :sentence_patterns, only: %i[destroy update]
+
   scope '(:locale)', constraints: { locale: /ru|en/ } do
     scope :api, controller: :api, defaults: { format: :json } do
       get 'normalize/:word' => :normalize
@@ -33,6 +35,8 @@ Rails.application.routes.draw do
 
     resources :corpora, only: %i[create edit new], concerns: :check
     resources :corpus_texts, only: :create, concerns: :check
+
+    resources :sentence_patterns, only: %i[create edit new], concerns: :check
 
     namespace :admin do
       resources :lexeme_types, only: %i[index show] do
@@ -57,6 +61,12 @@ Rails.application.routes.draw do
         end
       end
       resources :pending_words, only: :index
+
+      resources :sentence_patterns, only: %i[create index show] do
+        collection do
+          post 'analyze'
+        end
+      end
     end
   end
 end

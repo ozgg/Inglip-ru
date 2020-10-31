@@ -5,7 +5,7 @@ class Admin::CorpusTextsController < AdminController
   include ListAndShowEntities
   include ToggleableEntity
 
-  before_action :set_entity, except: :index
+  before_action :set_entity, only: %i[lexemes words pending_words]
 
   # get /admin/corpus_texts/:id/lexemes
   def lexemes

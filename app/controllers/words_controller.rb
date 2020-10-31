@@ -2,7 +2,7 @@
 
 # Updating and destroying words
 class WordsController < AdminController
-  before_action :set_entity
+  before_action :set_entity, except: :check
 
   # post /words/check
   def check

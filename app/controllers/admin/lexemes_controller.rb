@@ -4,8 +4,6 @@
 class Admin::LexemesController < AdminController
   include ListAndShowEntities
 
-  before_action :set_entity, except: :index
-
   # get /admin/lexemes
   def index
     @filters = params[:filters]&.permit!.to_h

@@ -4,7 +4,7 @@
 class Admin::WordformsController < AdminController
   include ListAndShowEntities
 
-  before_action :set_entity, except: :index
+  before_action :set_entity, only: %i[add_flag remove_flag]
 
   # put /admin/wordforms/:id/flags/:flag
   def add_flag

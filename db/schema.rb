@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_200000) do
+ActiveRecord::Schema.define(version: 2020_10_30_200000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -350,6 +350,14 @@ ActiveRecord::Schema.define(version: 2020_10_08_200000) do
     t.index ["body"], name: "index_pending_words_on_body", unique: true
   end
 
+  create_table "sentence_patterns", comment: "Sentence patterns", force: :cascade do |t|
+    t.bigint "corpus_id"
+    t.integer "weight", default: 0, null: false
+    t.string "sample", default: "", null: false
+    t.string "pattern", null: false
+    t.index ["corpus_id"], name: "index_sentence_patterns_on_corpus_id"
+  end
+
   create_table "simple_image_tag_images", comment: "Links between simple images and tags", force: :cascade do |t|
     t.bigint "simple_image_id", null: false
     t.bigint "simple_image_tag_id", null: false
@@ -507,6 +515,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_200000) do
   add_foreign_key "navigation_group_pages", "navigation_groups", on_update: :cascade, on_delete: :cascade
   add_foreign_key "notifications", "biovision_components", on_update: :cascade, on_delete: :cascade
   add_foreign_key "notifications", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "sentence_patterns", "corpora", on_update: :cascade, on_delete: :nullify
   add_foreign_key "simple_image_tag_images", "simple_image_tags", on_update: :cascade, on_delete: :cascade
   add_foreign_key "simple_image_tag_images", "simple_images", on_update: :cascade, on_delete: :cascade
   add_foreign_key "simple_images", "agents", on_update: :cascade, on_delete: :nullify

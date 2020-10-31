@@ -63,9 +63,8 @@ Rails.application.routes.draw do
       resources :pending_words, only: :index
 
       resources :sentence_patterns, only: %i[create index show] do
-        collection do
-          post 'analyze'
-        end
+        get 'sample', on: :member
+        post 'analyze', on: :collection
       end
     end
   end

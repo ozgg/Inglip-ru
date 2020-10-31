@@ -4,6 +4,14 @@
 class Admin::SentencePatternsController < AdminController
   include ListAndShowEntities
 
+  # get /admin/sentence_patterns/:id/sample
+  def sample
+    set_entity
+    seed = params.key?(:seed) ? params[:seed] : Random.new_seed
+    generator = Random.new(seed)
+    @builder = Biovision::Components::Corpora::SentenceBuilder.new(generator)
+  end
+
   # post /admin/sentence_patterns/analyze
   def analyze
     handler = Biovision::Components::Corpora::SentenceAnalyzer.new

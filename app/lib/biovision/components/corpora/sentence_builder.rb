@@ -39,10 +39,18 @@ module Biovision
           end
         end
 
+        # @param [Integer] lexeme_type
+        # @param [Integer] flags
         def word(lexeme_type, flags)
-          join_clause = { lexemes: { lexeme_type_id: lexeme_type } }
-          list = Wordform.joins(:lexeme).where(join_clause).where(flags: flags)
-          list.offset(@generator.rand(list.count)).first&.text
+          list = Wordform.where(flags: flags, lexeme_type_id: lexeme_type)
+          offset = @generator.rand(list.count)
+          query = "
+            select body from words where id = (
+              select word_id from wordforms where
+                flags = #{flags.to_i} and lexeme_type_id = #{lexeme_type.to_i}
+              limit 1 offset #{offset}
+            )"
+          Word.connection.execute(query).first['body']
         end
 
         # @param [Array] set

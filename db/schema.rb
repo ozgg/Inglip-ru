@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_200000) do
+ActiveRecord::Schema.define(version: 2020_10_31_232323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -469,7 +469,12 @@ ActiveRecord::Schema.define(version: 2020_10_30_200000) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "flags"
+    t.bigint "lexeme_type_id", null: false
+    t.index ["flags", "lexeme_id", "word_id"], name: "wordforms_flags_lexeme_id_word_id_idx"
+    t.index ["flags", "lexeme_type_id", "word_id"], name: "index_wordforms_on_flags_and_lexeme_type_id_and_word_id"
+    t.index ["flags"], name: "wordforms_flags_idx"
     t.index ["lexeme_id"], name: "index_wordforms_on_lexeme_id"
+    t.index ["lexeme_type_id"], name: "index_wordforms_on_lexeme_type_id"
     t.index ["word_id"], name: "index_wordforms_on_word_id"
   end
 
@@ -532,6 +537,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_200000) do
   add_foreign_key "users", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
   add_foreign_key "users", "users", column: "primary_id", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "wordforms", "lexeme_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "wordforms", "lexemes", on_update: :cascade, on_delete: :cascade
   add_foreign_key "wordforms", "words", on_update: :cascade, on_delete: :cascade
 end

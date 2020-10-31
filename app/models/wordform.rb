@@ -11,8 +11,11 @@
 class Wordform < ApplicationRecord
   belongs_to :word, counter_cache: :wordforms_count
   belongs_to :lexeme, counter_cache: :wordforms_count
+  belongs_to :lexeme_type
 
   validates_uniqueness_of :word_id, scope: %i[lexeme_id flags]
+
+  # after_initialize :ensure_lexeme_type
 
   scope :with_flag, ->(f) { where(flags: f.to_i) }
   scope :ordered_by_flags, -> { order('flags asc') }
@@ -46,5 +49,11 @@ class Wordform < ApplicationRecord
   def remove_flag!(flag)
     self.flags &= (0xffffffff - flag.to_i)
     save!
+  end
+
+  private
+
+  def ensure_lexeme_type
+    self.lexeme_type_id = lexeme.lexeme_type_id if lexeme_type_id.nil?
   end
 end

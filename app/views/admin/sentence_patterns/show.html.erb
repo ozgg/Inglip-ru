@@ -8,7 +8,11 @@
 <article>
   <h1><%= @entity.id %></h1>
 
-  <dl>
+  <nav>
+    <%= link_to(t('shared.entity.edit.nav_text'), edit_sentence_pattern_path(id: @entity.id)) %>
+  </nav>
+
+  <dl class="fields">
     <%=
       render(
           partial: 'shared/entity/text_fields',
@@ -19,4 +23,18 @@
       )
     %>
   </dl>
+
+  <aside class="js-sample-loader">
+    <div>
+      <%=
+        button_tag(
+            t('.load_sample'),
+            class: 'button button-primary',
+            data: { url: sample_admin_sentence_pattern_path(id: @entity.id) },
+            type: :button
+        )
+      %>
+    </div>
+    <p class="text"></p>
+  </aside>
 </article>

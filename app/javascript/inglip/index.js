@@ -164,6 +164,9 @@ Inglip.components.analyzePatterns = {
             input.value = data.meta[field];
             div.append(input);
             li.append(div);
+            if (field === 'pattern') {
+                Inglip.components.useFlagHint.apply(input);
+            }
         })
         const button = document.createElement("button");
         button.type = "button";
@@ -187,6 +190,92 @@ Inglip.components.analyzePatterns = {
         }, () => button.disabled = false);
         button.disabled = true;
         request.send(data);
+    }
+}
+
+Inglip.components.sampleLoader = {
+    selector: ".js-sample-loader",
+    buttons: [],
+    init: function () {
+        document.querySelectorAll(this.selector).forEach(this.apply);
+    },
+    apply: function (button) {
+        const component = Inglip.components.sampleLoader;
+        component.buttons.push(button);
+        button.addEventListener("click", component.handler);
+    },
+    handler: function (event) {
+        const component = Inglip.components.sampleLoader;
+        const button = event.target;
+        const url = button.dataset.url;
+        const container = button.closest(component.selector).querySelector(".text");
+        const request = Biovision.jsonAjaxRequest("get", url, function () {
+            const response = JSON.parse(this.responseText);
+            if (response.hasOwnProperty("data")) {
+                container.innerHTML = response.data.attributes.text;
+            }
+
+            button.disabled = false;
+        });
+        button.disabled = true;
+        container.innerHTML = '...';
+        request.send();
+    }
+}
+
+Inglip.components.flagHints = {
+    selector: ".js-flag-hints",
+    container: undefined,
+    number: undefined,
+    checkboxes: [],
+    init: function () {
+        this.container = document.querySelector(this.selector);
+        if (this.container) {
+            const component = this;
+            this.number = this.container.querySelector(".number input");
+            this.number.addEventListener("change", component.inputChanged);
+            this.container.querySelectorAll("li input").forEach(this.addCheckbox);
+        }
+    },
+    addCheckbox: function (input) {
+        const component = Inglip.components.flagHints;
+        component.checkboxes.push(input);
+        input.addEventListener("change", component.checkboxChanged);
+    },
+    checkboxChanged: function () {
+        const component = Inglip.components.flagHints;
+        const reducer = (a, i) => a + parseInt(i.value);
+        const sum = component.checkboxes.filter((i) => i.checked).reduce(reducer, 0);
+        component.number.value = String(sum);
+    },
+    inputChanged: function () {
+        const component = Inglip.components.flagHints;
+        const flags = parseInt(component.number.value);
+        component.checkboxes.forEach(function(checkbox) {
+            const flag = parseInt(checkbox.value)
+            checkbox.checked = ((flags & flag) === flag);
+        });
+    }
+}
+
+Inglip.components.useFlagHint = {
+    selector: ".js-use-flag-hint",
+    inputs: [],
+    init: function () {
+        document.querySelectorAll(this.selector).forEach(this.apply);
+    },
+    apply: function (input) {
+        const component = Inglip.components.useFlagHint;
+        component.inputs.push(input);
+        input.addEventListener("select", component.handleSelect);
+    },
+    handleSelect: function (event) {
+        const input = event.target;
+        const selection = input.value.substring(input.selectionStart, input.selectionEnd);
+        if (selection.match(/^\d+$/)) {
+            Inglip.components.flagHints.number.value = selection;
+            Inglip.components.flagHints.inputChanged();
+        }
     }
 }
 

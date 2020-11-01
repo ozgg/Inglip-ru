@@ -20,6 +20,17 @@ module Biovision
           result
         end
 
+        def all_wordform_flags
+          result = {}
+          [
+            wordform_flags, gender_flags, number_flags, case_flags, tense_flags,
+            person_flags, verb_form_flags, adjective_form_flags,
+            comparative_form_flags, superlative_form_flags,
+            preposition_form_flags, noun_case_flags
+          ].each { |set| result.merge!(set) }
+          result
+        end
+
         # Every lexeme must have infinitive
         def wordform_flags
           {

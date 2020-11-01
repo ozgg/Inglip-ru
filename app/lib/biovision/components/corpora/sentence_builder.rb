@@ -19,11 +19,20 @@ module Biovision
           generate
         end
 
-        def generate
-          offset = @generator.rand(SentencePattern.count)
-          @sentence = SentencePattern.offset(offset).first
-          @sentence.pattern.gsub(PATTERN) do |chunk|
-            process PATTERN.match(chunk)
+        def generate(sentence = nil)
+          @first_word = true
+          if sentence.nil?
+            offset = @generator.rand(SentencePattern.count)
+            sentence = SentencePattern.offset(offset).first
+          end
+          sentence.pattern.gsub(PATTERN) do |chunk|
+            word = process PATTERN.match(chunk)
+            if @first_word
+              @first_word = false
+              word[0].upcase + word[1..]
+            else
+              word
+            end
           end
         end
 

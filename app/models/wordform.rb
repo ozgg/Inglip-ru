@@ -6,6 +6,7 @@
 #   created_at [DateTime]
 #   flags [Integer]
 #   lexeme_id [Lexeme]
+#   lexeme_type_id [LexemeType]
 #   updated_at [DateTime]
 #   word_id [Word]
 class Wordform < ApplicationRecord
@@ -15,7 +16,7 @@ class Wordform < ApplicationRecord
 
   validates_uniqueness_of :word_id, scope: %i[lexeme_id flags]
 
-  # after_initialize :ensure_lexeme_type
+  before_validation :ensure_lexeme_type
 
   scope :with_flag, ->(f) { where(flags: f.to_i) }
   scope :ordered_by_flags, -> { order('flags asc') }

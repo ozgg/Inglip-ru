@@ -93,6 +93,7 @@ ru:
         text: "Шаблоны предложений"
       show:
         title: "Шаблон предложения №%{id}"
+        load_sample: "Загрузить пример"
   biovision:
     components:
       corpora:

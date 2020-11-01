@@ -10,8 +10,24 @@
 %>
   <%= render partial: 'shared/list_of_errors', locals: { entity: entity } %>
 
+  <%= render 'components/words/wordform_flag_hints' %>
+
   <dl class="fields">
-    <%= render partial: 'shared/forms/text_fields', locals: { f: f, list: %i[pattern sample] } %>
+    <div>
+      <dt><%= entity.class.human_attribute_name(:pattern) %></dt>
+      <dd>
+        <%=
+          f.text_field(
+              :pattern,
+              class: 'input-text js-use-flag-hint',
+              data: { check: :pattern },
+              required: true,
+              size: nil
+          )
+        %>
+      </dd>
+    </div>
+    <%= render partial: 'shared/forms/text_field', locals: { f: f, field: :sample } %>
   </dl>
 
   <%= render 'shared/forms/state_container' %>

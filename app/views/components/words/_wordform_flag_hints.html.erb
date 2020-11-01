@@ -1,0 +1,13 @@
+<aside class="js-flag-hints flag-hints">
+  <div class="number"><%= number_field_tag(:flags, 0, min: 0) %></div>
+  <ul>
+    <% Biovision::Components::Words::LexemeHandler.all_wordform_flags.each do |k, v| %>
+      <li>
+        <label title="<%= k %>">
+          <input type="checkbox" value="<%= v %>"/>
+          <span><%= t("wordform.flags.#{k}") %> <span>(<%= v %>)</span></span>
+        </label>
+      </li>
+    <% end %>
+  </ul>
+</aside>

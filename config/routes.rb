@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     scope :samples, controller: :samples do
       get 'text', as: :sample_text
       get 'bidding', as: :sample_bidding
+      get 'patterns', as: :sample_patterns
       get 'analyze', as: :sample_analyze
     end
 

@@ -6,6 +6,10 @@ class SamplesController < ApplicationController
   def text
   end
 
+  # get /samples/patterns
+  def patterns
+  end
+
   # get /samples/bidding
   def bidding
     data = {

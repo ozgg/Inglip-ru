@@ -19,33 +19,23 @@ module Biovision
           generate
         end
 
-        def generate(sentence = nil)
-          @first_word = true
-          if sentence.nil?
+        # @param [String|nil] pattern
+        def generate(pattern = nil)
+          if pattern.nil?
             offset = @generator.rand(SentencePattern.count)
-            sentence = SentencePattern.offset(offset).first
+            pattern = SentencePattern.offset(offset).first&.pattern
           end
-          sentence.pattern.gsub(PATTERN) do |chunk|
-            word = process PATTERN.match(chunk)
-            if @first_word
-              @first_word = false
-              word[0].upcase + word[1..]
-            else
-              word
-            end
-          end
+          result = pattern.to_s.gsub(PATTERN) { |chunk| process chunk }.strip
+          result[0].upcase + result[1..]
         end
 
         private
 
-        def process(match)
-          item = sample(match.to_s.gsub('[', '').gsub(']', '').split('|')).split(':')
+        # @param [String] chunk
+        def process(chunk)
+          item = sample(chunk.gsub(/[\[\]]/, '').split('|')).split(':')
           type = @types[item[0]]
-          if type.nil?
-            match.to_s
-          else
-            word(type, item[1].to_i).to_s
-          end
+          type.nil? ? chunk : word(type, item[1].to_i).to_s
         end
 
         # @param [Integer] lexeme_type

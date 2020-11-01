@@ -1,0 +1,30 @@
+<%
+  passage_count = @generator.rand(5) + 1
+  builder = Biovision::Components::Corpora::SentenceBuilder.new(@generator)
+%>
+<article>
+  <div class="content-wrapper">
+    <h1>Пример текста с использованем шаблонов.</h1>
+
+    <p>
+      Используются шаблоны предложений.
+      Обновите страницу для получения нового текста.
+    </p>
+    <figure class="sample">
+      <blockquote>
+        <h2><%= builder.generate %></h2>
+
+        <% passage_count.times do %>
+          <p>
+            <% (@generator.rand(7) + 5).times do %>
+              <%= builder.generate %>
+            <% end %>
+          </p>
+        <% end %>
+      </blockquote>
+      <figcaption class="seed">
+        Seed: <%= @generator.seed %>
+      </figcaption>
+    </figure>
+  </div>
+</article>

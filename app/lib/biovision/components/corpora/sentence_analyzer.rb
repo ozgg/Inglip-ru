@@ -8,7 +8,7 @@ module Biovision
         # @param [String] text
         def analyze(text)
           text.strip.gsub(/([.?!]+)/, "\\1\t").split("\t").map do |sample|
-            analyze_sentence(sample)
+            analyze_sentence(sample.strip)
           end
         end
 
@@ -25,7 +25,7 @@ module Biovision
         # @param [String] sample
         def parse(sample)
           parts = []
-          sample.downcase.split(/[^-а-яё,()—]/i).each do |chunk|
+          sample.downcase.split(/[^-а-яё,()—.?!]/i).each do |chunk|
             group = []
             chunk.gsub(/([^-а-яё]+)/, "\t\\1\t").split("\t").each do |word|
               group << (word.match?(/[-а-яё]+/) ? analyze_word(word) : word)

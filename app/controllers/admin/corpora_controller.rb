@@ -2,7 +2,9 @@
 
 # Managing text corpora
 class Admin::CorporaController < AdminController
-  include ListAndShowEntities
+  include CrudEntities
+
+  before_action :set_entity, except: %i[check create index new]
 
   # get /admin/corpora/:id
   def show

@@ -8,7 +8,12 @@
 <article>
   <h1><%= @entity.name %></h1>
 
-  <dl>
+  <nav class="entity-actions">
+    <%= edit_icon(@entity) %>
+    <%= destroy_icon(@entity) %>
+  </nav>
+
+  <dl class="fields">
     <% unless @entity.user.nil? %>
       <div>
         <dt><%= @entity.class.human_attribute_name(:user) %></dt>
@@ -21,7 +26,7 @@
           partial: 'shared/entity/text_fields',
           locals: {
               entity: @entity,
-              list: %w[name corpus_texts_count]
+              fields: %w[name corpus_texts_count]
           }
       )
     %>
@@ -38,11 +43,11 @@
   %>
 
   <section>
-    <h2><%= t('corpus_texts.new.nav_text') %></h2>
+    <h2><%= t('admin.corpus_texts.new.nav_text') %></h2>
 
     <%=
       render(
-          partial: 'corpus_texts/form',
+          partial: 'admin/corpus_texts/form',
           locals: { entity: @entity.corpus_texts.new }
       )
     %>

@@ -7,14 +7,8 @@
 <article>
   <h1><%= t('.heading') %></h1>
 
-  <nav>
-    <%=
-      link_to(
-          t('sentence_patterns.new.nav_text'),
-          new_sentence_pattern_path,
-          class: 'button-nav'
-      )
-    %>
+  <nav class="entity-actions">
+    <%= create_icon(new_admin_sentence_pattern_path) %>
   </nav>
 
   <%=

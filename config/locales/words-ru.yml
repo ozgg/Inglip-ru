@@ -75,6 +75,20 @@ ru:
         wordforms:
           heading: "Флаги словоформ"
           form: "Форма"
+      destroy:
+        success: "Лексема удалена"
+      edit:
+        heading: "Редактировать лексему"
+        nav_text: "Редактировать"
+        title: "Редактирование лексемы"
+      form:
+        lexeme_data: "Параметры лексемы"
+        no_form: "Для лексемы этого типа нет формы редактирования."
+        wordforms: "Словоформы"
+      new:
+        heading: "Добавить лексему"
+        nav_text: "Новая лексема"
+        title: "Добавление лексемы"
     wordforms:
       show:
         title: "Словоформа «%{text}» (%{infinitive})"
@@ -94,25 +108,19 @@ ru:
       nav_item:
         text: "Все слова"
         description: "Управление списком всех слов"
+      destroy:
+        success: "Слово удалено"
+      edit:
+        heading: "Редактирование слова"
+        nav_text: "Редактировать"
+        title: "Редактировать слово"
+      form:
+        guidelines:
+          body: "Максимум 100 символов."
   biovision:
     components:
       words:
         name: "Слова"
-  lexemes:
-    destroy:
-      success: "Лексема удалена"
-    edit:
-      heading: "Редактировать лексему"
-      nav_text: "Редактировать"
-      title: "Редактирование лексемы"
-    form:
-      lexeme_data: "Параметры лексемы"
-      no_form: "Для лексемы этого типа нет формы редактирования."
-      wordforms: "Словоформы"
-    new:
-      heading: "Добавить лексему"
-      nav_text: "Новая лексема"
-      title: "Добавление лексемы"
   lexeme:
     data:
       indeclinable: "Несклоняемое"
@@ -211,13 +219,3 @@ ru:
       superlative: "Превосходная форма"
       vowel_ending: "Окончание на гласную"
       consonant_ending: "Окончание на согласную"
-  words:
-    destroy:
-      success: "Слово удалено"
-    edit:
-      heading: "Редактирование слова"
-      nav_text: "Редактировать"
-      title: "Редактировать слово"
-    form:
-      guidelines:
-        body: "Максимум 100 символов."

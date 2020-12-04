@@ -2,21 +2,16 @@
 <% content_for :breadcrumbs do %>
   <%= admin_biovision_component_link(component_handler.component) %>
   <%= link_to(t('admin.lexeme_types.nav_item.text'), admin_lexeme_types_path) %>
-  <%= admin_lexeme_type_link(@entity.lexeme_type) %>
+  <%= admin_entity_link(@entity.lexeme_type) %>
   <span><%= @entity.body %></span>
 <% end %>
 
 <article>
   <h1><%= @entity.body %></h1>
 
-  <nav>
-    <%=
-      link_to(
-          t('lexemes.edit.nav_text'),
-          edit_lexeme_path(id: @entity.id),
-          class: 'button-nav'
-      )
-    %>
+  <nav class="entity-actions">
+    <%= edit_icon(@entity) %>
+    <%= destroy_icon(@entity) %>
   </nav>
 
   <dl class="fields">
@@ -34,7 +29,7 @@
 
     <div>
       <dt><%= t('activerecord.attributes.lexeme.lexeme_type') %></dt>
-      <dd><%= admin_lexeme_type_link(@entity.lexeme_type) %></dd>
+      <dd><%= admin_entity_link(@entity.lexeme_type) %></dd>
     </div>
   </dl>
 

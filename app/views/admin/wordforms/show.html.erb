@@ -2,8 +2,8 @@
 <% content_for :breadcrumbs do %>
   <%= admin_biovision_component_link(component_handler.component) %>
   <%= link_to(t('admin.lexeme_types.nav_item.text'), admin_lexeme_types_path) %>
-  <%= admin_lexeme_type_link(@entity.lexeme.lexeme_type) %>
-  <%= admin_lexeme_link(@entity.lexeme) %>
+  <%= admin_entity_link(@entity.lexeme.lexeme_type) %>
+  <%= admin_entity_link(@entity.lexeme) %>
   <span><%= @entity.text %></span>
 <% end %>
 <% handler = Biovision::Components::Words::LexemeHandler[@entity.lexeme] %>
@@ -15,7 +15,7 @@
     <div>
       <dt><%= t('attributes.lexeme') %></dt>
       <dd>
-        <%= admin_lexeme_link(@entity.lexeme) %>
+        <%= admin_entity_link(@entity.lexeme) %>
         (<%= @entity.lexeme.lexeme_type.name %>)
       </dd>
     </div>

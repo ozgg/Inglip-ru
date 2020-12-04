@@ -13,7 +13,7 @@
       <% collection.each do |entity| %>
       <tr>
         <td><%= entity.flags.to_s(2).rjust(32, '0') %></td>
-        <td><%= admin_wordform_link(entity) %></td>
+        <td><%= admin_entity_link(entity) %></td>
       </tr>
       <% end %>
       </tbody>

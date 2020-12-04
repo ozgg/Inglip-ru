@@ -2,9 +2,9 @@
 
 # Handling wordforms
 class Admin::WordformsController < AdminController
-  include ListAndShowEntities
+  include CrudEntities
 
-  before_action :set_entity, only: %i[add_flag remove_flag]
+  before_action :set_entity, except: %i[check create index new]
 
   # put /admin/wordforms/:id/flags/:flag
   def add_flag

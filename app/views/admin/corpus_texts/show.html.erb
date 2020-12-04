@@ -9,7 +9,7 @@
 <article>
   <h1><%= @entity.checksum %></h1>
 
-  <dl>
+  <dl class="fields">
     <div>
       <dt><%= @entity.class.human_attribute_name(:corpus) %></dt>
       <dd><%= admin_entity_link(@entity.corpus) %></dd>

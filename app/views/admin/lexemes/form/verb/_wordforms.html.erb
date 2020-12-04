@@ -1,0 +1,89 @@
+<fieldset class="lexeme-wordforms">
+  <legend><%= t('admin.lexemes.form.wordforms') %></legend>
+
+  <%
+    numbers = Biovision::Components::Words::VerbHandler.number_flags
+    persons = Biovision::Components::Words::VerbHandler.person_flags
+    forms = Biovision::Components::Words::VerbHandler.verb_form_flags
+    tenses = Biovision::Components::Words::VerbHandler.tense_flags
+  %>
+  <% %i[tense_present tense_future].each do |tense_key| %>
+    <% tense_flag = tenses[tense_key] %>
+    <table>
+      <caption><%= t("wordform.flags.#{tense_key}") %></caption>
+      <thead>
+      <tr>
+        <th></th>
+        <% numbers.keys.each do |key| %>
+          <th data-col="<%= key %>" scope="col">
+            <%= t("wordform.flags.#{key}") %>
+          </th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+      <% persons.each do |person_key, person_flag| %>
+        <tr data-row="<%= person_key %>">
+          <th scope="row"><%= t("wordform.flags.#{person_key}") %></th>
+          <% numbers.each do |number_key, number_flag| %>
+            <% flag = person_flag | number_flag | tense_flag %>
+            <td data-col="<%= number_key %>">
+              <%=
+                text_field_tag(
+                    "wordforms[#{flag}]",
+                    handler.wordform(flag),
+                    class: 'input-text',
+                    placeholder: flag,
+                    title: flag
+                )
+              %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      <% if tense_key == :tense_present %>
+        <tr>
+          <th><%= t('wordform.flags.gerund') %></th>
+          <td colspan="2">
+            <% flag = tense_flag | forms[:gerund] %>
+            <%=
+              text_field_tag(
+                  "wordforms[#{flag}]",
+                  handler.wordform(flag),
+                  class: 'input-text',
+                  placeholder: flag,
+                  title: flag
+              )
+            %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <h3><%= t("wordform.flags.tense_past") %></h3>
+  <dl class="fields">
+    <% Biovision::Components::Words::VerbHandler.past_tense_flags.each do |key, flag| %>
+      <%=
+        render(
+            partial: 'admin/lexemes/form/wordform_list_flag',
+            locals: { handler: handler, key: key, flag: flag }
+        )
+      %>
+    <% end %>
+  </dl>
+
+  <h3><%= t('wordform.flags.imperative') %></h3>
+  <dl class="fields">
+    <% numbers.each do |key, number_flag| %>
+      <% flag = number_flag | forms[:imperative] %>
+      <%=
+        render(
+            partial: 'admin/lexemes/form/wordform_list_flag',
+            locals: { handler: handler, key: key, flag: flag }
+        )
+      %>
+    <% end %>
+  </dl>
+</fieldset>

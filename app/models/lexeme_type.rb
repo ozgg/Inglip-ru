@@ -22,4 +22,8 @@ class LexemeType < ApplicationRecord
   def text_for_link
     name
   end
+
+  def admin_url
+    "/admin/lexeme_types/#{slug}"
+  end
 end

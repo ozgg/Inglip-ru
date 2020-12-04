@@ -2,10 +2,10 @@
 
 # Managing corpus text samples
 class Admin::CorpusTextsController < AdminController
-  include ListAndShowEntities
+  include CrudEntities
   include ToggleableEntity
 
-  before_action :set_entity, only: %i[lexemes words pending_words]
+  before_action :set_entity, except: %i[check create index new]
 
   # get /admin/corpus_texts/:id/lexemes
   def lexemes

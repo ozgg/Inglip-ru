@@ -1,0 +1,14 @@
+<fieldset class="lexeme-wordforms">
+  <legend><%= t('admin.lexemes.form.wordforms') %></legend>
+
+  <dl class="fields">
+    <% Biovision::Components::Words::PrepositionHandler.wordform_flags.each do |key, flag| %>
+      <%=
+        render(
+            partial: 'admin/lexemes/form/wordform_list_flag',
+            locals: { handler: handler, key: key, flag: flag }
+        )
+      %>
+    <% end %>
+  </dl>
+</fieldset>

@@ -2,7 +2,9 @@
 
 # Managing sentence patterns
 class Admin::SentencePatternsController < AdminController
-  include ListAndShowEntities
+  include CrudEntities
+
+  before_action :set_entity, except: %i[analyze check create index new]
 
   # get /admin/sentence_patterns/:id/sample
   def sample
@@ -19,14 +21,14 @@ class Admin::SentencePatternsController < AdminController
   end
 
   # post /admin/sentence_patterns
-  def create
-    @entity = SentencePattern.new(creation_parameters)
-    if @entity.save
-      head :created
-    else
-      head :bad_request
-    end
-  end
+  # def create
+  #   @entity = SentencePattern.new(creation_parameters)
+  #   if @entity.save
+  #     head :created
+  #   else
+  #     head :bad_request
+  #   end
+  # end
 
   private
 

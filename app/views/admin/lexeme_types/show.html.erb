@@ -8,14 +8,8 @@
 <article>
   <h1><%= @entity.name %></h1>
 
-  <nav>
-    <%=
-      link_to(
-          t('admin.lexeme_types.new_lexeme.nav_text'),
-          new_lexeme_admin_lexeme_type_path(id: @entity.slug),
-          class: 'button-nav'
-      )
-    %>
+  <nav class="entity-actions">
+    <%= create_icon(new_lexeme_admin_lexeme_type_path(id: @entity.slug)) %>
   </nav>
 
   <%=

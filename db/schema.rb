@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_232323) do
+ActiveRecord::Schema.define(version: 2020_12_04_220231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -450,6 +450,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_232323) do
     t.string "notice"
     t.string "referral_link"
     t.jsonb "data", default: {"profile"=>{}}, null: false
+    t.jsonb "profile", default: {}, null: false
     t.index ["agent_id"], name: "index_users_on_agent_id"
     t.index ["data"], name: "index_users_on_data", using: :gin
     t.index ["email"], name: "index_users_on_email"

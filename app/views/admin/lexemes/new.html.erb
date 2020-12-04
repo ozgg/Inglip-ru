@@ -1,0 +1,17 @@
+<% content_for :meta_title, t('.title') %>
+<% content_for :breadcrumbs do %>
+  <%= admin_biovision_component_link(component_handler.component) %>
+  <% if @entity.lexeme_type.nil? %>
+    <%= link_to(t('admin.lexemes.index.nav_text'), admin_lexemes_path) %>
+  <% else %>
+    <%= link_to(t('admin.lexeme_types.index.nav_text'), admin_lexeme_types_path) %>
+    <%= admin_entity_link(@entity.lexeme_type) %>
+  <% end %>
+  <span><%= t('.nav_text') %></span>
+<% end %>
+
+<article>
+  <h1><%= t('.heading') %></h1>
+
+  <%= render partial: 'form', locals: { entity: @entity } %>
+</article>

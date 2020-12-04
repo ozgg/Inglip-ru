@@ -7,14 +7,8 @@
 <article>
   <h1><%= t('.heading') %></h1>
 
-  <nav>
-    <%=
-      link_to(
-          t('corpora.new.nav_text'),
-          new_corpus_path,
-          class: 'button-nav'
-      )
-    %>
+  <nav class="entity-actions">
+    <%= create_icon(new_admin_corpus_path) %>
   </nav>
 
   <%=

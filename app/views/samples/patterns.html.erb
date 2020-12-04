@@ -1,5 +1,5 @@
 <%
-  passage_count = @generator.rand(5) + 1
+  passage_count = @generator.rand(3) + 1
   builder = Biovision::Components::Corpora::SentenceBuilder.new(@generator)
 %>
 <article>
@@ -7,7 +7,7 @@
     <h1>Пример текста с использованем шаблонов.</h1>
 
     <p>
-      Используются шаблоны предложений.
+      Используются шаблоны предложений (<%= SentencePattern.count %>).
       Обновите страницу для получения нового текста.
     </p>
     <figure class="sample">
@@ -16,7 +16,7 @@
 
         <% passage_count.times do %>
           <p>
-            <% (@generator.rand(7) + 5).times do %>
+            <% (@generator.rand(5) + 3).times do %>
               <%= builder.generate %>
             <% end %>
           </p>

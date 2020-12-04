@@ -1,0 +1,40 @@
+<fieldset class="lexeme-wordforms">
+  <legend><%= t('admin.lexemes.form.wordforms') %></legend>
+
+  <%
+    cols = Biovision::Components::Words::NounHandler.number_flags
+    rows = Biovision::Components::Words::NounHandler.case_flags
+  %>
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <% cols.keys.each do |key| %>
+        <th data-col="<%= key %>" scope="col">
+          <%= t("wordform.flags.#{key}") %>
+        </th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% rows.each do |case_key, case_flag| %>
+      <tr data-row="<%= case_key %>">
+        <th scope="row"><%= t("wordform.flags.#{case_key}") %></th>
+        <% cols.each do |number_key, number_flag| %>
+          <% flag = case_flag | number_flag %>
+          <th data-col="<%= number_key %>">
+            <%=
+              text_field_tag(
+                  "wordforms[#{flag}]",
+                  handler.wordform(flag),
+                  class: 'input-text',
+                  title: flag
+              )
+            %>
+          </th>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</fieldset>

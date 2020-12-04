@@ -2,7 +2,9 @@
 
 # Viewing words
 class Admin::WordsController < AdminController
-  include ListAndShowEntities
+  include CrudEntities
+
+  before_action :set_entity, except: %i[check create index new]
 
   # get /admin/words
   def index

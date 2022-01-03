@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: inglip2
+  database: inglip3
   #username: inglip_ru
   #password:
   #host: localhost
@@ -15,11 +15,11 @@ development:
 
 test:
   <<: *default
-  database: inglip2_test
+  database: inglip3_test
 
 production:
   <<: *default
-  database: inglip2
+  database: inglip3
   username: inglip
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   host: localhost

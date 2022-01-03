@@ -11,21 +11,18 @@
 /log/*
 /tmp/*
 
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+
 # Ignore uploaded files in development.
 /storage/*
+/tmp/storage/*
 
 /public/assets
-.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
+/app/assets/builds/*
 
-lib/tasks/grabber.rake
-app/lib/grabber
+/node_modules

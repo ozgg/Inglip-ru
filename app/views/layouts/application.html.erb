@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="<%= locale %>">
 <head>
-  <title>inglip.ru: <%= yield :meta_title %></title>
+  <meta charset="UTF-8"/>
+  <title><%= yield :meta_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_pack_tag 'application' %>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application", defer: true %>
 </head>
 
 <body>
-<%= render 'layouts/application/header' %>
-<main id="main">
-  <%= yield %>
-</main>
-<%= render 'layouts/application/footer' %>
+<%= yield %>
 </body>
 </html>

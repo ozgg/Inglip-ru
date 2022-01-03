@@ -1,6 +1,0 @@
-<ul class="flags">
-  <% flags.each do |flag| %>
-    <% next unless handler.lexeme.flag?(flag) %>
-    <li><%= t("lexeme.data.#{flag}") %></li>
-  <% end %>
-</ul>

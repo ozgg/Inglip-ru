@@ -1,0 +1,13 @@
+@import "shared";
+
+:root {
+  --content-width-min: 32rem;
+
+  --font-family-main: #{$font-family-main};
+  --font-family-heading: #{$font-family-heading};
+
+  --font-size-normal: 1.6rem;
+  --font-size-decreased: 1.4rem;
+
+  --spacer-s: .8rem;
+}

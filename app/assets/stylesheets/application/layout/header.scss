@@ -1,0 +1,15 @@
+.main-header {
+  ul {
+    align-items: center;
+    display: flex;
+    gap: var(--spacer-s);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    display: inline-block;
+    padding: var(--spacer-s);
+  }
+}
